@@ -1,6 +1,7 @@
-const { FlatCompat } = require('@eslint/eslintrc');
-const { dirname } = require('path');
-const { fileURLToPath } = require('url');
+import { FlatCompat } from '@eslint/eslintrc';
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
+import eslintJsonConfig from './eslint.config.json' assert { type: 'json' };
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
