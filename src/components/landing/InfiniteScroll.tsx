@@ -12,15 +12,15 @@ export default function InfiniteScroll() {
 
         function addAnimation() {
             scrollers.forEach((scroller) => {
-                scroller.setAttribute("data-animated", "true"); // Use a string value for the attribute
+                scroller.setAttribute("data-animated", "true");
 
                 const scrollerInner = scroller.querySelector('.scroller__inner');
-                if (!scrollerInner) return; // Skip if scrollerInner is null
+                if (!scrollerInner) return;
 
                 const scrollerContent = Array.from(scrollerInner.children);
                 scrollerContent.forEach(item => {
-                    const duplicatedItem = item.cloneNode(true);
-                    duplicatedItem.setAttribute('aria-hidden', 'true'); // Use a string here too
+                    const duplicatedItem = item.cloneNode(true) as Element;
+                    duplicatedItem.setAttribute('aria-hidden', 'true');
                     scrollerInner.appendChild(duplicatedItem);
                 });
             });
@@ -31,7 +31,6 @@ export default function InfiniteScroll() {
 
     return (
         <section className="w-full container mx-auto py-10">
-            {/*<div className="text-2xl text-center font-bold">Infinite Scroll Animation</div>*/}
             <div className="scroller" data-direction="left">
                 <ul className="tag-list scroller__inner">
                     <li>HTML</li>

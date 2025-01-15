@@ -14,4 +14,4 @@ const eslintConfig = [
   ...eslintJsonConfig,
 ];
 
-export default eslintConfig;
+export default eslintConfig;
