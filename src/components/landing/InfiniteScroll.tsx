@@ -12,17 +12,20 @@ export default function InfiniteScroll() {
 
         function addAnimation() {
             scrollers.forEach((scroller) => {
-                scroller.setAttribute("data-animated", "true");
+                scroller.setAttribute("data-animated", "true"); // Use a string value for the attribute
 
                 const scrollerInner = scroller.querySelector('.scroller__inner');
+                if (!scrollerInner) return; // Skip if scrollerInner is null
+
                 const scrollerContent = Array.from(scrollerInner.children);
                 scrollerContent.forEach(item => {
                     const duplicatedItem = item.cloneNode(true);
-                    duplicatedItem.setAttribute('aria-hidden', 'true');
+                    duplicatedItem.setAttribute('aria-hidden', 'true'); // Use a string here too
                     scrollerInner.appendChild(duplicatedItem);
                 });
             });
         }
+
 
     }, []);
 

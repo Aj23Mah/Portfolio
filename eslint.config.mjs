@@ -1,7 +1,7 @@
 import { FlatCompat } from '@eslint/eslintrc';
 import { dirname } from 'path';
 import { fileURLToPath } from 'url';
-import eslintJsonConfig from './eslint.config.json' assert { type: 'json' };
+// import eslintJsonConfig from './eslint.config.json' assert { type: 'json' };
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -23,7 +23,7 @@ module.exports = {
     'prettier',
     'plugin:@typescript-eslint/recommended-requiring-type-checking',
     'plugin:functional/no-mutations',
-    ...eslintJsonConfig.extends,
+    // ...eslintJsonConfig.extends,
   ],
   root: true,
   env: {
