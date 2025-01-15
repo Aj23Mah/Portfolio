@@ -146,30 +146,30 @@ export default function Work() {
     };
 
     return (
-        <section className="md:px-0 px-5 max-w-full md:max-w-[80%] lg:max-w-[60%] mx-auto py-10">
+        <section className="py-10 px-[15vw] text-white project-bg">
             <div className="text-2xl text-center mb-4">Explore Latest Work</div>
             <div className="md:text-[2.5rem] text-3xl font-bold text-center mb-6">Project</div>
             <div>
                 {myWork.map((item, index) => (
                     <div
                         key={index}
-                        className="sticky top-36 grid grid-cols-1 lg:grid-cols-2 gap-6 border mb-10 rounded-3xl p-10 bg-gray-100"
+                        className="sticky top-36 grid grid-cols-1 lg:grid-cols-2 gap-6 border mb-10 rounded-3xl p-10 bg-gray-900"
                     >
                         <div>
                             <div className="text-2xl font-bold mb-2">{item.title}</div>
                             <div className="text-lg">{item.description}</div>
                             <ul className="list-disc list-inside mb-4">
                                 {item.features.map((feature, index) => (
-                                    <li key={index} className="text-gray-600">
+                                    <li key={index} className="">
                                         {feature}
                                     </li>
                                 ))}
                             </ul>
-                            <p className="text-sm text-gray-600 mb-4">
+                            <p className="text-sm mb-4">
                                 <strong>Tech Stack:</strong> {item.techStack.join(", ")}
                             </p>
                             <button
-                                className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition"
+                                className="bg-white text-black px-4 py-2 rounded-md hover:bg-gray-700 hover:text-gray-200 font-bold transition"
                                 onClick={() => openProjectModal(item)}
                             >
                                 View Demo
@@ -204,7 +204,7 @@ export default function Work() {
                             ))}
                         </div>
                         <button
-                            className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition mt-4"
+                            className="bg-black text-white px-4 py-2 rounded-md hover:bg-gray-700 transition mt-4"
                             onClick={closeModal}
                         >
                             Close

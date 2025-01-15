@@ -16,24 +16,6 @@ export default function About() {
         },
     ]
     const education = [
-        // {
-        //     studyAt: 'Trilok Children`s Academy',
-        //     location: 'Balaju-16, Kathmandu',
-        //     course: 'SEE',
-        //     year: '2017',
-        // },
-        // {
-        //     studyAt: 'Ashirwad College',
-        //     location: 'Abhiyan Marg, Kathmandu',
-        //     course: '+2',
-        //     year: '2017-2019',
-        // },
-        // {
-        //     studyAt: 'Asian School of Management and Technology',
-        //     location: 'Gangabu, Kathmandu',
-        //     course: 'BIM',
-        //     year: '2019-2024',
-        // },
         {
             studyAt: 'Krafters Technology',
             location: 'Kumari pati, Lalitpur',
@@ -45,7 +27,7 @@ export default function About() {
         <section className="container mx-auto py-10 md:px-0 px-5">
 
             <div className={'grid grid-cols-1 md:grid-cols-2 gap-8'}>
-                <div className={'roboto-slab-semibold'}> {/* sticky top-20 */}
+                <div className={'roboto-slab-semibold'}>
                     <div className={'text-2xl font-bold '}>BG 2.31</div>
                     <div className={'md:text-[2.5rem] sm:text-[2rem] text-[1.5rem]  font-bold sticky top-28'}>
                         Besides, considering your

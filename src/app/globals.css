@@ -37,23 +37,18 @@ body {
 
 .anton-regular {
   font-family: "Anton", serif;
-  /*font-weight: 400;*/
-  /*font-style: normal;*/
 }
 
 .roboto-slab-semibold {
                 font-family: "Roboto Slab", serif;
-                /*font-optical-sizing: auto;*/
-                /*font-weight: 600; !*100 - 900*!*/
-                /*font-style: normal;*/
               }
 
 .khand-regular {
   font-family: "Khand", serif;
-  /*font-weight: 400;*/
-  /*font-style: normal;*/
 }
 
-.instaLogoColor {
-  background: linear-gradient(#405DE6, #5B51D8, #833AB4, #C13584, #E1306C, #FD1D1D, #F56040, #777737, #FCAF45, #FFDC80,);
+.project-bg {
+  background: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.9)), url("../assets/image/noise.webp");
+  height: 100%;
+  width: 100%;
 }

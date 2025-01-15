@@ -1,12 +1,7 @@
 import {
-    IconBrandFacebook, IconBrandFacebookFilled, IconBrandFigma, IconBrandGit, IconBrandGithub, IconBrandGithubFilled,
-    IconBrandInstagram, IconBrandInstagramFilled, IconBrandLinkedin, IconBrandLinkedinFilled,
-    IconBrandTwitter,
-    IconLocation,
-    IconMail,
-    IconPhone
+    IconBrandFacebookFilled, IconBrandGithubFilled,
+    IconBrandInstagram, IconBrandLinkedin,
 } from "@tabler/icons-react";
-import Logo from "@/components/partials/logo";
 
 export default function Footer() {
     return (
@@ -26,9 +21,6 @@ export default function Footer() {
                         <IconBrandGithubFilled stroke={2} style={{height: '100%', width: '100%'}}/>
                     </a>
                 </div>
-                {/*<div>*/}
-                {/*    <Logo />*/}
-                {/*</div>*/}
                 <div className="flex flex-wrap items-center justify-center gap-1 text-gray-400 pt-4 border-t-2">
                     © 2021 <p className="">Ajay Kumar Maharjan.</p> All Rights Reserved
                 </div>
