@@ -41,7 +41,7 @@ export default function About() {
                     <div className={'md:text-2xl text-xl'}>
                         <p className={'mb-4'}>
                             Bringing life to code and building bridges between technology and user comfort!
-                            Hi, I'm Ajay Kumar Maharjan, a full-stack JavaScript developer targeting the essence of
+                            Hi, I`m Ajay Kumar Maharjan, a full-stack JavaScript developer targeting the essence of
                             innovation through my skills in MERN Stack.
                             Born and raised in the tech heartbeat of Kathmandu, I currently enhance web applications
                             with a
@@ -49,7 +49,7 @@ export default function About() {
                         </p>
                         <p className={'mb-4'}>
                             Since commencing my educational journey in Information Management,
-                            I've embraced every learning opportunity and technological challenge,
+                            I`ve embraced every learning opportunity and technological challenge,
                             turning them into stepping stones toward becoming an expert in my field.
                             Throughout my career, my projects have not just been tasks, but adventures in creating
                             impactful
@@ -73,7 +73,7 @@ export default function About() {
                             <p>Experiences</p>
                         </div>
                         <div className="flex flex-col gap-4">
-                            {experiences.map((experience: any, index: number) => (
+                            {experiences?.map((experience: any, index: number) => (
                                 <div key={index}>
                                     <div className="border p-6">
                                         <div className="text-xl mb-2">{experience.duration}</div>
@@ -94,7 +94,7 @@ export default function About() {
                             <p>Certificate</p>
                         </div>
                         <div className="flex flex-col gap-4">
-                            {education.map((education: any, index: number) => (
+                            {education?.map((education: any, index: number) => (
                                 <div key={index}>
                                     <div className="border p-6">
                                         <div className="text-xl mb-2">{education.year}</div>

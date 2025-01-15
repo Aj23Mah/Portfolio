@@ -1,12 +1,11 @@
 import Image from "next/image";
 import heroImg from "@/assets/image/me.webp"
 import '@/assets/css/TypingAnimation.css'
-// import '@/assets/css/Flip.css'
 
 export default function HeroSection() {
     return (
         < section
-            className = "w-[100dvw] container mx-auto " > {/*  bg-[#ddd] h-[calc((100dvh-64px))] */}
+            className = "w-[100dvw] container mx-auto " >
             <div className="relative w-full">
                 <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex flex-col justify-center">
                     <h1 className="text-4xl font-medium rancho-regular text-center">Ajay Kumar Maharjan</h1>
