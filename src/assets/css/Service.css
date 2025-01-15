@@ -1,0 +1,131 @@
+.parallex_background {
+    height: auto;
+    width: 100%;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: linear-gradient(
+            to bottom,
+            rgba(0, 0, 0, 0.5),
+            rgba(0, 0, 0, 0.5)
+    ),
+    url("../image/background.jpeg");
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding-top: 8rem;
+    padding-bottom: 8rem;
+}
+
+/*.header {*/
+/*    font-size: 2.5rem;*/
+/*    font-weight: bold;*/
+/*}*/
+
+.sub_header {
+    font-size: 1.2rem;
+    text-align: center;
+    max-width: 800px;
+    margin: 1rem auto;
+}
+
+.parallex_setupItems {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    width: 100%;
+    max-width: 1200px;
+    margin: .5rem auto;
+}
+
+.setUp_items {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    /*background: rgba(255, 255, 255, 0.2);*/
+    /*border: 1px solid black;*/
+    padding: 1rem;
+    border-radius: 10px;
+    flex-basis: calc(33.333% - 1rem);
+    max-width: calc(33.333% - 1rem);
+    text-align: center;
+    cursor: pointer;
+}
+
+
+.setUp_items p {
+    width: 80%;
+    margin: 0.5rem 0;
+}
+
+
+@media (max-width: 1024px) {
+    .parallex_background {
+        padding-top: 5rem;
+        padding-bottom: 5rem;
+    }
+    .header {
+        font-size: 2rem;
+    }
+
+    .sub_header {
+        font-size: 1.2rem;
+    }
+
+    .parallex_setupItems {
+        padding: 0 2rem;
+    }
+
+    .setUp_items {
+        flex-basis: calc(50% - 1rem);
+        max-width: calc(50% - 1rem);
+    }
+}
+
+@media (max-width: 768px) {
+    .parallex_background {
+        padding-top: 4rem;
+        padding-bottom: 4rem;
+    }
+    .header {
+        font-size: 1.75rem;
+    }
+
+    .sub_header {
+        font-size: 1rem;
+    }
+
+    .parallex_setupItems {
+        padding: 0 1rem;
+    }
+
+    .setUp_items {
+        flex-basis: calc(100% - 1rem);
+        max-width: calc(100% - 1rem);
+    }
+}
+
+@media (max-width: 426px) {
+    .parallex_background {
+        padding-top: 3rem;
+        padding-bottom: 3rem;
+    }
+    .header {
+        font-size: 1.5rem;
+    }
+
+    .sub_header {
+        font-size: 0.875rem;
+    }
+
+    .setUp_items p {
+        width: 100%;
+    }
+}

@@ -1,0 +1,54 @@
+.hero-txt {
+    display: inline-flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.static-txt {
+    /*color: #000;*/
+    /*font-size: 60px;*/
+    font-weight: 500;
+}
+.dynamic-txt {
+    margin-left: 15px;
+    height: 90px;
+    line-height: 90px;
+    overflow: hidden;
+    font-weight: bold;
+}
+.dynamic-txt li {
+    /*color: black;*/
+    list-style: none;
+    /*font-size: 60px;*/
+    position: relative;
+    top: 0;
+    animation: slide 6s steps(4) infinite;
+}
+@keyframes slide {
+    100% {
+        top: -360px;
+    }
+}
+
+
+.dynamic-txt li span {
+    position: relative;
+}
+
+.dynamic-txt li span:after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 100%;
+    width: 100%;
+    background: #fff;
+    border-left: 2px solid #fc6d6d;
+    animation: typing 1.5s steps(10) infinite;
+}
+
+@keyframes typing {
+    100% {
+        left: 100%;
+        margin: 0 -35px 0 35px;
+    }
+}
