@@ -10,7 +10,7 @@
             rgba(0, 0, 0, 0.5),
             rgba(0, 0, 0, 0.5)
     ),
-    url("../image/background.jpeg");
+    url("../../../public/image/background.jpeg");
     color: #fff;
     display: flex;
     flex-direction: column;

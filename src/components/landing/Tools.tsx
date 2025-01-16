@@ -1,11 +1,11 @@
-import htmlLogo from '@/assets/image/html-logo.png'
-import cssLogo from '@/assets/image/css-logo.png'
-import reactLogo from '@/assets/image/React_logo.webp'
-import jsLogo from '@/assets/image/JS-logo.png'
-import nodeLogo from '@/assets/image/node-logo.png'
-import nestLogo from '@/assets/image/Nest-logo.webp'
-import nextLogo from '@/assets/image/Next-logo.webp'
-import postgreLogo from '@/assets/image/postgresql-logo.png'
+import htmlLogo from '../../../public/image/html-logo.png'
+import cssLogo from '../../../public/image/css-logo.png'
+import reactLogo from '../../../public/image/React_logo.webp'
+import jsLogo from '../../../public/image/JS-logo.png'
+import nodeLogo from '../../../public/image/node-logo.png'
+import nestLogo from '../../../public/image/Nest-logo.webp'
+import nextLogo from '../../../public/image/Next-logo.webp'
+import postgreLogo from '../../../public/image/postgresql-logo.png'
 import Image from "next/image";
 
 export default function Tools() {

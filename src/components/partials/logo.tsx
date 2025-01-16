@@ -1,4 +1,4 @@
-import logoImg from "@/assets/image/logo.png"
+import logoImg from "../../../public/image/logo.png"
 import Image from "next/image";
 
 export default function Logo() {

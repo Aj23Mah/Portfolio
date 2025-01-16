@@ -1,5 +1,5 @@
 import React from "react";
-import img from "@/assets/image/FoodChow.jpg"
+import img from "../../../public/image/FoodChow.jpg"
 import Image from "next/image";
 const projects = [
     {

@@ -1,9 +1,25 @@
+"use client"
 import {
     IconBrandFacebookFilled, IconBrandGithubFilled,
     IconBrandInstagram, IconBrandLinkedin,
 } from "@tabler/icons-react";
+import {useEffect, useState} from "react";
+import axios from "axios";
 
 export default function Footer() {
+    const [getFooter, setGetFooter] = useState([]);
+    useEffect(() => {
+        axios.get('https://api-cms.nxin.tech/menu/code/footer-privacy',
+            {
+                headers: {
+                    organization: 'ajay'
+                }
+            })
+            .then(response => {
+                setGetFooter(response.data);
+            });
+    }, []);
+    console.log('getFooter api', getFooter);
     return (
         <footer className="bg-white py-8 container mx-auto">
             <div className={'text-black grid justify-items-center'}>

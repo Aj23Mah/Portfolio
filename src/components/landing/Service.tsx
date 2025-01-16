@@ -1,3 +1,4 @@
+"use client"
 import '@/assets/css/Service.css'
 import {
     IconBrandDatabricks,
@@ -7,6 +8,8 @@ import {
     IconDeviceImacCode,
     IconSettingsSearch
 } from "@tabler/icons-react";
+import {useEffect, useState} from "react";
+import axios from "axios";
 
 export default function() {
     const parallaxItems = [
@@ -47,6 +50,19 @@ export default function() {
                 "Lorem Ipsum is simply dummy text of the printing and typesetting industry",
         },
     ];
+    const [getService, setGetService] = useState([]);
+        useEffect(() => {
+            axios.get('https://api-cms.nxin.tech/service', {
+                headers: {
+                    organization: 'ajay'
+                }
+            })
+                .then(response => {
+                    setGetService(response.data);
+                });
+        }, []);
+    console.log('getService api', getService);
+
     return (
         <div className="container mx-auto py-10">
             <div className="md:text-[2.5rem] text-3xl font-bold text-center">Services</div>

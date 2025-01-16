@@ -48,7 +48,29 @@ body {
 }
 
 .project-bg {
-  background: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.9)), url("../assets/image/noise.webp");
-  height: 100%;
-  width: 100%;
+  position:relative;
+  transition: .5s;
+  &.dark{
+    background: #101019;
+    &:before{
+      content:'';
+      position: absolute;
+      background: url("/image/noise.webp") center / 10%;
+      height: 100%;
+      width: 100%;
+      top:0;
+      left:0;
+      background-attachment: fixed;
+    }
+  }
+  .project-card{
+    background: rgba(21, 21, 33, 0.7);
+    backdrop-filter: blur(12px);
+    border:1px solid rgba(255,255,255,0.12);
+  }
+}
+
+
+@keyframes scroll {
+
 }

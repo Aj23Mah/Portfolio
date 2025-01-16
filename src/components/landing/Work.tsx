@@ -1,15 +1,16 @@
 "use client"
-import React, {useState} from "react";
-import projectImg1 from '@/assets/image/FoodChow.jpg'
-import projectImg2 from '@/assets/image/krafters.jpg'
-import projectImg3 from '@/assets/image/KrafterSchool.jpg'
-import projectImg4 from '@/assets/image/chat-app.jpg'
-import projectImg5 from '@/assets/image/chat-app1.jpg'
-import projectImg6 from '@/assets/image/chat-app2.jpg'
-import projectImg7 from '@/assets/image/food-chowFull.png'
-import projectImg8 from '@/assets/image/krafterSchoolFull.png'
-import projectImg9 from '@/assets/image/krafter.devFull.png'
+import React from "react";
+import projectImg1 from '../../../public/image/FoodChow.jpg'
+import projectImg2 from '../../../public/image/krafters.jpg'
+import projectImg3 from '../../../public/image/KrafterSchool.jpg'
+import projectImg4 from '../../../public/image/chat-app.jpg'
+import projectImg5 from '../../../public/image/chat-app1.jpg'
+import projectImg6 from '../../../public/image/chat-app2.jpg'
+import projectImg7 from '../../../public/image/food-chowFull.png'
+import projectImg8 from '../../../public/image/krafterSchoolFull.png'
+import projectImg9 from '../../../public/image/krafter.devFull.png'
 import Image from "next/image";
+import useScrollPosition from "@/utils/hooks/useScrollPosition";
 
 export default function Work() {
     const myWork = [
@@ -83,7 +84,7 @@ export default function Work() {
                 projectImg1,
                 projectImg7,
             ],
-            liveDemo: "",
+            liveDemo: "https://food-ordering-brown.vercel.app/",
             github: "",
         },
         {
@@ -132,28 +133,17 @@ export default function Work() {
         },
     ];
 
-    const [openModal, setOpenModal] = useState(false);
-    const [selectedProject, setSelectedProject] = useState<any>(null);
-
-    const openProjectModal = (project: any) => {
-        setSelectedProject(project);
-        setOpenModal(true);
-    };
-
-    const closeModal = () => {
-        setOpenModal(false);
-        setSelectedProject(null);
-    };
+    const scrollPosition = useScrollPosition();
 
     return (
-        <section className="py-10 px-[15vw] text-white project-bg">
+        <section className={`py-10 px-[15vw] text-black project-bg ${scrollPosition > 2200 ? 'dark text-white' : ''}`}>
             <div className="text-2xl text-center mb-4">Explore Latest Work</div>
             <div className="md:text-[2.5rem] text-3xl font-bold text-center mb-6">Project</div>
             <div>
                 {myWork.map((item, index) => (
                     <div
                         key={index}
-                        className="sticky top-36 grid grid-cols-1 lg:grid-cols-2 gap-6 border mb-10 rounded-3xl p-10 bg-gray-900"
+                        className={`sticky top-36 grid grid-cols-1 lg:grid-cols-2 gap-6 mb-10 rounded-3xl p-10   ${scrollPosition > 2200 ? 'project-card' : 'bg-white text-black'}`}
                     >
                         <div>
                             <div className="text-2xl font-bold mb-2">{item.title}</div>
@@ -168,12 +158,12 @@ export default function Work() {
                             <p className="text-sm mb-4">
                                 <strong>Tech Stack:</strong> {item.techStack.join(", ")}
                             </p>
-                            <button
+                            <a
+                                href={item.liveDemo}
                                 className="bg-white text-black px-4 py-2 rounded-md hover:bg-gray-700 hover:text-gray-200 font-bold transition"
-                                onClick={() => openProjectModal(item)}
                             >
                                 View Demo
-                            </button>
+                            </a>
                         </div>
                         <div className="rounded-2xl overflow-hidden">
                             <Image src={item.image[0]} alt={item.title} className="w-full" />
@@ -181,37 +171,6 @@ export default function Work() {
                     </div>
                 ))}
             </div>
-
-            {openModal && selectedProject && (
-                <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center z-50">
-                    <div className="bg-white rounded-xl p-6 max-w-3xl w-full relative overflow-y-scroll h-full">
-                        <button
-                            className="absolute top-4 right-4 bg-gray-200 p-2 rounded-full hover:bg-gray-300"
-                            onClick={closeModal}
-                        >
-                            ✕
-                        </button>
-                        <h2 className="text-2xl font-bold mb-4">{selectedProject.title}</h2>
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                            {selectedProject.image.map((image: string, index: number) => (
-                                <div key={index} className="rounded-lg overflow-auto">
-                                    <Image
-                                        src={image}
-                                        alt={`${selectedProject.title} Image ${index + 1}`}
-                                        className="rounded-lg"
-                                    />
-                                </div>
-                            ))}
-                        </div>
-                        <button
-                            className="bg-black text-white px-4 py-2 rounded-md hover:bg-gray-700 transition mt-4"
-                            onClick={closeModal}
-                        >
-                            Close
-                        </button>
-                    </div>
-                </div>
-            )}
         </section>
     );
 }

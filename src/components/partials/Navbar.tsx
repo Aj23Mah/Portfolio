@@ -1,8 +1,9 @@
 "use client"
 import Link from "next/link";
 import Logo from "@/components/partials/logo";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {IconMenu2, IconX} from "@tabler/icons-react";
+import axios from "axios";
 
 export default function Navbar() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -12,6 +13,20 @@ export default function Navbar() {
         {label: "Service", path: "/"},
         {label: "Work", path: "/"},
     ]
+
+    const [getHeader, setGetHeader] = useState([]);
+    useEffect(() => {
+        axios.get('https://api-cms.nxin.tech/menu/code/header',
+            {
+                headers: {
+                    organization: 'ajay'
+                }
+            })
+            .then(response => {
+                setGetHeader(response.data);
+            });
+    }, []);
+    console.log('getHeader api', getHeader);
 
     return (
         <nav className="shadow-md w-full sticky top-0 left-0 z-50 bg-white">
