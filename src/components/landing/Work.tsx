@@ -136,7 +136,7 @@ export default function Work() {
     const scrollPosition = useScrollPosition();
 
     return (
-        <section className={`py-10 px-[15vw] text-black project-bg ${scrollPosition > 2200 ? 'dark text-white' : ''}`}>
+        <section id="work" className={`py-10 px-[15vw] text-black project-bg ${scrollPosition > 2200 ? 'dark text-white' : ''}`}>
             <div className="text-2xl text-center mb-4">Explore Latest Work</div>
             <div className="md:text-[2.5rem] text-3xl font-bold text-center mb-6">Project</div>
             <div>

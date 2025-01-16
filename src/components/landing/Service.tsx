@@ -64,7 +64,7 @@ export default function() {
     console.log('getService api', getService);
 
     return (
-        <div className="container mx-auto py-10">
+        <div id="service" className="container mx-auto py-10">
             <div className="md:text-[2.5rem] text-3xl font-bold text-center">Services</div>
             <p className="sub_header md:px-0 px-5 text-gray-500">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad adipisci aliquid
                     architecto asperiores commodi dignissimos enim eum excepturi exercitationem magnam odio, officia

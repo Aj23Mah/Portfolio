@@ -10,7 +10,7 @@ export default function About() {
         },
         {
             label: 'Junior JS Developer',
-            company: 'NXIT',
+            company: 'NXIN',
             duration: 'Present',
             location: 'Tahachal, Kathmandu',
         },
@@ -24,7 +24,7 @@ export default function About() {
         },
     ]
     return (
-        <section className="container mx-auto py-10 md:px-0 px-5">
+        <section id="about" className="container mx-auto py-10 md:px-0 px-5">
 
             <div className={'grid grid-cols-1 md:grid-cols-2 gap-8'}>
                 <div className={'roboto-slab-semibold'}>
