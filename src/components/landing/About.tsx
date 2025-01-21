@@ -23,16 +23,21 @@ export default function About() {
             year: '2024',
         },
     ]
+
     return (
         <section id="about" className="container mx-auto py-10 md:px-0 px-5">
 
             <div className={'grid grid-cols-1 md:grid-cols-2 gap-8'}>
                 <div className={'roboto-slab-semibold'}>
-                    <div className={'text-2xl font-bold '}>BG 2.31</div>
-                    <div className={'md:text-[2.5rem] sm:text-[2rem] text-[1.5rem]  font-bold sticky top-28'}>
-                        Besides, considering your
-                        duty as a warrior, you should not waver. Indeed, for a warrior, there is no better engagement
-                        than fighting for upholding of righteousness.
+                    <div
+                        className={'md:text-[2.5rem] sm:text-[2rem] text-[1.5rem] text-gray-700/50 font-bold sticky top-28'}
+                    >
+                        Besides, considering your <span className={'text-black'}>duty</span>, as a warrior
+                        you should not waver. Indeed, for a <span className={'text-black'}>warrior</span>, there is no
+                        better engagement
+                        than fighting for <span className={'text-black'}>upholding of righteousness</span>.
+
+                        <p className={'text-2xl font-bold text-gray-700/50'}> BG 2.31</p>
                     </div>
                 </div>
 

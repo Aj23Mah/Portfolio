@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Anton&family=Khand:wght@300;400;500;600;700&family=Rancho&family=Roboto+Slab:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&family=Smooch&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -12,24 +12,24 @@
   --text: #ffffff;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+.smooch {
+  font-family: "Smooch", serif;
+  font-weight: 400;
+  font-style: normal;
 }
+
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  scroll-behavior: smooth;
 }
 
 body {
   color: var(--foreground);
   background: var(--background);
   font-family: "Roboto Slab", serif;
-  scroll-behavior: smooth;
 }
 
 .rancho-regular {
@@ -71,7 +71,13 @@ body {
   }
 }
 
-
-@keyframes scroll {
-
+.bg-paper-texture {
+  background: url("/image/paper-texture.jpeg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100%;
+  background-attachment: fixed;
+  height: 100%;
+  width: 100%;
+  opacity: 0.9;
 }

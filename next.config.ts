@@ -1,8 +1,17 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-    image: {
-        domains: ['localhost'],
+    images: {
+        remotePatterns: [
+            {
+                protocol: 'https',
+                hostname: 'api-cms.nxin.tech',
+                pathname: '**'
+            },
+            // {
+            //     domains: ['localhost'],
+            // }
+        ],
     },
 
 };
