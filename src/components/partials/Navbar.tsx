@@ -2,10 +2,21 @@
 import Logo from "@/components/partials/logo";
 import {useState} from "react";
 import {IconMenu2, IconX} from "@tabler/icons-react";
+import Link from "next/link";
 
 export default function Navbar(props: any) {
     const {data} = props;
     // console.log('menu data from navbar', data);
+
+    // const changeLink = (link: any) => {
+    //     setActiveLink(link.label);
+    //     if (!link.isLink && link.target) {
+    //         const element = document.querySelector(.${link.target});
+    //         if (element) {
+    //             element.scrollIntoView({behavior: 'smooth', block: 'start'});
+    //         }
+    //     }
+    // }
 
     const [toggle, setToggle] = useState(false);
     return (
@@ -20,12 +31,15 @@ export default function Navbar(props: any) {
                         "right-[490px]"
                     }
                 `}>
-                        {data?.map((v: any) => (
-                            <div key={v.id}
-                                 className={'px-4 py-1 my-2 rounded-lg text-white  hover:text-white hover:bg-gray-800/50 cursor-pointer'}>
-                                {v.title}
-                            </div>
-                        ))}
+                        {data?.map((v: any, key: number) => {
+                            // const changeLink = v.route;
+                            // console.log("changeLink", changeLink);
+                            return (
+                               <Link href={v.route} className={'flex flex-col px-4 py-1 my-2 rounded-lg text-white  hover:text-white hover:bg-gray-800/50 cursor-pointer'}>
+                                   {v.title}
+                               </Link>
+                            )
+                        })}
                     </div>
                     <div
                         onClick={() => setToggle(!toggle)}
