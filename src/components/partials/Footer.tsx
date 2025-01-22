@@ -3,13 +3,17 @@ import {
     IconBrandFacebookFilled, IconBrandGithubFilled,
     IconBrandInstagram, IconBrandLinkedin,
 } from "@tabler/icons-react";
-import axios from "axios";
+import {GetRequest} from "@/plugins/https";
+import useSWR from "swr";
 
-export default function Footer(props: any) {
-    const {data} = props;
-    console.log('Data from footer', data);
+export default function Footer() {
+    // const {data} = props;
+    const {data: footerData, isLoading, error} =useSWR("/menu/group/2", getData);
+    // console.log('Data from footer', data);
 
-    const findByCode = (code: any) => data.find((item: any) => item.code === code);
+    if (error) return <div>Failed to load</div>
+    if (!footerData) return <div>Loading...</div>
+    const findByCode = (code: any) => footerData.find((item: any) => item.code === code);
 
     const facebook = findByCode("facebook");
     // console.log(facebook.route);
@@ -43,4 +47,15 @@ export default function Footer(props: any) {
             </div>
         </footer>
     );
+}
+export async function getData(url: string) {
+    let footerData = null;
+    try {
+        const response: any = await GetRequest(url);
+        footerData = response;
+    } catch (error) {
+        console.error("Error fetching data:", error);
+    }
+
+    return footerData;
 }

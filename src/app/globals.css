@@ -27,9 +27,17 @@
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
+  /*color: var(--foreground);*/
+  /*background: var(--background);*/
   font-family: "Roboto Slab", serif;
+  /*background: url("/image/paper-texture.jpeg");*/
+  /*background-repeat: no-repeat;*/
+  /*background-position: center;*/
+  /*background-size: 100%;*/
+  /*background-attachment: fixed;*/
+  /*height: 100%;*/
+  /*width: 100%;*/
+  /*opacity: 0.9;*/
 }
 
 .rancho-regular {
@@ -75,9 +83,29 @@ body {
   background: url("/image/paper-texture.jpeg");
   background-repeat: no-repeat;
   background-position: center;
-  background-size: 100%;
+  background-size: cover;
   background-attachment: fixed;
   height: 100%;
   width: 100%;
   opacity: 0.9;
 }
+
+/*.bg-paper-texture {*/
+/*  position: relative;*/
+/*  height: 100dvh;*/
+/*  width: 100%;*/
+
+/*  &::before {*/
+/*    content: "";*/
+/*    background: url("/public/image/paper-texture.jpeg");*/
+/*    background-size: cover;*/
+/*    position: absolute;*/
+/*    top: 0px;*/
+/*    right: 0px;*/
+/*    bottom: 0px;*/
+/*    left: 0px;*/
+/*    opacity: 0.2;*/
+/*    height: 100%;*/
+/*    width: 100%;*/
+/*  }*/
+/*}*/

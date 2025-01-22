@@ -3,22 +3,19 @@ import Logo from "@/components/partials/logo";
 import {useState} from "react";
 import {IconMenu2, IconX} from "@tabler/icons-react";
 import Link from "next/link";
+import {GetRequest} from "@/plugins/https";
+import useSWR from "swr";
 
-export default function Navbar(props: any) {
-    const {data} = props;
-    // console.log('menu data from navbar', data);
-
-    // const changeLink = (link: any) => {
-    //     setActiveLink(link.label);
-    //     if (!link.isLink && link.target) {
-    //         const element = document.querySelector(.${link.target});
-    //         if (element) {
-    //             element.scrollIntoView({behavior: 'smooth', block: 'start'});
-    //         }
-    //     }
-    // }
+export default function Navbar() {
+    // const {data} = props;
+    const {data: menuData, isLoading, error} =useSWR("/menu/group/1", getData);
+    // console.log('menu data from navbar', menuData);
 
     const [toggle, setToggle] = useState(false);
+
+    if (error) return <div>Failed to load</div>
+    if (!menuData) return <div>Loading...</div>
+
     return (
         <>
             <nav className={'fixed lg:left-10 md:left-5 sm:left-3 left-2 z-50 min-h-full py-10 flex flex-col justify-between items-center'}>
@@ -31,11 +28,9 @@ export default function Navbar(props: any) {
                         "right-[490px]"
                     }
                 `}>
-                        {data?.map((v: any, key: number) => {
-                            // const changeLink = v.route;
-                            // console.log("changeLink", changeLink);
+                        {menuData?.map((v: any, key: number) => {
                             return (
-                               <Link href={v.route} className={'flex flex-col px-4 py-1 my-2 rounded-lg text-white  hover:text-white hover:bg-gray-800/50 cursor-pointer'}>
+                               <Link key={key} href={v.route} className={'flex flex-col px-4 py-1 my-2 rounded-lg text-white  hover:text-white hover:bg-gray-800/50 cursor-pointer'}>
                                    {v.title}
                                </Link>
                             )
@@ -51,4 +46,16 @@ export default function Navbar(props: any) {
             </nav>
         </>
     )
+}
+
+export async function getData(url: string) {
+    let menuData = null;
+    try {
+        const response: any = await GetRequest(url);
+        menuData = response;
+    } catch (error) {
+        console.error("Error fetching data:", error);
+    }
+
+    return menuData;
 }

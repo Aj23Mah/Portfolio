@@ -26,10 +26,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>
-      {/*<Navbar />*/}
+      <body className={'bg-paper-texture'}>
       <main>{children}</main>
-      {/*<Footer />*/}
       </body>
     </html>
   );
