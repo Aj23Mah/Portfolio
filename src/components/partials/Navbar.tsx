@@ -1,10 +1,11 @@
 "use client"
 import Logo from "@/components/partials/logo";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {IconMenu2, IconX} from "@tabler/icons-react";
 import Link from "next/link";
 import {GetRequest} from "@/plugins/https";
 import useSWR from "swr";
+import useStore from "@/store/store";
 
 export default function Navbar() {
     // const {data} = props;
@@ -13,13 +14,29 @@ export default function Navbar() {
 
     const [toggle, setToggle] = useState(false);
 
+    if (isLoading) return <div>Loading...</div>
     if (error) return <div>Failed to load</div>
-    if (!menuData) return <div>Loading...</div>
+
+
+    // const {menuData, loadMenusData} = useStore();
+    // console.log(menuData)
 
     return (
         <>
             <nav className={'fixed lg:left-10 md:left-5 sm:left-3 left-2 z-50 min-h-full py-10 flex flex-col justify-between items-center'}>
                 <div><Logo/></div>
+                {/*<div>*/}
+                {/*    <h1>Menu Items</h1>*/}
+                {/*    <button className={'bg-blue-600 text-white py-1 px-4 hover:bg-blue-700 rounded'} onClick={loadMenusData}>Load menus</button>*/}
+                {/*    <ul>*/}
+                {/*        {menuData?.map((v: any) => (*/}
+                {/*            <li key={v.id}>*/}
+                {/*                {v.title}*/}
+                {/*            </li>*/}
+                {/*        ))}*/}
+                {/*    </ul>*/}
+                {/*</div>*/}
+
                 <div className={'relative'}>
                     <div className={`text-lg font-semibold py-7 px-4 bg-black/50 absolute 
                     ${toggle ? 

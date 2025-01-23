@@ -104,3 +104,6 @@ export default function Navbar() {
         </>
     )
 }
+
+
+task = {task} / {...task}
