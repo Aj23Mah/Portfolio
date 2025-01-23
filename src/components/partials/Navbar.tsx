@@ -5,7 +5,7 @@ import {IconMenu2, IconX} from "@tabler/icons-react";
 import Link from "next/link";
 import {GetRequest} from "@/plugins/https";
 import useSWR from "swr";
-import useStore from "@/store/store";
+// import useStore from "@/store/store";
 
 export default function Navbar() {
     // const {data} = props;

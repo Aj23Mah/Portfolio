@@ -1,5 +1,5 @@
 import {create} from 'zustand'
-import {APIGetMenu, fetchMenuData} from "@/api/APIMenu";
+import {APIGetMenu} from "@/api/APIMenu";
 
 const useStore = create((set)=>({
     menuData: [],
@@ -10,7 +10,7 @@ const useStore = create((set)=>({
 
     loadMenusData: async () => {
         const menuData = await APIGetMenu();
-        return set(state => ({...state, menuData}))
+        return set((state: any) => ({...state, menuData}))
     }
 
 }))
