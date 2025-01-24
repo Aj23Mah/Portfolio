@@ -3,19 +3,22 @@ import Logo from "@/components/partials/logo";
 import {useEffect, useState} from "react";
 import {IconMenu2, IconX} from "@tabler/icons-react";
 import Link from "next/link";
-import {GetRequest} from "@/plugins/https";
-import useSWR from "swr";
+// import {GetRequest} from "@/plugins/https";
+// import useSWR from "swr";
+import useStore from "@/store/store";
 // import useStore from "@/store/store";
 
 export default function Navbar() {
-    // const {data} = props;
-    const {data: menuData, isLoading, error} =useSWR("/menu/group/1", getData);
+    // const {data: menuData} = props;
+    const menuData = useStore((state:any) => state.menuData);
+    // const {data: menuData, isLoading, error} =useSWR("/menu/group/1", getData);
+    // const menuData = useStore((state: any) => state.menuData)
     // console.log('menu data from navbar', menuData);
 
     const [toggle, setToggle] = useState(false);
 
-    if (isLoading) return <div>Loading...</div>
-    if (error) return <div>Failed to load</div>
+    // if (isLoading) return <div>Loading...</div>
+    // if (error) return <div>Failed to load</div>
 
 
     // const {menuData, loadMenusData} = useStore();
@@ -65,14 +68,14 @@ export default function Navbar() {
     )
 }
 
-export async function getData(url: string) {
-    let menuData = null;
-    try {
-        const response: any = await GetRequest(url);
-        menuData = response;
-    } catch (error) {
-        console.error("Error fetching data:", error);
-    }
-
-    return menuData;
-}
+// export async function getData(url: string) {
+//     let menuData = null;
+//     try {
+//         const response: any = await GetRequest(url);
+//         menuData = response;
+//     } catch (error) {
+//         console.error("Error fetching data:", error);
+//     }
+//
+//     return menuData;
+// }

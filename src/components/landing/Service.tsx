@@ -5,16 +5,16 @@ import {getImageUrl} from "@/utils/helpers/imageUrlHandler";
 import Image from "next/image";
 import useSWR from "swr";
 import {GetRequest} from "@/plugins/https";
+import useStore from "@/store/store";
 
 export default function() {
-    // const {data} = props;
-    // console.log('Data from Services', data);
-
-    const {data: serviceData, isLoading, error} =useSWR("/service", getData);
+    // const {data: serviceData} = props;
+    const serviceData = useStore((state:any) => state.serviceData);
+    // const {data: serviceData, isLoading, error} =useSWR("/service", getData);
     // console.log('service data from service page', serviceData);
 
-    if (error) return <div>Failed to load</div>
-    if (!serviceData) return <div>Loading...</div>
+    // if (error) return <div>Failed to load</div>
+    // if (!serviceData) return <div>Loading...</div>
 
     return (
         <div id="service" className="container mx-auto py-10">
@@ -37,14 +37,14 @@ export default function() {
     );
 }
 
-export async function getData(url: string) {
-    let serviceData = null;
-    try {
-        const response: any = await GetRequest(url);
-        serviceData = response;
-    } catch (error) {
-        console.error("Error fetching data:", error);
-    }
-
-    return serviceData;
-}
+// export async function getData(url: string) {
+//     let serviceData = null;
+//     try {
+//         const response: any = await GetRequest(url);
+//         serviceData = response;
+//     } catch (error) {
+//         console.error("Error fetching data:", error);
+//     }
+//
+//     return serviceData;
+// }

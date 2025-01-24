@@ -27,17 +27,7 @@
 }
 
 body {
-  /*color: var(--foreground);*/
-  /*background: var(--background);*/
   font-family: "Roboto Slab", serif;
-  /*background: url("/image/paper-texture.jpeg");*/
-  /*background-repeat: no-repeat;*/
-  /*background-position: center;*/
-  /*background-size: 100%;*/
-  /*background-attachment: fixed;*/
-  /*height: 100%;*/
-  /*width: 100%;*/
-  /*opacity: 0.9;*/
 }
 
 .rancho-regular {
@@ -79,33 +69,32 @@ body {
   }
 }
 
-.bg-paper-texture {
-  background: url("/image/paper-texture.jpeg");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-  background-attachment: fixed;
-  height: 100%;
-  width: 100%;
-  opacity: 0.9;
-}
-
 /*.bg-paper-texture {*/
-/*  position: relative;*/
-/*  height: 100dvh;*/
+/*  background: url("/image/paper-texture.jpeg");*/
+/*  background-repeat: no-repeat;*/
+/*  background-position: center;*/
+/*  background-size: cover;*/
+/*  background-attachment: fixed;*/
+/*  height: 100%;*/
 /*  width: 100%;*/
-
-/*  &::before {*/
-/*    content: "";*/
-/*    background: url("/public/image/paper-texture.jpeg");*/
-/*    background-size: cover;*/
-/*    position: absolute;*/
-/*    top: 0px;*/
-/*    right: 0px;*/
-/*    bottom: 0px;*/
-/*    left: 0px;*/
-/*    opacity: 0.2;*/
-/*    height: 100%;*/
-/*    width: 100%;*/
-/*  }*/
+/*  opacity: 0.9;*/
 /*}*/
+
+.bg-paper-texture {
+  position: relative;
+
+  &:before {
+    content:'';
+    position: absolute;
+    background: url("/image/paper-texture.jpeg") center / 10%; {/* scale */}
+    height: 100%;
+    width: 100%;
+    top:0;
+    left:0;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    z-index: -1;
+    opacity: 0.75;
+  }
+}

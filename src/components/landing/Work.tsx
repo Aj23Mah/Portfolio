@@ -1,21 +1,22 @@
 "use client"
-import React, {useState} from "react";
+import React from "react";
 import Image from "next/image";
 import useScrollPosition from "@/utils/hooks/useScrollPosition";
 import {getImageUrl} from "@/utils/helpers/imageUrlHandler";
-import {GetRequest} from "@/plugins/https";
-import useSWR from "swr";
+import useStore from "@/store/store";
+// import {GetRequest} from "@/plugins/https";
+// import useSWR from "swr";
 
 export default function Work() {
-    // const {data} = props;
-    // console.log('Data from project', data);
+    // const {data: projectData} = props;
+    const projectData = useStore((state:any) => state.projectData);
     const scrollPosition = useScrollPosition();
 
-    const {data: projectData, isLoading, error} =useSWR("/product", getData);
+    // const {data: projectData, isLoading, error} =useSWR("/product", getData);
     // console.log('project data from project page', projectData);
 
-    if (error) return <div>Failed to load</div>
-    if (!projectData) return <div>Loading...</div>
+    // if (error) return <div>Failed to load</div>
+    // if (!projectData) return <div>Loading...</div>
 
     return (
         <section id="work" className={`py-10 px-[15vw] text-black project-bg ${scrollPosition > 2000 ? 'dark text-white' : ''}`}>
@@ -56,14 +57,14 @@ export default function Work() {
     );
 }
 
-export async function getData(url: string) {
-    let projectData = null;
-    try {
-        const response: any = await GetRequest(url);
-        projectData = response;
-    } catch (error) {
-        console.error("Error fetching data:", error);
-    }
-
-    return projectData;
-}
+// export async function getData(url: string) {
+//     let projectData = null;
+//     try {
+//         const response: any = await GetRequest(url);
+//         projectData = response;
+//     } catch (error) {
+//         console.error("Error fetching data:", error);
+//     }
+//
+//     return projectData;
+// }
