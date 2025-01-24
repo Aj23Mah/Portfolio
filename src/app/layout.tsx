@@ -20,10 +20,10 @@ export default function RootLayout({
        <meta property="og:type" content="website"/>
       <meta property="og:title" content={'Ajay Kumar Maharjan'}/>
       <meta property="og:description" content={"An Portfolio Webstie"}/>
-      {/*<meta property="og:image" content={((await getValidImageUrl(product.img) as any)) ?? ''}/>*/}
-      {/*<meta property="og:image:width" content="1200"/>*/}
-      {/*<meta property="og:image:height" content="630"/>*/}
-      {/*<meta property="og:image:alt" content={product.label}/>*/}
+      <meta property="og:image" content={`/image/logo.png`}/>
+      <meta property="og:image:width" content="1200"/>
+      <meta property="og:image:height" content="630"/>
+      <meta property="og:image:alt" content={'logo'}/>
       <main>
           {children}
       </main>
