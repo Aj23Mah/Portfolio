@@ -16,6 +16,8 @@ export default async function Page() {
         }
     ).then(() => fetchData());
 
+    console.log('pages - product', product);
+
     return (
         <main>
             <ContentProvider menuData={menu} productData={product} serviceData={service} footerData={footer}>

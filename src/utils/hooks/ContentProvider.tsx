@@ -16,6 +16,7 @@ export const ContentProvider = ({children, menuData, productData, serviceData, f
     }
     if(productData) {
         setProductData(productData)
+        // console.log('content provider - productData', productData)
     }
     if(serviceData) {
         setServiceData(serviceData)

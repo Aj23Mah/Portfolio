@@ -9,11 +9,11 @@ import useStore from "@/store/store";
 
 export default function Work() {
     // const {data: projectData} = props;
-    const projectData = useStore((state:any) => state.projectData);
+    const productData = useStore((state:any) => state.productData);
     const scrollPosition = useScrollPosition();
 
     // const {data: projectData, isLoading, error} =useSWR("/product", getData);
-    // console.log('project data from project page', projectData);
+    console.log('project data from project page', productData);
 
     // if (error) return <div>Failed to load</div>
     // if (!projectData) return <div>Loading...</div>
@@ -24,7 +24,7 @@ export default function Work() {
             <div className="md:text-[2.5rem] text-3xl font-bold text-center mb-6">Project</div>
 
             <div>
-                {projectData?.map((v:any, key:number)=> (
+                {productData?.map((v:any, key:number)=> (
                     <div
                         key={key}
                         className={`sticky top-36 grid grid-cols-1 lg:grid-cols-2 gap-6 mb-10 rounded-3xl p-10   
