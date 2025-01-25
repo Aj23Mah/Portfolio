@@ -26,7 +26,7 @@ export default function Navbar() {
 
     return (
         <>
-            <nav className={'fixed lg:left-10 md:left-5 sm:left-3 left-2 z-50 min-h-full py-10 flex flex-col justify-between items-center'}>
+            <nav className={'fixed -left-8 -top-7 z-50 min-h-full pb-10 flex flex-col justify-between items-center'}>
                 <div><Logo/></div>
                 {/*<div>*/}
                 {/*    <h1>Menu Items</h1>*/}
