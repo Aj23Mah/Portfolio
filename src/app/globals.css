@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&family=Smooch&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&family=Smooch&family=Lovers+Quarrel&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -17,6 +17,12 @@
   font-weight: 400;
   font-style: normal;
 }
+.lovers-quarrel {
+  font-family: "Lovers Quarrel", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
 
 
 * {
