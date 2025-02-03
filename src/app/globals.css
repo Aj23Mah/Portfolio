@@ -11,6 +11,15 @@
   --accent: #ffffff;
   --text: #ffffff;
 }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+body {
+  font-family: "Roboto Slab", serif;
+}
 
 .smooch {
   font-family: "Smooch", serif;
@@ -23,34 +32,10 @@
   font-style: normal;
 }
 
-
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  scroll-behavior: smooth;
-}
-
-body {
-  font-family: "Roboto Slab", serif;
-}
-
-.rancho-regular {
-    font-family: "Rancho", serif;
-}
-
-.anton-regular {
-  font-family: "Anton", serif;
-}
-
-.roboto-slab-semibold {
-                font-family: "Roboto Slab", serif;
-              }
-
-.khand-regular {
-  font-family: "Khand", serif;
-}
+/*    font-family: "Rancho", serif;*/
+/*  font-family: "Anton", serif;*/
+/*                font-family: "Roboto Slab", serif;*/
+/*  font-family: "Khand", serif;*/
 
 .project-bg {
   position:relative;
@@ -75,17 +60,6 @@ body {
   }
 }
 
-/*.bg-paper-texture {*/
-/*  background: url("/image/paper-texture.jpeg");*/
-/*  background-repeat: no-repeat;*/
-/*  background-position: center;*/
-/*  background-size: cover;*/
-/*  background-attachment: fixed;*/
-/*  height: 100%;*/
-/*  width: 100%;*/
-/*  opacity: 0.9;*/
-/*}*/
-
 .bg-paper-texture {
   position: relative;
 
@@ -102,5 +76,15 @@ body {
     background-size: cover;
     z-index: -1;
     opacity: 0.75;
+  }
+}
+
+.loading-circle {
+  animation: rotate 1s infinite linear;
+}
+
+@keyframes rotate {
+  100% {
+    rotate: 360deg;
   }
 }
