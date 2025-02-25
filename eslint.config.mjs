@@ -4,7 +4,7 @@ import { FlatCompat } from "@eslint/eslintrc";
 import eslintJsonConfig from './eslint.config.json' assert { type: "json" };
 
 const __filename = fileURLToPath(import.meta.url);
-const _dirname = dirname(_filename);
+const __dirname = dirname(__filename);
 const compat = new FlatCompat({
   baseDirectory: __dirname,
 });

@@ -10,7 +10,7 @@ export default function About() {
         },
         {
             label: 'Junior JS Developer',
-            company: 'NXIN',
+            company: 'Next In Tech Pvt Ltd',
             duration: 'Present',
             location: 'Tahachal, Kathmandu',
         },
