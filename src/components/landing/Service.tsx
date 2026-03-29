@@ -17,7 +17,7 @@ export default function() {
     // if (!serviceData) return <div>Loading...</div>
 
     return (
-        <div id="service" className="container mx-auto py-10">
+        <div id="services" className="container mx-auto py-10">
             <div className="md:text-[2.5rem] text-3xl font-bold text-center mb-2">Services</div>
             <p className="text-center md:px-0 px-5 text-gray-500 mb-6">
                 What I Offer

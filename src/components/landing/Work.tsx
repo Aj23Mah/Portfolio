@@ -52,7 +52,7 @@ export default function Work() {
     return (
         <section
             ref={sectionRef}
-            id="work"
+            id="projects"
             className={`py-10 px-5 md:px-[15vw] lg:px-[10vw] xl:px-[15vw] text-black project-bg ${
                 scrollPosition > 1950 ? "dark text-white" : "blur-none md:backdrop-blur-md md:blur-md"
             }`}
@@ -76,7 +76,7 @@ export default function Work() {
                                 className={"text-lg"}
                                 dangerouslySetInnerHTML={{ __html: v.description }}
                             />
-                            <div className={"mt-4"}>
+                            {/* <div className={"mt-4"}>
                                 <a
                                     href={v.liveDemo}
                                     className="bg-white text-black py-2 px-4 rounded-md hover:bg-gray-700 hover:text-gray-200 font-bold transition"
@@ -85,7 +85,7 @@ export default function Work() {
                                 >
                                     View Demo
                                 </a>
-                            </div>
+                            </div> */}
                         </div>
 
                         <div className="rounded-2xl overflow-hidden col-span-1">

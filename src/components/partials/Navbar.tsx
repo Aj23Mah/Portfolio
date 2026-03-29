@@ -1,70 +1,111 @@
 "use client"
 import Logo from "@/components/partials/logo";
-import { useState} from "react";
+import { useEffect, useState} from "react";
 import {IconMenu2, IconX} from "@tabler/icons-react";
-import Link from "next/link";
-// import {GetRequest} from "@/plugins/https";
-// import useSWR from "swr";
 import useStore from "@/store/store";
-// import useStore from "@/store/store";
 
 export default function Navbar() {
-    // const {data: menuData} = props;
-    const menuData = useStore((state:any) => state.menuData);
-    // const {data: menuData, isLoading, error} =useSWR("/menu/group/1", getData);
-    // const menuData = useStore((state: any) => state.menuData)
-    // console.log('menu data from navbar', menuData);
+    const menuData = useStore((state: any) => state.menuData);
 
     const [toggle, setToggle] = useState(false);
+    const [active, setActive] = useState("");
 
-    // if (isLoading) return <div>Loading...</div>
-    // if (error) return <div>Failed to load</div>
+    // ✅ Scroll to section
+    const handleScroll = (id: string) => {
+        const el = document.getElementById(id);
+        if (!el) return;
 
+        el.scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+        });
 
-    // const {menuData, loadMenusData} = useStore();
-    // console.log(menuData)
+        setToggle(false);
+    };
+
+    // ✅ Scroll spy (active section)
+    useEffect(() => {
+        const handleScrollSpy = () => {
+            menuData?.forEach((item: any) => {
+                const section = document.getElementById(item.route);
+                if (!section) return;
+
+                const rect = section.getBoundingClientRect();
+
+                if (rect.top <= 150 && rect.bottom >= 150) {
+                    setActive(item.route);
+                }
+            });
+        };
+
+        window.addEventListener("scroll", handleScrollSpy);
+        return () => window.removeEventListener("scroll", handleScrollSpy);
+    }, [menuData]);
 
     return (
         <>
-            <nav className={'fixed left-4 md:left-6 lg:left-8 z-50 min-h-full py-10 flex flex-col justify-between items-center'}>
-                <div><Logo /></div>
-               <div className={'relative'}>
-                   {/*    <button className={'bg-blue-600 text-white py-1 px-4 hover:bg-blue-700 rounded'} onClick={loadMenusData}>Load menus</button>*/}
-                   <div className={`text-lg font-semibold py-7 px-4 bg-black/50 absolute 
-                    ${toggle ? 
-                        "motion-scale-in-[0.5] motion-translate-x-in-[-78%] motion-translate-y-in-[69%] motion-opacity-in-[0%] motion-blur-in-[5px] motion-duration-[0.35s] motion-duration-[0.53s]/scale motion-duration-[0.53s]/translate bottom-14 opacity-100" 
-                        : 
-                        "right-[490px]"
-                    }
-                `}>
-                        {menuData?.map((v: any, key: number) => {
-                            return (
-                               <Link key={key} href={v.route} className={'flex flex-col px-4 py-1 my-2 rounded-lg text-white  hover:text-white hover:bg-gray-800/50 cursor-pointer'}>
-                                   {v.title}
-                               </Link>
-                            )
-                        })}
-                    </div>
+            {/* 🔹 Sidebar */}
+            <nav className="fixed left-4 md:left-6 lg:left-8 z-50 min-h-full py-10 flex flex-col justify-between items-center">
+
+                {/* Logo */}
+                <div>
+                    <Logo />
+                </div>
+
+                {/* 🔹 Menu */}
+                <div className="relative">
+
+                    {/* Backdrop (mobile UX) */}
+                    {toggle && (
+                        <div
+                            className="fixed inset-0 bg-black/40 backdrop-blur-sm md:hidden"
+                            onClick={() => setToggle(false)}
+                        />
+                    )}
+
+                    {/* Menu Items */}
                     <div
-                        onClick={() => setToggle(!toggle)}
-                        className="text-3xl bg-white rounded-full border shadow-lg cursor-pointer text-center p-2 text-orange-700 hover:text-[#576cbc]"
+                        className={`
+    fixed inset-0 z-40
+    flex items-center justify-center
+    bg-black/50 backdrop-blur-lg
+    transition-all duration-300 ease-in-out
+    ${
+                            toggle
+                                ? "opacity-100 scale-100"
+                                : "opacity-0 scale-95 pointer-events-none"
+                        }
+  `}
                     >
-                        {toggle ? <IconX/> : <IconMenu2/>}
+                        <div className="flex flex-col items-center gap-6">
+                            {menuData?.map((v: any, key: number) => (
+                                <button
+                                    key={key}
+                                    onClick={() => handleScroll(v.route)}
+                                    className={`
+          text-3xl md:text-5xl font-bold tracking-wide
+          text-white transition-all duration-300
+          hover:scale-110 hover:text-orange-500
+          ${active === v.route ? "text-orange-500" : ""}
+        `}
+                                >
+                                    {v.title}
+                                </button>
+                            ))}
+                        </div>
+                    </div>
+
+                    {/* Toggle Button */}
+                    <div className="relative z-50">
+                        <div
+                            onClick={() => setToggle(!toggle)}
+                            className="text-3xl bg-white rounded-full border shadow-lg cursor-pointer text-center p-2 text-orange-700 hover:text-[#576cbc] transition"
+                        >
+                            {toggle ? <IconX /> : <IconMenu2 />}
+                        </div>
                     </div>
                 </div>
             </nav>
         </>
-    )
+    );
 }
-
-// export async function getData(url: string) {
-//     let menuData = null;
-//     try {
-//         const response: any = await GetRequest(url);
-//         menuData = response;
-//     } catch (error) {
-//         console.error("Error fetching data:", error);
-//     }
-//
-//     return menuData;
-// }
