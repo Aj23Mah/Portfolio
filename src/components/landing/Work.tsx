@@ -3,23 +3,14 @@ import React, { useEffect, useRef } from "react";
 import Image from "next/image";
 import useScrollPosition from "@/utils/hooks/useScrollPosition";
 import { getImageUrl } from "@/utils/helpers/imageUrlHandler";
-import useStore from "@/store/store";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-// import {GetRequest} from "@/plugins/https";
-// import useSWR from "swr";
+import { projectData } from "@/utils/constrants/data";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Work() {
-    // const {data: projectData} = props;
-    const productData = useStore((state:any) => state.productData);
     const scrollPosition = useScrollPosition();
-
-    // const {data: projectData, isLoading, error} =useSWR("/product", getData);
-    // console.log('project data from project page', productData);
-    // if (error) return <div>Failed to load</div>
-    // if (!projectData) return <div>Loading...</div>
 
     const sectionRef = useRef(null);
 
@@ -63,7 +54,7 @@ export default function Work() {
             </div>
 
             <div>
-                {productData?.map((v: any, key: number) => (
+                {projectData?.map((v: any, key: number) => (
                     <div
                         key={key}
                         className={`sticky top-36 grid grid-cols-1 lg:grid-cols-2 gap-6 mb-10 rounded-3xl p-10   
@@ -76,21 +67,21 @@ export default function Work() {
                                 className={"text-lg"}
                                 dangerouslySetInnerHTML={{ __html: v.description }}
                             />
-                            {/* <div className={"mt-4"}>
+                            <div className={"mt-4"}>
                                 <a
-                                    href={v.liveDemo}
+                                    href={v.link}
                                     className="bg-white text-black py-2 px-4 rounded-md hover:bg-gray-700 hover:text-gray-200 font-bold transition"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                 >
                                     View Demo
                                 </a>
-                            </div> */}
+                            </div>
                         </div>
 
                         <div className="rounded-2xl overflow-hidden col-span-1">
                             <Image
-                                src={getImageUrl(v.image?.filename ?? "")}
+                                src={getImageUrl(v.image ?? "")}
                                 alt={v.title}
                                 width={800}
                                 height={800}
@@ -103,15 +94,3 @@ export default function Work() {
         </section>
     );
 }
-
-// export async function getData(url: string) {
-//     let projectData = null;
-//     try {
-//         const response: any = await GetRequest(url);
-//         projectData = response;
-//     } catch (error) {
-//         console.error("Error fetching data:", error);
-//     }
-//
-//     return projectData;
-// }

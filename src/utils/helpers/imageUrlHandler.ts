@@ -1,13 +1,13 @@
-
 import placeholderImg from '../../../public/image/placement.jpg'
 
 import {BASE_URL, image_BASE_URL} from "@/config/baseURL";
 
 export const getImageUrl = (img: string) => {
-    if (img?.includes('http')) {
-        return img
+    if (!img) return '';
+    if (img.startsWith('http') || img.startsWith('/')) {
+        return img;
     } else {
-        return image_BASE_URL + `${img}`
+        return image_BASE_URL + `${img}`;
     }
 }
 

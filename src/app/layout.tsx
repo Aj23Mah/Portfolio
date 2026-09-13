@@ -13,8 +13,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={'bg-paper-texture'}>
+    <html lang="en" suppressHydrationWarning>
+      <body className={'bg-paper-texture'} suppressHydrationWarning>
           <title>{"Ajay Kumar Maharjan"}</title>
           <meta name="description" content={"An Portfolio website"}/>
           <meta property="og:type" content="website"/>

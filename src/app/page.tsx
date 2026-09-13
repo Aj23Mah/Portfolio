@@ -10,17 +10,17 @@ import {fetchData} from "@/api/Content.API";
 import {ContentProvider} from "@/utils/hooks/ContentProvider";
 
 export default async function Page() {
-    const { menu, product, service, footer } = await fetch('https://api-cms.nxin.tech',
-        {
-            next: { revalidate: 3}, // Revalidate every 30 seconds
-        }
-    ).then(() => fetchData());
+    // const { menu, product, service, footer } = await fetch('https://api-cms.nxin.tech',
+    //     {
+    //         next: { revalidate: 3}, // Revalidate every 30 seconds
+    //     }
+    // ).then(() => fetchData());
 
     // console.log('pages - product', product);
 
     return (
         <main>
-            <ContentProvider menuData={menu} productData={product} serviceData={service} footerData={footer}>
+            {/* <ContentProvider menuData={menu} productData={product} serviceData={service} footerData={footer}> */}
                 <Navbar />
                 <HeroSection />
                 <About />
@@ -29,7 +29,7 @@ export default async function Page() {
                 <Service />
                 <Tools />
                 <Footer />
-            </ContentProvider>
+            {/* </ContentProvider> */}
         </main>
     )
 }
