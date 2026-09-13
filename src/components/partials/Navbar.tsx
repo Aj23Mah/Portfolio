@@ -5,7 +5,6 @@ import { IconMenu2, IconX } from "@tabler/icons-react";
 import { menuData } from "@/utils/constrants/data";
 
 export default function Navbar() {
-
   const [toggle, setToggle] = useState(false);
   const [active, setActive] = useState("");
 
@@ -105,7 +104,7 @@ export default function Navbar() {
           <div className="relative z-50">
             <div
               onClick={() => setToggle(!toggle)}
-              className="text-3xl bg-white rounded-full border shadow-lg cursor-pointer text-center p-2 text-orange-700 hover:text-[#576cbc] transition"
+              className="text-3xl bg-orange-700 rounded-full border shadow-lg cursor-pointer text-center p-2 text-gray-100 hover:text-gray-50 transition"
             >
               {toggle ? <IconX /> : <IconMenu2 />}
             </div>

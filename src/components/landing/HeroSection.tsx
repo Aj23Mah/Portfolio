@@ -19,7 +19,7 @@ export default function HeroSection() {
                         <div className={'relative z-10 smooch'}> Ajay Kumar </div>
                         <div className={'relative text-3xl sm:text-4xl text-orange-700 uppercase mt-[-8px] tracking-widest'}> Maharjan</div>
                     </div>
-                    <div className='flex gap-2 items-center justify-center'>
+                    <div className='flex gap-2 items-center justify-center mb-4'>
                         <TypeAnimation
                             sequence={[
                                 'Developer',
@@ -32,6 +32,28 @@ export default function HeroSection() {
                             style={{ fontSize: '2em', display: 'inline-block' }}
                             repeat={Infinity}
                         />
+                    </div>
+
+                    {/* 🔹 Hero CTAs */}
+                    <div className="flex items-center justify-center gap-3 mt-4 text-xs">
+                        <button
+                            onClick={() => {
+                                const el = document.getElementById("contact");
+                                el?.scrollIntoView({ behavior: "smooth" });
+                            }}
+                            className="bg-orange-600 hover:bg-orange-700 text-white font-semibold py-1.5 px-4 rounded-full shadow-md transition duration-300 transform hover:scale-105"
+                        >
+                            Get in Touch
+                        </button>
+                        <button
+                            onClick={() => {
+                                const el = document.getElementById("projects");
+                                el?.scrollIntoView({ behavior: "smooth" });
+                            }}
+                            className="bg-black/10 hover:bg-black/20 text-black font-semibold py-1.5 px-4 rounded-full border border-black/30 transition duration-300 transform hover:scale-105"
+                        >
+                            Explore Work
+                        </button>
                     </div>
                 </div>
             </div>

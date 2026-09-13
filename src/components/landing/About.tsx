@@ -3,23 +3,23 @@ import { IconBriefcase2, IconSchool } from "@tabler/icons-react";
 export default function About() {
   const experiences = [
     {
-      label: "Internship",
-      company: "Krafters Texhnology",
-      duration: "6 month",
-      location: "Kumari pati, Lalitpur",
+      label: "Internship (Full Stack JS)",
+      company: "Krafters Technology",
+      duration: "Mar 2024 – Aug 2024 (6 Months)",
+      location: "Kumaripati, Lalitpur",
     },
     {
       label: "Junior JS Developer",
       company: "Next In Tech Pvt Ltd",
-      duration: "Present",
+      duration: "Sep 2024 – Present",
       location: "Tahachal, Kathmandu",
     },
   ];
   const education = [
     {
       studyAt: "Krafters Technology",
-      location: "Kumari pati, Lalitpur",
-      course: "Full Stack JS Development",
+      location: "Kumaripati, Lalitpur",
+      course: "Full Stack JS Development Certification",
       year: "2024",
     },
   ];
@@ -30,15 +30,15 @@ export default function About() {
         <div className={"roboto-slab-semibold"}>
           <div
             className={
-              "md:text-[2.5rem] sm:text-[2rem] text-[1.5rem] text-gray-700/50 font-bold sticky top-28"
+              "md:text-[2.5rem] sm:text-[2rem] text-[1.5rem] text-gray-800 font-bold sticky top-28 leading-snug"
             }
           >
-            Besides, considering your <span className={"text-black"}>duty</span>
+            Besides, considering your <span className={"text-orange-700 font-extrabold"}>duty</span>
             , as a warrior you should not waver. Indeed, for a{" "}
-            <span className={"text-black"}>warrior</span>, there is no better
+            <span className={"text-orange-700 font-extrabold"}>warrior</span>, there is no better
             engagement than fighting for{" "}
-            <span className={"text-black"}>upholding of righteousness</span>.
-            <p className={"text-2xl font-bold text-gray-700/50"}> BG 2.31</p>
+            <span className={"text-orange-700 font-extrabold"}>upholding of righteousness</span>.
+            <p className={"text-2xl font-bold text-gray-600 mt-2"}> — BG 2.31</p>
           </div>
         </div>
 

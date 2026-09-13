@@ -10,22 +10,25 @@ import Image from "next/image";
 
 export default function Tools() {
     const items = [
-        {img: htmlLogo},
-        {img: cssLogo},
-        {img: jsLogo},
-        {img: reactLogo},
-        {img: nextLogo},
-        {img: nodeLogo},
-        {img: nestLogo},
-        {img: postgreLogo},
+        { name: "HTML5", img: htmlLogo },
+        { name: "CSS3", img: cssLogo },
+        { name: "JavaScript", img: jsLogo },
+        { name: "React", img: reactLogo },
+        { name: "Next.js", img: nextLogo },
+        { name: "Node.js", img: nodeLogo },
+        { name: "NestJS", img: nestLogo },
+        { name: "PostgreSQL", img: postgreLogo },
     ]
     return(
-        <section id="tools" className={'container mx-auto py-10 sm:px-0 px-5'}>
-            <div className={'md:text-[2.5rem] text-3xl font-bold text-center mb-6'}>Tools and Technique</div>
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 justify-center gap-8">
+        <section id="tools" className={'container mx-auto py-12 sm:px-0 px-5'}>
+            <div className={'md:text-[2.5rem] text-3xl font-bold text-center mb-8'}>Tools & Technologies</div>
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-8 justify-center gap-5">
                 {items.map((v, key) => (
-                    <div key={key} className={'p-6 rounded-xl saturate-0 hover:saturate-100 cursor-pointer'}>
-                        <Image src={v.img} alt="logo images" />
+                    <div key={key} className={'bg-white/80 backdrop-blur-md p-5 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-all duration-300 transform hover:-translate-y-1 flex flex-col items-center justify-center gap-3 group cursor-pointer'}>
+                        <div className="w-12 h-12 flex items-center justify-center transition group-hover:scale-110">
+                            <Image src={v.img} alt={v.name} className="max-h-full max-w-full object-contain" />
+                        </div>
+                        <span className="text-xs font-semibold text-gray-600 group-hover:text-black transition">{v.name}</span>
                     </div>
                 ))}
             </div>

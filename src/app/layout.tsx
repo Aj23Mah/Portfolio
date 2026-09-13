@@ -1,11 +1,28 @@
-// import type { Metadata } from "next";
+import type { Metadata } from "next";
 import "./globals.css";
 
-// export const metadata: Metadata = {
-//     title: 'Ajay Kumar Maharjan',
-//     description: 'An portfolio website of Ajay Kumar Maharjan.',
-//     metadataBase: new URL('https://portfolio-2aam.vercel.app/'),
-// };
+export const metadata: Metadata = {
+  title: "Ajay Kumar Maharjan — Full Stack JavaScript Developer",
+  description: "Portfolio of Ajay Kumar Maharjan, a full-stack JavaScript developer specializing in Next.js, React, Node.js, and modern web application development.",
+  keywords: ["Ajay Kumar Maharjan", "Full Stack Developer", "Next.js Developer", "React Developer", "JavaScript", "Kathmandu", "Nepal"],
+  authors: [{ name: "Ajay Kumar Maharjan" }],
+  metadataBase: new URL("https://portfolio-2aam.vercel.app/"),
+  openGraph: {
+    title: "Ajay Kumar Maharjan — Full Stack JavaScript Developer",
+    description: "Portfolio of Ajay Kumar Maharjan, a full-stack JavaScript developer specializing in Next.js, React, Node.js, and modern web applications.",
+    url: "https://portfolio-2aam.vercel.app/",
+    siteName: "Ajay Kumar Maharjan Portfolio",
+    images: [
+      {
+        url: "/image/logo.png",
+        width: 1200,
+        height: 630,
+        alt: "Ajay Kumar Maharjan Logo",
+      },
+    ],
+    type: "website",
+  },
+};
 
 export default function RootLayout({
   children,
@@ -15,15 +32,6 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={'bg-paper-texture'} suppressHydrationWarning>
-          <title>{"Ajay Kumar Maharjan"}</title>
-          <meta name="description" content={"An Portfolio website"}/>
-          <meta property="og:type" content="website"/>
-          <meta property="og:title" content={'Ajay Kumar Maharjan'}/>
-          <meta property="og:description" content={"An Portfolio website"}/>
-          <meta property="og:image" content={`/image/logo.png`}/>
-          <meta property="og:image:width" content="1200"/>
-          <meta property="og:image:height" content="630"/>
-          <meta property="og:image:alt" content={'logo'}/>
           <main>
               {children}
           </main>

@@ -75,32 +75,32 @@ export const socialLinks = [
 export const serviceData = [
   {
     title: "Authentication and Authorization",
-    description: `Lorem Ipsum is simply dummy text of the printing and typesetting industry`,
+    description: `Implementing secure user authentication, JWT/OAuth2 flows, role-based access control (RBAC), and session management.`,
     image: "/image/icons/IconFingerprintScan.png",
   },
   {
     title: "Deployment and Maintenance",
-    description: `Lorem Ipsum is simply dummy text of the printing and typesetting industry`,
+    description: `Deploying web applications on Vercel, VPS, and cloud platforms with automated CI/CD pipelines and zero-downtime maintenance.`,
     image: "/image/icons/IconReplace.png",
   },
   {
     title: "Web Development",
-    description: `Lorem Ipsum is simply dummy text of the printing and typesetting industry`,
+    description: `Building responsive, high-performance full-stack web applications using Next.js, React, Node.js, and modern CSS tools.`,
     image: "/image/icons/IconDeviceImacCode.png",
   },
   {
     title: "Testing and Debugging",
-    description: `Lorem Ipsum is simply dummy text of the printing and typesetting industry`,
+    description: `Comprehensive frontend and backend testing, issue tracking, memory optimization, and fast bug resolution.`,
     image: "/image/icons/IconSettingsSearch.png",
   },
   {
     title: "Database Design and Management",
-    description: `Lorem Ipsum is simply dummy text of the printing and typesetting industry`,
+    description: `Architecting scalable relational (PostgreSQL, MySQL) and NoSQL (MongoDB) schemas with optimized queries and indexing.`,
     image: "/image/icons/IconBrandDatabricks.png",
   },
   {
     title: "API Development and Integration",
-    description: `Lorem Ipsum is simply dummy text of the printing and typesetting industry`,
+    description: `Designing clean RESTful and GraphQL APIs with robust security, detailed documentation, and third-party integrations.`,
     image: "/image/icons/IconApi.png",
   },
 ];
@@ -108,32 +108,37 @@ export const serviceData = [
 export const projectData = [
   {
     title: "Daily Dazzle",
-    description: `Lorem Ipsum is simply dummy text of the printing and typesetting industry`,
+    description: `A modern e-commerce web application featuring daily deal highlights, curated product categories, dynamic search, and responsive layout. Built with Next.js & Tailwind CSS.`,
     image: "/image/dailyDazzle.png",
     link: "https://dailydazzle.nxin.tech/",
+    github: "https://github.com/Aj23Mah",
   },
   {
     title: "Biruwa Pasa",
-    description: `Lorem Ipsum is simply dummy text of the printing and typesetting industry`,
+    description: `An online plant store and botanical marketplace featuring plant cataloging, shopping cart integration, custom order management, and plant care tips.`,
     image: "/image/biruwa.png",
     link: "https://biruwapasa.com/",
+    github: "https://github.com/Aj23Mah",
   },
   {
     title: "Yuma",
-    description: `Lorem Ipsum is simply dummy text of the printing and typesetting industry`,
+    description: `A sleek digital web platform designed with React & Next.js, focusing on dynamic animations, interactive user experience, and optimized mobile performance.`,
     image: "/image/yuma.png",
     link: "https://yuma9.com/",
+    github: "https://github.com/Aj23Mah",
   },
   {
     title: "Food Chow",
-    description: `Lorem Ipsum is simply dummy text of the printing and typesetting industry`,
+    description: `A full-stack food ordering platform with interactive menu management, real-time cart state, smooth page transitions, and responsive mobile checkout UI.`,
     image: "/image/FoodChow.jpg",
     link: "https://food-ordering-brown.vercel.app/",
+    github: "https://github.com/Aj23Mah",
   },
   //   {
   //     title: "Kurus",
   //     description: `Lorem Ipsum is simply dummy text of the printing and typesetting industry`,
   //     image: "/image/FoodChow.jpg",
   //     link: "https://kuruscollections.com/",
+  // github: "https://github.com/Aj23Mah",
   //   },
 ];
