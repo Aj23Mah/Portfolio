@@ -2,14 +2,14 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Ajay Kumar Maharjan — Full Stack JavaScript Developer",
-  description: "Portfolio of Ajay Kumar Maharjan, a full-stack JavaScript developer specializing in Next.js, React, Node.js, and modern web application development.",
-  keywords: ["Ajay Kumar Maharjan", "Full Stack Developer", "Next.js Developer", "React Developer", "JavaScript", "Kathmandu", "Nepal"],
+  title: "Ajay Kumar Maharjan — Full-Stack Developer",
+  description: "Portfolio of Ajay Kumar Maharjan, a Full-Stack Developer building modern, scalable, and user-focused web applications.",
+  keywords: ["Ajay Kumar Maharjan", "Full-Stack Developer", "Next.js", "React", "Node.js", "Web Development", "Kathmandu", "Nepal"],
   authors: [{ name: "Ajay Kumar Maharjan" }],
   metadataBase: new URL("https://portfolio-2aam.vercel.app/"),
   openGraph: {
-    title: "Ajay Kumar Maharjan — Full Stack JavaScript Developer",
-    description: "Portfolio of Ajay Kumar Maharjan, a full-stack JavaScript developer specializing in Next.js, React, Node.js, and modern web applications.",
+    title: "Ajay Kumar Maharjan — Full-Stack Developer",
+    description: "Portfolio of Ajay Kumar Maharjan, a Full-Stack Developer building modern, scalable, and user-focused web applications.",
     url: "https://portfolio-2aam.vercel.app/",
     siteName: "Ajay Kumar Maharjan Portfolio",
     images: [

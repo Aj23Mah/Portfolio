@@ -1,13 +1,12 @@
 "use client";
 import React, { useState } from "react";
-import { IconMail, IconMapPin, IconSend, IconCheck } from "@tabler/icons-react";
+import { IconMail, IconMapPin, IconSend, IconCheck, IconArrowRight } from "@tabler/icons-react";
 import { socialLinks } from "@/utils/constrants/data";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    subject: "",
     message: "",
   });
   const [submitted, setSubmitted] = useState(false);
@@ -23,9 +22,8 @@ export default function Contact() {
     e.preventDefault();
     if (!formData.name || !formData.email || !formData.message) return;
 
-    // Create mailto link for direct client fallback
     const mailtoUrl = `mailto:ajaymaharjan758@gmail.com?subject=${encodeURIComponent(
-      formData.subject || "Contact from Portfolio"
+      `Project Inquiry from ${formData.name}`
     )}&body=${encodeURIComponent(
       `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`
     )}`;
@@ -37,28 +35,35 @@ export default function Contact() {
 
   return (
     <section id="contact" className="container mx-auto py-16 px-5 md:px-10">
-      <div className="text-center mb-12">
-        <h2 className="md:text-[2.5rem] text-3xl font-bold mb-2">Get in Touch</h2>
-        <p className="text-gray-600 text-lg max-w-xl mx-auto">
-          Have a project in mind, a question, or just want to connect? Drop a message below or email me directly!
+      <div className="max-w-3xl mx-auto text-center mb-12">
+        <h2 className="md:text-[2.5rem] text-3xl font-extrabold uppercase tracking-wider text-gray-900 mb-3">
+          LET'S BUILD SOMETHING
+        </h2>
+        <p className="text-gray-700 text-base sm:text-lg font-medium leading-relaxed">
+          Have an idea, a project, or a problem that needs solving? I’d love to hear about it.
+        </p>
+        <p className="text-orange-700 font-semibold text-sm sm:text-base mt-1">
+          Let’s turn your idea into something useful.
         </p>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto mb-16">
         {/* Contact Info Card */}
-        <div className="bg-white/80 backdrop-blur-md rounded-3xl p-8 shadow-lg border border-gray-100 flex flex-col justify-between">
+        <div className="bg-white/80 backdrop-blur-md rounded-3xl p-8 shadow-sm border border-gray-200 flex flex-col justify-between">
           <div>
-            <h3 className="text-2xl font-bold mb-6">Contact Details</h3>
+            <h3 className="text-xl font-bold uppercase tracking-wider text-gray-900 mb-6 border-b pb-3">
+              CONTACT DETAILS
+            </h3>
             
             <div className="flex items-start gap-4 mb-6">
-              <div className="p-3 bg-orange-100 text-orange-600 rounded-2xl">
-                <IconMail size={28} />
+              <div className="p-3 bg-orange-100 text-orange-600 rounded-2xl shrink-0">
+                <IconMail size={26} />
               </div>
               <div>
-                <h4 className="text-sm font-semibold text-gray-500 uppercase tracking-wider">Email</h4>
+                <h4 className="text-xs font-bold text-gray-500 uppercase tracking-widest mb-1">EMAIL</h4>
                 <a
                   href="mailto:ajaymaharjan758@gmail.com"
-                  className="text-lg font-bold text-black hover:text-orange-600 transition"
+                  className="text-base sm:text-lg font-bold text-gray-900 hover:text-orange-600 transition"
                 >
                   ajaymaharjan758@gmail.com
                 </a>
@@ -66,18 +71,18 @@ export default function Contact() {
             </div>
 
             <div className="flex items-start gap-4 mb-8">
-              <div className="p-3 bg-orange-100 text-orange-600 rounded-2xl">
-                <IconMapPin size={28} />
+              <div className="p-3 bg-orange-100 text-orange-600 rounded-2xl shrink-0">
+                <IconMapPin size={26} />
               </div>
               <div>
-                <h4 className="text-sm font-semibold text-gray-500 uppercase tracking-wider">Location</h4>
-                <p className="text-lg font-bold text-black">Kathmandu, Nepal</p>
+                <h4 className="text-xs font-bold text-gray-500 uppercase tracking-widest mb-1">LOCATION</h4>
+                <p className="text-base sm:text-lg font-bold text-gray-900">Kathmandu, Nepal</p>
               </div>
             </div>
           </div>
 
           <div>
-            <h4 className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-4">Connect Socially</h4>
+            <h4 className="text-xs font-bold text-gray-500 uppercase tracking-widest mb-4">CONNECT SOCIALLY</h4>
             <div className="flex gap-3">
               {socialLinks.map((item: any, key: number) => (
                 <a
@@ -103,11 +108,11 @@ export default function Contact() {
         </div>
 
         {/* Contact Form */}
-        <div className="bg-white/80 backdrop-blur-md rounded-3xl p-8 shadow-lg border border-gray-100">
+        <div className="bg-white/80 backdrop-blur-md rounded-3xl p-8 shadow-sm border border-gray-200">
           <form onSubmit={handleSubmit} className="flex flex-col gap-5">
             <div>
-              <label htmlFor="name" className="block text-sm font-semibold text-gray-700 mb-1">
-                Your Name *
+              <label htmlFor="name" className="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">
+                NAME *
               </label>
               <input
                 type="text"
@@ -116,14 +121,14 @@ export default function Contact() {
                 required
                 value={formData.name}
                 onChange={handleChange}
-                placeholder="John Doe"
-                className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-orange-500 transition"
+                placeholder="Your Name"
+                className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-orange-500 transition text-sm text-gray-900 bg-white"
               />
             </div>
 
             <div>
-              <label htmlFor="email" className="block text-sm font-semibold text-gray-700 mb-1">
-                Your Email *
+              <label htmlFor="email" className="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">
+                EMAIL *
               </label>
               <input
                 type="email"
@@ -132,29 +137,14 @@ export default function Contact() {
                 required
                 value={formData.email}
                 onChange={handleChange}
-                placeholder="john@example.com"
-                className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-orange-500 transition"
+                placeholder="your.email@example.com"
+                className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-orange-500 transition text-sm text-gray-900 bg-white"
               />
             </div>
 
             <div>
-              <label htmlFor="subject" className="block text-sm font-semibold text-gray-700 mb-1">
-                Subject
-              </label>
-              <input
-                type="text"
-                id="subject"
-                name="subject"
-                value={formData.subject}
-                onChange={handleChange}
-                placeholder="Project Inquiry / Hello"
-                className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-orange-500 transition"
-              />
-            </div>
-
-            <div>
-              <label htmlFor="message" className="block text-sm font-semibold text-gray-700 mb-1">
-                Message *
+              <label htmlFor="message" className="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">
+                MESSAGE *
               </label>
               <textarea
                 id="message"
@@ -163,22 +153,22 @@ export default function Contact() {
                 required
                 value={formData.message}
                 onChange={handleChange}
-                placeholder="How can I help you?"
-                className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-orange-500 transition resize-none"
+                placeholder="Tell me about your project or idea..."
+                className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-orange-500 transition text-sm text-gray-900 bg-white resize-none"
               />
             </div>
 
             <button
               type="submit"
-              className="mt-2 w-full py-3.5 px-6 rounded-xl bg-orange-600 hover:bg-orange-700 text-white font-bold transition flex items-center justify-center gap-2 shadow-md hover:shadow-lg"
+              className="mt-2 w-full py-3.5 px-6 rounded-xl bg-orange-600 hover:bg-orange-700 text-white font-bold transition flex items-center justify-center gap-2 shadow-md hover:shadow-lg uppercase text-xs tracking-wider"
             >
               {submitted ? (
                 <>
-                  <IconCheck size={20} /> Sent via Email Client!
+                  <IconCheck size={18} /> SENT VIA EMAIL CLIENT!
                 </>
               ) : (
                 <>
-                  <IconSend size={20} /> Send Message
+                  SEND MESSAGE →
                 </>
               )}
             </button>

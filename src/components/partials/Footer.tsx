@@ -6,7 +6,7 @@ export default function Footer() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   return (
-    <footer id="contact" className="py-8 container mx-auto">
+    <footer className="py-8 container mx-auto px-5">
       <div className={"text-black grid justify-items-center"}>
         <div className="flex gap-4">
           {socialLinks.map((item: any, key: number) => (
