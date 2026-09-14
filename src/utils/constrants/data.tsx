@@ -7,23 +7,27 @@ import {
 
 export const menuData = [
   {
-    title: "Home",
+    title: "HOME",
     route: "#home",
   },
   {
-    title: "About",
+    title: "ABOUT",
     route: "#about",
   },
   {
-    title: "Work",
+    title: "WORK",
     route: "#projects",
   },
   {
-    title: "Service",
+    title: "SERVICES",
     route: "#services",
   },
   {
-    title: "Contact",
+    title: "SKILLS",
+    route: "#tools",
+  },
+  {
+    title: "CONTACT",
     route: "#contact",
   },
 ];
@@ -74,66 +78,90 @@ export const socialLinks = [
 
 export const serviceData = [
   {
-    title: "Authentication and Authorization",
-    description: `Lorem Ipsum is simply dummy text of the printing and typesetting industry`,
-    image: "/image/icons/IconFingerprintScan.png",
-  },
-  {
-    title: "Deployment and Maintenance",
-    description: `Lorem Ipsum is simply dummy text of the printing and typesetting industry`,
-    image: "/image/icons/IconReplace.png",
-  },
-  {
-    title: "Web Development",
-    description: `Lorem Ipsum is simply dummy text of the printing and typesetting industry`,
+    number: "01",
+    title: "Full-Stack Web Development",
+    description: `Complete web applications built with responsive interfaces, reliable backend systems, and maintainable architecture.`,
     image: "/image/icons/IconDeviceImacCode.png",
   },
   {
-    title: "Testing and Debugging",
-    description: `Lorem Ipsum is simply dummy text of the printing and typesetting industry`,
-    image: "/image/icons/IconSettingsSearch.png",
+    number: "02",
+    title: "API Development & Integration",
+    description: `Well-structured APIs that connect applications, services, and data reliably and efficiently.`,
+    image: "/image/icons/IconApi.png",
   },
   {
-    title: "Database Design and Management",
-    description: `Lorem Ipsum is simply dummy text of the printing and typesetting industry`,
+    number: "03",
+    title: "Database Design & Management",
+    description: `Clean and scalable database structures designed for reliable data storage, performance, and maintainability.`,
     image: "/image/icons/IconBrandDatabricks.png",
   },
   {
-    title: "API Development and Integration",
-    description: `Lorem Ipsum is simply dummy text of the printing and typesetting industry`,
-    image: "/image/icons/IconApi.png",
+    number: "04",
+    title: "Testing & Debugging",
+    description: `Finding problems, improving reliability, and making applications more stable before they reach users.`,
+    image: "/image/icons/IconSettingsSearch.png",
+  },
+  {
+    number: "05",
+    title: "Frontend Development",
+    description: `Responsive and intuitive interfaces focused on usability, performance, and a consistent user experience.`,
+    image: "/image/icons/IconFingerprintScan.png",
+  },
+  {
+    number: "06",
+    title: "Backend Development",
+    description: `Secure and maintainable backend systems that handle application logic, data, authentication, and integrations.`,
+    image: "/image/icons/IconReplace.png",
   },
 ];
 
 export const projectData = [
   {
+    number: "01",
     title: "Daily Dazzle",
-    description: `Lorem Ipsum is simply dummy text of the printing and typesetting industry`,
+    category: "E-COMMERCE WEB APP",
+    role: "Full-Stack Development",
+    description: `A modern e-commerce web application designed for streamlined product discovery and daily deals. Features curated product categories, interactive cart management, dynamic search, and a responsive shopping layout.`,
+    contribution: `Designed and built the full-stack architecture, dynamic deal catalog, responsive layout, and product data flow.`,
+    technologies: ["React", "Next.js", "Mantine", "Tailwind CSS", "Typescript", "Nest.js", "PostgreSQL"],
     image: "/image/dailyDazzle.png",
     link: "https://dailydazzle.nxin.tech/",
+    github: "https://github.com/Aj23Mah",
   },
   {
+    number: "02",
     title: "Biruwa Pasa",
-    description: `Lorem Ipsum is simply dummy text of the printing and typesetting industry`,
+    category: "E-COMMERCE PLATFORM",
+    role: "Full-Stack Development",
+    description: `An online plant store and botanical marketplace designed to connect buyers with healthy indoor and outdoor plants. Includes plant cataloging, custom order processing, cart integration, and plant care guidance.`,
+    contribution: `Developed the application focusing on plant catalog management, shopping cart integration, custom order handling, and data storage.`,
+    technologies: ["React", "Next.js", "Mantine", "Tailwind CSS", "Typescript", "Nest.js", "PostgreSQL"],
     image: "/image/biruwa.png",
     link: "https://biruwapasa.com/",
+    github: "https://github.com/Aj23Mah",
   },
   {
+    number: "03",
     title: "Yuma",
-    description: `Lorem Ipsum is simply dummy text of the printing and typesetting industry`,
+    category: "WEB PLATFORM",
+    role: "Full-Stack Development",
+    description: `A sleek digital web platform engineered for high-performance interactive experiences. Built with modern React frameworks, smooth visual transitions, and custom layout components.`,
+    contribution: `Built responsive UI components, implemented layout transitions, and optimized performance across desktop and mobile devices.`,
+    technologies: ["React", "Next.js", "Mantine", "Tailwind CSS", "Typescript", "Nest.js", "PostgreSQL"],
     image: "/image/yuma.png",
     link: "https://yuma9.com/",
+    github: "https://github.com/Aj23Mah",
   },
   {
+    number: "04",
     title: "Food Chow",
-    description: `Lorem Ipsum is simply dummy text of the printing and typesetting industry`,
+    category: "FULL-STACK WEB APP",
+    role: "Frontend Development",
+    description: `A full-stack food ordering platform designed for fast restaurant browsing and order placement. Features interactive menu categories, real-time cart state management, and mobile checkout.`,
+    contribution: `Architected the full-stack ordering flow, state management workflows, and responsive interface layout.`,
+    technologies: ["React", "JavaScript", "Tailwind CSS", "Mantine", "Motion"],
     image: "/image/FoodChow.jpg",
     link: "https://food-ordering-brown.vercel.app/",
+    github: "https://github.com/Aj23Mah",
   },
-  //   {
-  //     title: "Kurus",
-  //     description: `Lorem Ipsum is simply dummy text of the printing and typesetting industry`,
-  //     image: "/image/FoodChow.jpg",
-  //     link: "https://kuruscollections.com/",
-  //   },
 ];

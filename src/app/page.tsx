@@ -4,6 +4,7 @@ import About from '@/components/landing/About'
 import InfiniteScroll from "@/components/landing/InfiniteScroll";
 import Service from "@/components/landing/Service";
 import Tools from "@/components/landing/Tools";
+import Contact from "@/components/landing/Contact";
 import Footer from "@/components/partials/Footer";
 import Navbar from "@/components/partials/Navbar";
 import {fetchData} from "@/api/Content.API";
@@ -28,6 +29,7 @@ export default async function Page() {
                 <Work />
                 <Service />
                 <Tools />
+                <Contact />
                 <Footer />
             {/* </ContentProvider> */}
         </main>

@@ -5,7 +5,6 @@ import { IconMenu2, IconX } from "@tabler/icons-react";
 import { menuData } from "@/utils/constrants/data";
 
 export default function Navbar() {
-
   const [toggle, setToggle] = useState(false);
   const [active, setActive] = useState("");
 
@@ -83,18 +82,24 @@ export default function Navbar() {
             <div className="flex flex-col items-center gap-6">
               {menuData?.map((v: any, key: number) => {
                 const route = v.route || v.url || v.path || "";
+                const isActive = active === route;
                 return (
                   <button
                     key={key}
                     onClick={() => handleScroll(route)}
                     className={`
-            text-3xl md:text-5xl font-bold tracking-wide
+            relative text-3xl md:text-5xl font-bold tracking-wide flex items-center gap-3
             text-white transition-all duration-300
-            hover:scale-110 hover:text-orange-500
-            ${active === route ? "text-orange-500" : ""}
+            hover:scale-105 hover:text-orange-500 cursor-pointer
+            ${isActive ? "text-orange-500 font-extrabold" : "opacity-80"}
           `}
                   >
-                    {v.title}
+                    {isActive && (
+                      <span className="text-orange-500 text-2xl md:text-3xl animate-pulse">
+                        ●
+                      </span>
+                    )}
+                    <span>{v.title}</span>
                   </button>
                 );
               })}
@@ -105,7 +110,7 @@ export default function Navbar() {
           <div className="relative z-50">
             <div
               onClick={() => setToggle(!toggle)}
-              className="text-3xl bg-white rounded-full border shadow-lg cursor-pointer text-center p-2 text-orange-700 hover:text-[#576cbc] transition"
+              className="text-3xl bg-orange-700 rounded-full border shadow-lg cursor-pointer text-center p-2 text-gray-100 hover:text-gray-50 transition"
             >
               {toggle ? <IconX /> : <IconMenu2 />}
             </div>
