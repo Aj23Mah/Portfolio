@@ -1,9 +1,15 @@
 "use client";
 import React, { useState } from "react";
-import { IconMail, IconMapPin, IconSend, IconCheck, IconArrowRight } from "@tabler/icons-react";
+import { IconMail, IconMapPin, IconSend, IconCheck } from "@tabler/icons-react";
 import { socialLinks } from "@/utils/constrants/data";
+import { motion, useReducedMotion } from "motion/react";
+import {
+  staggerContainerVariants,
+  staggerItemVariants,
+} from "@/utils/motion";
 
 export default function Contact() {
+  const shouldReduceMotion = useReducedMotion();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -35,7 +41,13 @@ export default function Contact() {
 
   return (
     <section id="contact" className="container mx-auto py-16 px-5 md:px-10">
-      <div className="max-w-3xl mx-auto text-center mb-12">
+      <motion.div
+        className="max-w-3xl mx-auto text-center mb-12"
+        initial={shouldReduceMotion ? "visible" : "hidden"}
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.2 }}
+        variants={staggerItemVariants}
+      >
         <h2 className="md:text-[2.5rem] text-3xl font-extrabold uppercase tracking-wider text-gray-900 mb-3">
           LET'S BUILD SOMETHING
         </h2>
@@ -45,11 +57,20 @@ export default function Contact() {
         <p className="text-orange-700 font-semibold text-sm sm:text-base mt-1">
           Let’s turn your idea into something useful.
         </p>
-      </div>
+      </motion.div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto mb-16">
+      <motion.div
+        className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto mb-16"
+        initial={shouldReduceMotion ? "visible" : "hidden"}
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.15 }}
+        variants={staggerContainerVariants}
+      >
         {/* Contact Info Card */}
-        <div className="bg-white/80 backdrop-blur-md rounded-3xl p-8 shadow-sm border border-gray-200 flex flex-col justify-between">
+        <motion.div
+          variants={staggerItemVariants}
+          className="bg-white/80 backdrop-blur-md rounded-3xl p-8 shadow-sm border border-gray-200 flex flex-col justify-between"
+        >
           <div>
             <h3 className="text-xl font-bold uppercase tracking-wider text-gray-900 mb-6 border-b pb-3">
               CONTACT DETAILS
@@ -85,30 +106,35 @@ export default function Contact() {
             <h4 className="text-xs font-bold text-gray-500 uppercase tracking-widest mb-4">CONNECT SOCIALLY</h4>
             <div className="flex gap-3">
               {socialLinks.map((item: any, key: number) => (
-                <a
+                <motion.a
                   key={key}
                   href={item.route}
                   target="_blank"
                   rel="noopener noreferrer"
+                  whileHover={shouldReduceMotion ? {} : { scale: 1.05, y: -2 }}
+                  whileTap={shouldReduceMotion ? {} : { scale: 0.95 }}
                   onMouseEnter={() => setHoveredSocial(key)}
                   onMouseLeave={() => setHoveredSocial(null)}
                   style={{
                     backgroundColor: hoveredSocial === key ? item.color : "#f3f4f6",
                   }}
-                  className={`p-3 rounded-2xl transition duration-300 w-12 h-12 flex items-center justify-center ${
+                  className={`p-3 rounded-2xl transition duration-200 w-12 h-12 flex items-center justify-center ${
                     hoveredSocial === key ? "text-white" : "text-gray-700"
                   }`}
                   title={item.name}
                 >
                   {item.icons}
-                </a>
+                </motion.a>
               ))}
             </div>
           </div>
-        </div>
+        </motion.div>
 
         {/* Contact Form */}
-        <div className="bg-white/80 backdrop-blur-md rounded-3xl p-8 shadow-sm border border-gray-200">
+        <motion.div
+          variants={staggerItemVariants}
+          className="bg-white/80 backdrop-blur-md rounded-3xl p-8 shadow-sm border border-gray-200"
+        >
           <form onSubmit={handleSubmit} className="flex flex-col gap-5">
             <div>
               <label htmlFor="name" className="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">
@@ -158,9 +184,11 @@ export default function Contact() {
               />
             </div>
 
-            <button
+            <motion.button
+              whileHover={shouldReduceMotion ? {} : { y: -2 }}
+              whileTap={shouldReduceMotion ? {} : { scale: 0.97 }}
               type="submit"
-              className="mt-2 w-full py-3.5 px-6 rounded-xl bg-orange-600 hover:bg-orange-700 text-white font-bold transition flex items-center justify-center gap-2 shadow-md hover:shadow-lg uppercase text-xs tracking-wider"
+              className="mt-2 w-full py-3.5 px-6 rounded-xl bg-orange-600 hover:bg-orange-700 text-white font-bold transition flex items-center justify-center gap-2 shadow-md hover:shadow-lg uppercase text-xs tracking-wider cursor-pointer"
             >
               {submitted ? (
                 <>
@@ -171,10 +199,10 @@ export default function Contact() {
                   SEND MESSAGE →
                 </>
               )}
-            </button>
+            </motion.button>
           </form>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
     </section>
   );
 }

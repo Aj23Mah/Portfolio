@@ -1,74 +1,67 @@
 "use client";
-import React, { useEffect, useRef } from "react";
+import React from "react";
 import Image from "next/image";
-import useScrollPosition from "@/utils/hooks/useScrollPosition";
 import { getImageUrl } from "@/utils/helpers/imageUrlHandler";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { projectData } from "@/utils/constrants/data";
-
-gsap.registerPlugin(ScrollTrigger);
+import { motion, useReducedMotion } from "motion/react";
+import {
+  staggerContainerVariants,
+  staggerItemVariants,
+} from "@/utils/motion";
 
 export default function Work() {
-  const scrollPosition = useScrollPosition();
-  const sectionRef = useRef(null);
-
-  useEffect(() => {
-    const cards = gsap.utils.toArray(".project-card");
-    cards.forEach((card: any) => {
-      gsap.fromTo(
-        card,
-        { opacity: 0, y: 40 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: card,
-            start: "top 85%",
-            end: "top 65%",
-            toggleActions: "play none none none",
-          },
-        }
-      );
-    });
-
-    return () => {
-      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
-    };
-  }, []);
+  const shouldReduceMotion = useReducedMotion();
 
   return (
     <section
-      ref={sectionRef}
       id="projects"
       className="py-20 px-5 md:px-[8vw] lg:px-[10vw] xl:px-[12vw] bg-gray-950 text-white dark project-bg"
     >
-      <div className="max-w-3xl mx-auto text-center mb-12">
+      <motion.div
+        className="max-w-3xl mx-auto text-center mb-12"
+        initial={shouldReduceMotion ? "visible" : "hidden"}
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.2 }}
+        variants={staggerItemVariants}
+      >
         <h2 className="md:text-[2.5rem] text-3xl font-extrabold uppercase tracking-widest text-orange-500 mb-3">
           SELECTED WORK
         </h2>
         <p className="text-gray-300 text-base sm:text-lg leading-relaxed">
           A selection of projects where I’ve combined development, problem-solving, and thoughtful user experience to build useful digital products.
         </p>
-      </div>
+      </motion.div>
 
-      <div className="flex flex-col gap-12">
+      <motion.div
+        className="flex flex-col gap-12"
+        initial={shouldReduceMotion ? "visible" : "hidden"}
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.1 }}
+        variants={staggerContainerVariants}
+      >
         {projectData?.map((v: any, key: number) => (
-          <div
+          <motion.div
             key={key}
-            className="sticky top-28 grid grid-cols-1 lg:grid-cols-12 gap-8 rounded-3xl p-6 sm:p-8 lg:p-10 project-card bg-gray-900 border border-gray-800 shadow-2xl transition duration-300"
+            variants={staggerItemVariants}
+            whileHover={shouldReduceMotion ? {} : { y: -3 }}
+            transition={{ duration: 0.3 }}
+            className="sticky top-28 grid grid-cols-1 lg:grid-cols-12 gap-8 rounded-3xl p-6 sm:p-8 lg:p-10 project-card bg-gray-900 border border-gray-800 shadow-2xl transition duration-300 group"
           >
             {/* Project Image Column */}
             <div className="lg:col-span-6 rounded-2xl overflow-hidden shadow-xl border border-gray-800 flex items-center justify-center bg-gray-950 order-1 lg:order-2">
-              <Image
-                src={getImageUrl(v.image ?? "")}
-                alt={v.title}
-                width={800}
-                height={500}
-                className="w-full h-auto max-h-[360px] object-cover rounded-2xl hover:scale-102 transition duration-500"
-              />
+              <motion.div
+                whileHover={shouldReduceMotion ? {} : { scale: 1.03 }}
+                transition={{ duration: 0.4, ease: "easeOut" }}
+                className="w-full h-full"
+              >
+                <Image
+                  src={getImageUrl(v.image ?? "")}
+                  alt={v.title}
+                  width={800}
+                  height={500}
+                  className="w-full h-auto max-h-[360px] object-cover rounded-2xl"
+                />
+              </motion.div>
             </div>
 
             {/* Project Content Column */}
@@ -126,49 +119,75 @@ export default function Work() {
               {/* 6. LIVE DEMO / VIEW CODE */}
               <div className="flex flex-wrap items-center gap-3 mt-2">
                 {v.link && (
-                  <a
+                  <motion.a
+                    whileHover={shouldReduceMotion ? {} : { scale: 1.02 }}
+                    whileTap={shouldReduceMotion ? {} : { scale: 0.98 }}
                     href={v.link}
-                    className="inline-flex items-center gap-2 bg-orange-600 hover:bg-orange-700 text-white py-2.5 px-5 rounded-xl font-bold transition shadow-md text-xs sm:text-sm uppercase tracking-wider"
+                    className="inline-flex items-center gap-2 bg-orange-600 hover:bg-orange-700 text-white py-2.5 px-5 rounded-xl font-bold transition shadow-md text-xs sm:text-sm uppercase tracking-wider group/btn"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    LIVE DEMO →
-                  </a>
+                    <span>LIVE DEMO</span>
+                    <motion.span
+                      initial={{ x: 0 }}
+                      whileHover={{ x: 5 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      →
+                    </motion.span>
+                  </motion.a>
                 )}
                 {v.github && (
-                  <a
+                  <motion.a
+                    whileHover={shouldReduceMotion ? {} : { scale: 1.02 }}
+                    whileTap={shouldReduceMotion ? {} : { scale: 0.98 }}
                     href={v.github}
-                    className="inline-flex items-center gap-2 bg-gray-800 hover:bg-gray-700 text-white py-2.5 px-5 rounded-xl font-bold transition border border-gray-700 text-xs sm:text-sm uppercase tracking-wider"
+                    className="inline-flex items-center gap-2 bg-gray-800 hover:bg-gray-700 text-white py-2.5 px-5 rounded-xl font-bold transition border border-gray-700 text-xs sm:text-sm uppercase tracking-wider group/btn"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    VIEW CODE →
-                  </a>
+                    <span>VIEW CODE</span>
+                    <motion.span
+                      initial={{ x: 0 }}
+                      whileHover={{ x: 5 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      →
+                    </motion.span>
+                  </motion.a>
                 )}
               </div>
             </div>
-          </div>
+          </motion.div>
         ))}
-      </div>
+      </motion.div>
 
       {/* 🔹 Transition CTA Banner */}
-      <div className="mt-16 max-w-4xl mx-auto bg-gradient-to-br from-gray-900 via-gray-900 to-black text-white rounded-3xl p-8 sm:p-10 text-center shadow-2xl border border-gray-800">
+      <motion.div
+        initial={shouldReduceMotion ? "visible" : "hidden"}
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.2 }}
+        variants={staggerItemVariants}
+        className="mt-16 max-w-4xl mx-auto bg-gradient-to-br from-gray-900 via-gray-900 to-black text-white rounded-3xl p-8 sm:p-10 text-center shadow-2xl border border-gray-800"
+      >
         <h3 className="text-2xl sm:text-3xl font-extrabold uppercase tracking-wider mb-3 text-orange-400">
           HAVE A PROJECT IN MIND?
         </h3>
         <p className="text-gray-300 text-base sm:text-lg mb-6 max-w-xl mx-auto">
           Let's create something useful, reliable, and worth using.
         </p>
-        <button
+        <motion.button
+          whileHover={shouldReduceMotion ? {} : { y: -2 }}
+          whileTap={shouldReduceMotion ? {} : { scale: 0.97 }}
           onClick={() => {
             const el = document.getElementById("contact");
             el?.scrollIntoView({ behavior: "smooth" });
           }}
-          className="inline-flex items-center gap-2 bg-orange-600 hover:bg-orange-700 text-white font-bold py-3.5 px-8 rounded-full shadow-lg transition transform hover:scale-105 uppercase text-xs sm:text-sm tracking-wider"
+          className="inline-flex items-center gap-2 bg-orange-600 hover:bg-orange-700 text-white font-bold py-3.5 px-8 rounded-full shadow-lg transition duration-200 uppercase text-xs sm:text-sm tracking-wider cursor-pointer"
         >
           GET IN TOUCH →
-        </button>
-      </div>
+        </motion.button>
+      </motion.div>
     </section>
   );
 }

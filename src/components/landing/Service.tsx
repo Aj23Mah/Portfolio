@@ -4,11 +4,24 @@ import "@/assets/css/Service.css";
 import { getImageUrl } from "@/utils/helpers/imageUrlHandler";
 import Image from "next/image";
 import { serviceData } from "@/utils/constrants/data";
+import { motion, useReducedMotion } from "motion/react";
+import {
+  staggerContainerVariants,
+  staggerItemVariants,
+} from "@/utils/motion";
 
 export default function Service() {
+  const shouldReduceMotion = useReducedMotion();
+
   return (
     <section id="services" className="container mx-auto py-16 px-5">
-      <div className="max-w-3xl mx-auto text-center mb-12">
+      <motion.div
+        className="max-w-3xl mx-auto text-center mb-12"
+        initial={shouldReduceMotion ? "visible" : "hidden"}
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.2 }}
+        variants={staggerItemVariants}
+      >
         <h2 className="md:text-[2.5rem] text-3xl font-extrabold uppercase tracking-wider text-gray-900 mb-3">
           WHAT I CAN DO
         </h2>
@@ -16,11 +29,23 @@ export default function Service() {
           From frontend interfaces to backend systems, I build the pieces that
           turn an idea into a working digital product.
         </p>
-      </div>
+      </motion.div>
 
-      <div className="parallex_setupItems">
+      <motion.div
+        className="parallex_setupItems"
+        initial={shouldReduceMotion ? "visible" : "hidden"}
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.15 }}
+        variants={staggerContainerVariants}
+      >
         {serviceData?.map((v: any, key: number) => (
-          <div key={key} className="setUp_items relative group">
+          <motion.div
+            key={key}
+            variants={staggerItemVariants}
+            whileHover={shouldReduceMotion ? {} : { y: -3 }}
+            transition={{ duration: 0.2 }}
+            className="setUp_items relative group cursor-pointer"
+          >
             {v.number && (
               <span className="absolute top-4 right-4 text-sm font-extrabold text-orange-600/70 tracking-widest">
                 {v.number}
@@ -37,9 +62,9 @@ export default function Service() {
             <p className="mt-2 text-sm sm:text-base text-gray-600 leading-relaxed">
               {v.description}
             </p>
-          </div>
+          </motion.div>
         ))}
-      </div>
+      </motion.div>
     </section>
   );
 }

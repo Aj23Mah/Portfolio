@@ -1,6 +1,15 @@
+"use client";
+import React from "react";
 import { IconBriefcase2, IconSchool, IconCheck } from "@tabler/icons-react";
+import { motion, useReducedMotion } from "motion/react";
+import {
+  staggerContainerVariants,
+  staggerItemVariants,
+} from "@/utils/motion";
 
 export default function About() {
+  const shouldReduceMotion = useReducedMotion();
+
   const experiences = [
     {
       label: "Junior JS Developer",
@@ -38,9 +47,15 @@ export default function About() {
 
   return (
     <section id="about" className="container mx-auto py-16 md:px-0 px-5">
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
+      <motion.div
+        className="grid grid-cols-1 lg:grid-cols-12 gap-12"
+        initial={shouldReduceMotion ? "visible" : "hidden"}
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.15 }}
+        variants={staggerContainerVariants}
+      >
         {/* Left Column: About Copy & Philosophy */}
-        <div className="lg:col-span-7 flex flex-col justify-between">
+        <motion.div variants={staggerItemVariants} className="lg:col-span-7 flex flex-col justify-between">
           <div>
             <h2 className="md:text-[2.5rem] text-3xl font-bold uppercase tracking-wider mb-6 text-gray-900">
               ABOUT ME
@@ -70,10 +85,10 @@ export default function About() {
               <p className="text-sm font-bold text-gray-500 mt-2">— BG 2.31</p>
             </div>
           </div>
-        </div>
+        </motion.div>
 
         {/* Right Column: Skill Summary & Career Timeline */}
-        <div className="lg:col-span-5 flex flex-col gap-8">
+        <motion.div variants={staggerItemVariants} className="lg:col-span-5 flex flex-col gap-8">
           {/* WHAT I DO Card */}
           <div className="bg-white/80 backdrop-blur-md rounded-3xl p-6 sm:p-8 border border-gray-200 shadow-sm">
             <h3 className="text-xl font-bold uppercase tracking-wider mb-5 text-gray-900 border-b pb-3">
@@ -132,8 +147,8 @@ export default function About() {
               ))}
             </div>
           </div>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
     </section>
   );
 }
