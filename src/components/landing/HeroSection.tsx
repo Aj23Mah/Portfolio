@@ -94,7 +94,7 @@ export default function HeroSection() {
             }}
             className="bg-transparent hover:bg-gray-200/60 text-gray-700 font-medium py-3.5 px-6 rounded-full border border-gray-400/80 transition duration-200 tracking-wider text-xs sm:text-sm uppercase cursor-pointer"
           >
-            DOWNLOAD RESUME ↓
+            LET'S CONNECT
           </motion.button>
         </motion.div>
       </motion.div>
