@@ -110,7 +110,7 @@ export default function Navbar() {
           <div className="relative z-50">
             <div
               onClick={() => setToggle(!toggle)}
-              className="text-3xl bg-orange-700 rounded-full border shadow-lg cursor-pointer text-center p-2 text-gray-100 hover:text-gray-50 transition"
+              className="text-3xl bg-primary rounded-full border shadow-lg cursor-pointer text-center p-2 text-gray-100 hover:text-gray-50 transition"
             >
               {toggle ? <IconX /> : <IconMenu2 />}
             </div>

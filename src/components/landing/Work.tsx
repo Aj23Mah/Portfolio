@@ -4,10 +4,7 @@ import Image from "next/image";
 import { getImageUrl } from "@/utils/helpers/imageUrlHandler";
 import { projectData } from "@/utils/constrants/data";
 import { motion, useReducedMotion } from "motion/react";
-import {
-  staggerContainerVariants,
-  staggerItemVariants,
-} from "@/utils/motion";
+import { staggerContainerVariants, staggerItemVariants } from "@/utils/motion";
 
 export default function Work() {
   const shouldReduceMotion = useReducedMotion();
@@ -24,11 +21,13 @@ export default function Work() {
         viewport={{ once: true, amount: 0.2 }}
         variants={staggerItemVariants}
       >
-        <h2 className="md:text-[2.5rem] text-3xl font-extrabold uppercase tracking-widest text-orange-500 mb-3">
+        <h2 className="md:text-[2.5rem] text-3xl font-extrabold uppercase tracking-widest text-primary mb-3">
           SELECTED WORK
         </h2>
         <p className="text-gray-300 text-base sm:text-lg leading-relaxed">
-          A selection of projects where I’ve combined development, problem-solving, and thoughtful user experience to build useful digital products.
+          A selection of projects where I’ve combined development,
+          problem-solving, and thoughtful user experience to build useful
+          digital products.
         </p>
       </motion.div>
 
@@ -123,7 +122,7 @@ export default function Work() {
                     whileHover={shouldReduceMotion ? {} : { scale: 1.02 }}
                     whileTap={shouldReduceMotion ? {} : { scale: 0.98 }}
                     href={v.link}
-                    className="inline-flex items-center gap-2 bg-orange-600 hover:bg-orange-700 text-white py-2.5 px-5 rounded-xl font-bold transition shadow-md text-xs sm:text-sm uppercase tracking-wider group/btn"
+                    className="inline-flex items-center gap-2 bg-orange-600 hover:bg-primary text-white py-2.5 px-5 rounded-xl font-bold transition shadow-md text-xs sm:text-sm uppercase tracking-wider group/btn"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -170,7 +169,7 @@ export default function Work() {
         variants={staggerItemVariants}
         className="mt-16 max-w-4xl mx-auto bg-gradient-to-br from-gray-900 via-gray-900 to-black text-white rounded-3xl p-8 sm:p-10 text-center shadow-2xl border border-gray-800"
       >
-        <h3 className="text-2xl sm:text-3xl font-extrabold uppercase tracking-wider mb-3 text-orange-400">
+        <h3 className="text-2xl sm:text-3xl font-extrabold uppercase tracking-wider mb-3 text-primary">
           HAVE A PROJECT IN MIND?
         </h3>
         <p className="text-gray-300 text-base sm:text-lg mb-6 max-w-xl mx-auto">
@@ -183,7 +182,7 @@ export default function Work() {
             const el = document.getElementById("contact");
             el?.scrollIntoView({ behavior: "smooth" });
           }}
-          className="inline-flex items-center gap-2 bg-orange-600 hover:bg-orange-700 text-white font-bold py-3.5 px-8 rounded-full shadow-lg transition duration-200 uppercase text-xs sm:text-sm tracking-wider cursor-pointer"
+          className="inline-flex items-center gap-2 bg-orange-600 hover:bg-primary text-white font-bold py-3.5 px-8 rounded-full shadow-lg transition duration-200 uppercase text-xs sm:text-sm tracking-wider cursor-pointer"
         >
           GET IN TOUCH →
         </motion.button>

@@ -54,7 +54,7 @@ export default function Contact() {
         <p className="text-gray-700 text-base sm:text-lg font-medium leading-relaxed">
           Have an idea, a project, or a problem that needs solving? I’d love to hear about it.
         </p>
-        <p className="text-orange-700 font-semibold text-sm sm:text-base mt-1">
+        <p className="text-primary font-semibold text-sm sm:text-base mt-1">
           Let’s turn your idea into something useful.
         </p>
       </motion.div>
@@ -188,7 +188,7 @@ export default function Contact() {
               whileHover={shouldReduceMotion ? {} : { y: -2 }}
               whileTap={shouldReduceMotion ? {} : { scale: 0.97 }}
               type="submit"
-              className="mt-2 w-full py-3.5 px-6 rounded-xl bg-orange-600 hover:bg-orange-700 text-white font-bold transition flex items-center justify-center gap-2 shadow-md hover:shadow-lg uppercase text-xs tracking-wider cursor-pointer"
+              className="mt-2 w-full py-3.5 px-6 rounded-xl bg-orange-600 hover:bg-primary text-white font-bold transition flex items-center justify-center gap-2 shadow-md hover:shadow-lg uppercase text-xs tracking-wider cursor-pointer"
             >
               {submitted ? (
                 <>

@@ -3,10 +3,7 @@ import React from "react";
 import "@/assets/css/TypingAnimation.css";
 import { TypeAnimation } from "react-type-animation";
 import { motion, useReducedMotion } from "motion/react";
-import {
-  heroContainerVariants,
-  heroItemVariants,
-} from "@/utils/motion";
+import { heroContainerVariants, heroItemVariants } from "@/utils/motion";
 
 export default function HeroSection() {
   const shouldReduceMotion = useReducedMotion();
@@ -25,7 +22,7 @@ export default function HeroSection() {
         {/* Step 1: Small Intro */}
         <motion.div
           variants={heroItemVariants}
-          className="font-bold text-orange-700 uppercase tracking-widest text-xs sm:text-sm mb-3"
+          className="font-bold text-primary uppercase tracking-widest text-xs sm:text-sm md:text-md lg:text-lg mb-3"
         >
           HELLO, I'M
         </motion.div>
@@ -33,10 +30,10 @@ export default function HeroSection() {
         {/* Step 1 (cont.): Name Reveal */}
         <motion.div
           variants={heroItemVariants}
-          className="text-4xl sm:text-6xl md:text-8xl text-center font-medium my-4"
+          className="text-4xl sm:text-6xl md:text-8xl lg:text-9xl text-center font-medium my-4"
         >
           <div className="relative z-10 smooch"> Ajay Kumar </div>
-          <div className="relative text-3xl sm:text-4xl text-orange-700 uppercase mt-[-8px] tracking-widest">
+          <div className="relative text-3xl sm:text-4xl lg:text-5xl text-primary uppercase mt-[-8px] tracking-widest">
             Maharjan
           </div>
         </motion.div>
@@ -81,7 +78,7 @@ export default function HeroSection() {
               const el = document.getElementById("projects");
               el?.scrollIntoView({ behavior: "smooth" });
             }}
-            className="bg-orange-600 hover:bg-orange-700 text-white font-extrabold py-3.5 px-7 sm:px-9 rounded-full shadow-lg transition duration-200 tracking-wider text-xs sm:text-sm uppercase ring-2 ring-orange-500/20 cursor-pointer"
+            className="bg-orange-600 hover:bg-primary text-white font-extrabold py-3.5 px-7 sm:px-9 rounded-full shadow-lg transition duration-200 tracking-wider text-xs sm:text-sm uppercase ring-2 ring-orange-500/20 cursor-pointer"
           >
             VIEW MY WORK
           </motion.button>

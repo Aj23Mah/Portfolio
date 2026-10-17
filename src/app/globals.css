@@ -6,10 +6,12 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
-  --primary: #ffffff;
-  --secondary: #ffffff;
-  --accent: #ffffff;
-  --text: #ffffff;
+  --primary: #C2410C;
+  --text-primary: #171717;
+  --text-secondary: #4b5563;
+  --text: #171717;
+  --secondary: #ea580c;
+  --accent: #f97316;
 }
 * {
   margin: 0;
@@ -66,7 +68,7 @@ body {
   &:before {
     content:'';
     position: absolute;
-    background: url("/image/paper-texture.jpeg") center / 10%; {/* scale */}
+    background: url("/image/paper-texture.jpeg") center / 10%; 
     height: 100%;
     width: 100%;
     top:0;
