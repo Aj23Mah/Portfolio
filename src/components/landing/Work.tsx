@@ -6,18 +6,26 @@ import { projectData } from "@/utils/constrants/data";
 import { motion, useReducedMotion } from "motion/react";
 import { staggerContainerVariants, staggerItemVariants } from "@/utils/motion";
 
-export default function Work() {
+export interface WorkProps {
+  idPrefix?: string;
+}
+
+export default function Work({ idPrefix }: WorkProps = {}) {
   const shouldReduceMotion = useReducedMotion();
+  const sectionId = idPrefix ? `${idPrefix}-projects` : "projects";
+
+  const isOverlay = Boolean(idPrefix);
 
   return (
     <section
-      id="projects"
+      id={sectionId}
       className="py-20 px-5 md:px-[8vw] lg:px-[10vw] xl:px-[12vw] bg-gray-950 text-white dark project-bg"
     >
       <motion.div
         className="max-w-3xl mx-auto text-center mb-12"
-        initial={shouldReduceMotion ? "visible" : "hidden"}
-        whileInView="visible"
+        initial={isOverlay || shouldReduceMotion ? "visible" : "hidden"}
+        animate={isOverlay ? "visible" : undefined}
+        whileInView={isOverlay ? undefined : "visible"}
         viewport={{ once: true, amount: 0.2 }}
         variants={staggerItemVariants}
       >
@@ -33,8 +41,9 @@ export default function Work() {
 
       <motion.div
         className="flex flex-col gap-12"
-        initial={shouldReduceMotion ? "visible" : "hidden"}
-        whileInView="visible"
+        initial={isOverlay || shouldReduceMotion ? "visible" : "hidden"}
+        animate={isOverlay ? "visible" : undefined}
+        whileInView={isOverlay ? undefined : "visible"}
         viewport={{ once: true, amount: 0.1 }}
         variants={staggerContainerVariants}
       >

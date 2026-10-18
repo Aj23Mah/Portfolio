@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head><title>WebGL Test</title></head>
+<body>
+<canvas id="c" width="300" height="300"></canvas>
+<pre id="out"></pre>
+<script>
+const out = document.getElementById('out');
+function log(msg) { out.textContent += msg + '\n'; console.log(msg); }
+
+const canvas = document.getElementById('c');
+const gl2 = canvas.getContext('webgl2');
+log('webgl2: ' + (gl2 ? 'supported' : 'null'));
+if (gl2) {
+  log('isContextLost: ' + gl2.isContextLost());
+  log('getContextAttributes: ' + JSON.stringify(gl2.getContextAttributes()));
+}
+
+const gl1 = canvas.getContext('webgl');
+log('webgl1: ' + (gl1 ? 'supported' : 'null'));
+</script>
+</body>
+</html>

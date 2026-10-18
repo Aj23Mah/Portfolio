@@ -8,8 +8,16 @@ import {
   staggerItemVariants,
 } from "@/utils/motion";
 
-export default function Contact() {
+export interface ContactProps {
+  idPrefix?: string;
+}
+
+export default function Contact({ idPrefix }: ContactProps = {}) {
   const shouldReduceMotion = useReducedMotion();
+  const sectionId = idPrefix ? `${idPrefix}-contact` : "contact";
+  const nameId = idPrefix ? `${idPrefix}-name` : "name";
+  const emailId = idPrefix ? `${idPrefix}-email` : "email";
+  const messageId = idPrefix ? `${idPrefix}-message` : "message";
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -39,12 +47,15 @@ export default function Contact() {
     setTimeout(() => setSubmitted(false), 5000);
   };
 
+  const isOverlay = Boolean(idPrefix);
+
   return (
-    <section id="contact" className="container mx-auto py-16 px-5 md:px-10">
+    <section id={sectionId} className="container mx-auto py-16 px-5 md:px-10">
       <motion.div
         className="max-w-3xl mx-auto text-center mb-12"
-        initial={shouldReduceMotion ? "visible" : "hidden"}
-        whileInView="visible"
+        initial={isOverlay || shouldReduceMotion ? "visible" : "hidden"}
+        animate={isOverlay ? "visible" : undefined}
+        whileInView={isOverlay ? undefined : "visible"}
         viewport={{ once: true, amount: 0.2 }}
         variants={staggerItemVariants}
       >
@@ -61,8 +72,9 @@ export default function Contact() {
 
       <motion.div
         className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto mb-16"
-        initial={shouldReduceMotion ? "visible" : "hidden"}
-        whileInView="visible"
+        initial={isOverlay || shouldReduceMotion ? "visible" : "hidden"}
+        animate={isOverlay ? "visible" : undefined}
+        whileInView={isOverlay ? undefined : "visible"}
         viewport={{ once: true, amount: 0.15 }}
         variants={staggerContainerVariants}
       >
@@ -137,12 +149,12 @@ export default function Contact() {
         >
           <form onSubmit={handleSubmit} className="flex flex-col gap-5">
             <div>
-              <label htmlFor="name" className="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">
+              <label htmlFor={nameId} className="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">
                 NAME *
               </label>
               <input
                 type="text"
-                id="name"
+                id={nameId}
                 name="name"
                 required
                 value={formData.name}
@@ -153,12 +165,12 @@ export default function Contact() {
             </div>
 
             <div>
-              <label htmlFor="email" className="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">
+              <label htmlFor={emailId} className="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">
                 EMAIL *
               </label>
               <input
                 type="email"
-                id="email"
+                id={emailId}
                 name="email"
                 required
                 value={formData.email}
@@ -169,11 +181,11 @@ export default function Contact() {
             </div>
 
             <div>
-              <label htmlFor="message" className="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">
+              <label htmlFor={messageId} className="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">
                 MESSAGE *
               </label>
               <textarea
-                id="message"
+                id={messageId}
                 name="message"
                 rows={4}
                 required

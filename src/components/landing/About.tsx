@@ -1,35 +1,16 @@
 "use client";
 import React from "react";
-import { IconBriefcase2, IconSchool, IconCheck } from "@tabler/icons-react";
+import { IconCheck } from "@tabler/icons-react";
 import { motion, useReducedMotion } from "motion/react";
 import { staggerContainerVariants, staggerItemVariants } from "@/utils/motion";
 
-export default function About() {
+export interface AboutProps {
+  idPrefix?: string;
+}
+
+export default function About({ idPrefix }: AboutProps) {
   const shouldReduceMotion = useReducedMotion();
-
-  const experiences = [
-    {
-      label: "Junior JS Developer",
-      company: "Next In Tech Pvt Ltd",
-      duration: "Sep 2024 – Present",
-      location: "Tahachal, Kathmandu",
-    },
-    {
-      label: "Internship (Full Stack JS)",
-      company: "Krafters Technology",
-      duration: "Mar 2024 – Aug 2024 (6 Months)",
-      location: "Kumaripati, Lalitpur",
-    },
-  ];
-
-  const education = [
-    {
-      studyAt: "Krafters Technology",
-      location: "Kumaripati, Lalitpur",
-      course: "Full Stack JS Development Certification",
-      year: "2024",
-    },
-  ];
+  const sectionId = idPrefix ? `${idPrefix}-about` : "about";
 
   const whatIDo = [
     "Full-Stack Web Development",
@@ -42,150 +23,58 @@ export default function About() {
     "Responsive Web Design",
   ];
 
+  const isOverlay = Boolean(idPrefix);
+
   return (
-    <section id="about" className="container mx-auto py-16 md:px-0 px-5">
-      <div className={"grid grid-cols-1 md:grid-cols-2 gap-8"}>
-        <div className={"roboto-slab-semibold"}>
-          <div
-            className={
-              "md:text-[2.5rem] sm:text-[2rem] text-[1.5rem] text-gray-700/50 font-bold sticky top-28"
-            }
-          >
-            Besides, considering your{" "}
-            <span className={"text-primary"}>duty</span>, as a warrior you
-            should not waver. Indeed, for a{" "}
-            <span className={"text-primary"}>warrior</span>, there is no better
-            engagement than fighting for{" "}
-            <span className={"text-primary"}>upholding of righteousness</span>.
-            <p className={"text-2xl font-bold text-gray-700/50"}>— BG 2.31</p>
-          </div>
-        </div>
-
-        <div>
-          <div className={"md:text-[2.5rem] text-3xl font-bold mb-4"}>
-            About Me
-          </div>
-          <div className={"md:text-2xl text-xl"}>
-            <p className={"mb-4"}>
-              Bringing life to code and building bridges between technology and
-              user comfort! Hi, I`m Ajay Kumar Maharjan, a full-stack JavaScript
-              developer targeting the essence of innovation through my skills in
-              MERN Stack. Born and raised in the tech heartbeat of Kathmandu, I
-              currently enhance web applications with a flair for dynamic,
-              user-centric solutions.
-            </p>
-            <p className={"mb-4"}>
-              Since commencing my educational journey in Information Management,
-              I`ve embraced every learning opportunity and technological
-              challenge, turning them into stepping stones toward becoming an
-              expert in my field. Throughout my career, my projects have not
-              just been tasks, but adventures in creating impactful tech that
-              addresses real-world needs. I am looking forward to connecting
-              with professionals who share a passion for impactful development.
-              Check out my latest project or drop a message to see how we can
-              collaborate on technology that makes a difference!
-            </p>
-          </div>
-          <div className={"py-8"}>
-            <div className="text-3xl font-semibold flex gap-2 items-center text-gray-900">
-              <IconBriefcase2 className="text-primary" size={28} />
-              <span>Experience</span>
-            </div>
-            <div className="flex flex-col gap-4">
-              {experiences?.map((experience: any, index: number) => (
-                <div key={index}>
-                  <div className="border p-6">
-                    <div className="text-xl mb-2 text-primary">
-                      {experience.duration}
-                    </div>
-                    <div className="text-xl">
-                      <label className="font-bold">{experience.label}</label>
-                      <p>
-                        {experience.company}, {experience.location}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div>
-            <div className="text-3xl font-semibold flex gap-2 items-center text-gray-900">
-              <IconSchool className="text-primary" size={28} />
-              <span>Certificate</span>
-            </div>
-            <div className="flex flex-col gap-4">
-              {education?.map((education: any, index: number) => (
-                <div key={index}>
-                  <div className="border p-6">
-                    <div className="text-xl mb-2 text-primary">
-                      {education.year}
-                    </div>
-                    <div className="text-xl">
-                      <label className="font-bold">{education.course}</label>
-                      <p>
-                        {education.studyAt}, {education.location}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
-      {/* <motion.div
-        className="grid grid-cols-1 lg:grid-cols-12 gap-12"
-        initial={shouldReduceMotion ? "visible" : "hidden"}
-        whileInView="visible"
+    <section id={sectionId} className="container mx-auto py-16 md:px-0 px-5">
+      <motion.div
+        className="grid grid-cols-1 md:grid-cols-2 gap-8"
+        initial={isOverlay || shouldReduceMotion ? "visible" : "hidden"}
+        animate={isOverlay ? "visible" : undefined}
+        whileInView={isOverlay ? undefined : "visible"}
         viewport={{ once: true, amount: 0.15 }}
         variants={staggerContainerVariants}
       >
-        // Left Column: About Copy & Philosophy 
-        <motion.div variants={staggerItemVariants} className="lg:col-span-7 flex flex-col justify-between">
-          <div>
-            <h2 className="md:text-[2.5rem] text-3xl font-bold uppercase tracking-wider mb-6 text-gray-900">
-              ABOUT ME
-            </h2>
-            
-            <p className="text-xl sm:text-2xl font-semibold text-primary leading-snug mb-6">
-              I’m a Full-Stack Developer who enjoys turning complex problems into simple, reliable, and intuitive digital experiences.
-            </p>
-
-            <div className="text-gray-700 text-base sm:text-lg leading-relaxed space-y-4 mb-8">
-              <p>
-                I work across the frontend and backend to build complete web applications — from designing responsive interfaces and developing APIs to structuring databases and integrating the systems that power them.
-              </p>
-              <p>
-                I care about more than just making things work. I focus on writing maintainable code, creating smooth user experiences, and building products that are practical, scalable, and easy to use.
-              </p>
-              <p className="font-bold text-gray-900 italic border-l-4 border-orange-600 pl-4 py-1 text-lg">
-                "For me, good development is where clean engineering meets thoughtful design."
-              </p>
-            </div>
-          </div>
-
-          // 🔹 Secondary Philosophy Quote 
-          <div className="bg-white/60 backdrop-blur-sm p-6 rounded-2xl border border-gray-200 shadow-sm mt-4">
-            <div className="roboto-slab-semibold text-gray-800 text-base sm:text-lg leading-relaxed">
-              Besides, considering your <span className="text-primary font-bold">duty</span>, as a warrior you should not waver. Indeed, for a <span className="text-primary font-bold">warrior</span>, there is no better engagement than fighting for <span className="text-primary font-bold">upholding of righteousness</span>.
-              <p className="text-sm font-bold text-gray-500 mt-2">— BG 2.31</p>
-            </div>
+        <motion.div variants={staggerItemVariants} className="roboto-slab-semibold">
+          <div className="md:text-[2.5rem] sm:text-[2rem] text-[1.5rem] text-gray-700/50 font-bold sticky top-28">
+            Besides, considering your <span className="text-primary">duty</span>, as a warrior you
+            should not waver. Indeed, for a <span className="text-primary">warrior</span>, there is
+            no better engagement than fighting for{" "}
+            <span className="text-primary">upholding of righteousness</span>.
+            <p className="text-2xl font-bold text-gray-700/50 mt-2">— BG 2.31</p>
           </div>
         </motion.div>
 
-        // Right Column: Skill Summary & Career Timeline 
-        <motion.div variants={staggerItemVariants} className="lg:col-span-5 flex flex-col gap-8">
-          // WHAT I DO Card 
-          <div className="bg-white/80 backdrop-blur-md rounded-3xl p-6 sm:p-8 border border-gray-200 shadow-sm">
-            <h3 className="text-xl font-bold uppercase tracking-wider mb-5 text-gray-900 border-b pb-3">
-              WHAT I DO
+        <motion.div variants={staggerItemVariants}>
+          <div className="md:text-[2.5rem] text-3xl font-bold mb-4 text-gray-900">
+            About Me
+          </div>
+          <div className="md:text-2xl text-xl text-gray-800 leading-relaxed">
+            <p className="mb-4">
+              Bringing life to code and building bridges between technology and user comfort! Hi,
+              I&apos;m Ajay Kumar Maharjan, a full-stack JavaScript developer targeting the essence
+              of innovation through my skills in MERN Stack. Born and raised in the tech heartbeat
+              of Kathmandu, I currently enhance web applications with a flair for dynamic,
+              user-centric solutions.
+            </p>
+            <p className="mb-6">
+              Since commencing my educational journey in Information Management, I&apos;ve embraced
+              every learning opportunity and technological challenge, turning them into stepping
+              stones toward becoming an expert in my field. Throughout my career, my projects have
+              not just been tasks, but adventures in creating impactful tech that addresses
+              real-world needs.
+            </p>
+          </div>
+
+          {/* What I Do Summary Card */}
+          <div className="bg-orange-50/70 border border-orange-200/80 rounded-2xl p-6 sm:p-8 mt-6">
+            <h3 className="text-xl font-bold uppercase tracking-wider mb-4 text-gray-900 border-b border-orange-200/60 pb-3">
+              Core Capabilities
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               {whatIDo.map((skill, index) => (
                 <div key={index} className="flex items-center gap-2 text-sm sm:text-base font-semibold text-gray-800">
-                  <span className="p-1 bg-orange-100 text-orange-600 rounded-full shrink-0">
+                  <span className="p-1 bg-orange-500 text-white rounded-full shrink-0">
                     <IconCheck size={14} stroke={3} />
                   </span>
                   <span>{skill}</span>
@@ -193,50 +82,8 @@ export default function About() {
               ))}
             </div>
           </div>
-
-          // Experience Timeline 
-          <div>
-            <div className="text-2xl font-bold flex gap-2 items-center mb-4 text-gray-900">
-              <IconBriefcase2 className="text-orange-600" size={28} />
-              <span>Experience</span>
-            </div>
-            <div className="flex flex-col gap-3">
-              {experiences.map((exp, index) => (
-                <div key={index} className="bg-white/70 backdrop-blur-sm p-5 rounded-2xl border border-gray-200">
-                  <div className="text-xs font-bold text-primary uppercase tracking-wider mb-1">
-                    {exp.duration}
-                  </div>
-                  <div className="text-lg font-bold text-gray-900">{exp.label}</div>
-                  <p className="text-sm text-gray-600">
-                    {exp.company} • {exp.location}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          // Education & Certificates 
-          <div>
-            <div className="text-2xl font-bold flex gap-2 items-center mb-4 text-gray-900">
-              <IconSchool className="text-orange-600" size={28} />
-              <span>Certificates</span>
-            </div>
-            <div className="flex flex-col gap-3">
-              {education.map((edu, index) => (
-                <div key={index} className="bg-white/70 backdrop-blur-sm p-5 rounded-2xl border border-gray-200">
-                  <div className="text-xs font-bold text-primary uppercase tracking-wider mb-1">
-                    {edu.year}
-                  </div>
-                  <div className="text-lg font-bold text-gray-900">{edu.course}</div>
-                  <p className="text-sm text-gray-600">
-                    {edu.studyAt} • {edu.location}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
         </motion.div>
-      </motion.div> */}
+      </motion.div>
     </section>
   );
 }

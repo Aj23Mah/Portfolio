@@ -2,99 +2,164 @@
 import React from "react";
 import "@/assets/css/TypingAnimation.css";
 import { TypeAnimation } from "react-type-animation";
-import { motion, useReducedMotion } from "motion/react";
-import { heroContainerVariants, heroItemVariants } from "@/utils/motion";
+import CubeWrapper from "@/components/cube/CubeWrapper";
+import { useViewMode } from "@/context/ViewModeContext";
 
 export default function HeroSection() {
-  const shouldReduceMotion = useReducedMotion();
+  const { mode, toggleMode } = useViewMode();
 
+  if (mode === "classic") {
+    // --- Classic View: Clean, compact hero layout ---
+    return (
+      <section
+        id="home"
+        className="w-full min-h-[75vh] flex flex-col justify-center px-6 sm:px-12 lg:px-24 pt-28 pb-16 bg-gradient-to-b from-orange-50/40 via-white to-white"
+      >
+        <div className="max-w-4xl mx-auto flex flex-col items-start pl-16 sm:pl-20 md:pl-24">
+          <div className="font-bold text-primary uppercase tracking-widest text-xs sm:text-sm mb-2">
+            HELLO, I&apos;M
+          </div>
+          <h1 className="text-4xl sm:text-6xl md:text-7xl font-bold my-1 tracking-tight text-gray-900">
+            <span className="smooch block text-6xl sm:text-7xl md:text-8xl font-normal leading-none text-gray-950">
+              Ajay Kumar
+            </span>
+            <span className="relative text-3xl sm:text-4xl md:text-5xl text-primary uppercase tracking-widest font-bold -mt-2 block">
+              Maharjan
+            </span>
+          </h1>
+
+          <div className="flex gap-2 items-center mt-3 text-gray-800">
+            <TypeAnimation
+              sequence={[
+                "Full-Stack JS Developer",
+                1200,
+                "Software Developer",
+                1200,
+              ]}
+              wrapper="span"
+              speed={20}
+              style={{ fontSize: "1.4em", display: "inline-block", fontWeight: 700 }}
+              repeat={Infinity}
+            />
+          </div>
+
+          <p className="text-gray-700 text-base sm:text-lg font-normal leading-relaxed mt-4 max-w-2xl">
+            I work across the frontend and backend to build complete, scalable, and user-friendly web applications — from designing dynamic interfaces to engineering secure APIs and database architectures.
+          </p>
+
+          <div className="flex flex-wrap items-center gap-4 mt-8">
+            <button
+              onClick={() => {
+                const el = document.getElementById("projects");
+                el?.scrollIntoView({ behavior: "smooth" });
+              }}
+              className="py-3 px-6 rounded-xl bg-orange-600 hover:bg-orange-500 text-white font-bold transition text-sm shadow-md cursor-pointer"
+            >
+              View Projects ↓
+            </button>
+            <button
+              onClick={() => {
+                const el = document.getElementById("contact");
+                el?.scrollIntoView({ behavior: "smooth" });
+              }}
+              className="py-3 px-6 rounded-xl border border-gray-300 hover:border-orange-500 text-gray-800 hover:text-orange-600 transition text-sm font-semibold bg-white cursor-pointer"
+            >
+              Contact Me
+            </button>
+            <button
+              onClick={() => {
+                toggleMode();
+                window.scrollTo({ top: 0, behavior: "smooth" });
+              }}
+              className="py-3 px-6 rounded-xl border border-orange-500/80 bg-orange-50 hover:bg-orange-100 text-orange-700 font-mono font-bold transition text-xs uppercase tracking-wider flex items-center gap-2 shadow-sm cursor-pointer ml-auto"
+              title="Return to interactive 3D Rubik's cube exploration"
+            >
+              <span>🌐 3D Cube Explore</span>
+              <span>↑</span>
+            </button>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  // --- 3D Exploration Mode: Full-viewport interactive 3D Rubik's stage ---
   return (
     <section
       id="home"
-      className="w-full min-h-[85vh] flex items-center justify-center container mx-auto px-5 py-16"
+      className="relative w-full h-[100dvh] min-h-[100svh] overflow-hidden flex flex-col justify-between select-none bg-transparent"
     >
-      <motion.div
-        className="max-w-4xl text-center"
-        initial={shouldReduceMotion ? "visible" : "hidden"}
-        animate="visible"
-        variants={heroContainerVariants}
-      >
-        {/* Step 1: Small Intro */}
-        <motion.div
-          variants={heroItemVariants}
-          className="font-bold text-primary uppercase tracking-widest text-xs sm:text-sm md:text-md lg:text-lg mb-3"
-        >
-          HELLO, I'M
-        </motion.div>
+      {/* 
+        Static Poster & Ambient Backdrop (Server-rendered behind canvas).
+        Ensures first paint is never blank before WebGL/Three.js hydrates.
+      */}
+      <div className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none select-none">
+        <div className="absolute w-[340px] h-[340px] sm:w-[520px] sm:h-[520px] rounded-full bg-gradient-to-tr from-orange-500/15 via-amber-500/10 to-transparent blur-3xl opacity-75" />
+        <div className="w-[260px] h-[260px] sm:w-[340px] sm:h-[340px] rounded-3xl border border-orange-500/20 bg-orange-950/5 shadow-2xl flex flex-col items-center justify-center p-6 text-center opacity-30">
+          <div className="text-4xl mb-2">🎲</div>
+          <span className="text-[11px] uppercase tracking-widest font-mono text-orange-900/60 font-semibold">
+            Interactive 3D Stage
+          </span>
+        </div>
+      </div>
 
-        {/* Step 1 (cont.): Name Reveal */}
-        <motion.div
-          variants={heroItemVariants}
-          className="text-4xl sm:text-6xl md:text-8xl lg:text-9xl text-center font-medium my-4"
-        >
-          <div className="relative z-10 smooch"> Ajay Kumar </div>
-          <div className="relative text-3xl sm:text-4xl lg:text-5xl text-primary uppercase mt-[-8px] tracking-widest">
-            Maharjan
+      {/* Full-Viewport 3D Stage Canvas */}
+      <div className="absolute inset-0 z-10 w-full h-full">
+        <CubeWrapper className="w-full h-full" />
+      </div>
+
+      {/* Real HTML Overlay: Name, Title & Classic View Link */}
+      <div className="relative z-20 w-full h-full flex flex-col justify-between pointer-events-none p-6 sm:p-10 lg:p-12 pt-6 sm:pt-8 pl-24 sm:pl-28 md:pl-32 lg:pl-36">
+        {/* Top-left Branding & Title */}
+        <div className="flex flex-col items-center sm:items-start text-center sm:text-left max-w-xl pointer-events-auto">
+          <div className="font-bold text-primary uppercase tracking-widest text-xs sm:text-sm mb-1">
+            HELLO, I&apos;M
           </div>
-        </motion.div>
+          <h1 className="text-4xl sm:text-6xl md:text-7xl font-bold my-1 tracking-tight">
+            <span className="smooch block text-5xl sm:text-7xl md:text-8xl font-normal leading-none">
+              Ajay Kumar
+            </span>
+            <span className="relative text-2xl sm:text-4xl md:text-5xl text-primary uppercase tracking-widest font-bold -mt-2 block">
+              Maharjan
+            </span>
+          </h1>
 
-        {/* Step 2: Professional Title with TypeAnimation */}
-        <motion.div
-          variants={heroItemVariants}
-          className="flex gap-2 items-center justify-center mb-4"
-        >
-          <TypeAnimation
-            sequence={[
-              "Full-Stack JS Developer",
-              1000,
-              "Software Developer",
-              1000,
-            ]}
-            wrapper="span"
-            speed={20}
-            style={{ fontSize: "2em", display: "inline-block" }}
-            repeat={Infinity}
-          />
-        </motion.div>
+          <div className="flex gap-2 items-center justify-center sm:justify-start mt-1">
+            <TypeAnimation
+              sequence={[
+                "Full-Stack JS Developer",
+                1200,
+                "Software Developer",
+                1200,
+              ]}
+              wrapper="span"
+              speed={20}
+              style={{ fontSize: "1.25em", display: "inline-block", fontWeight: 600 }}
+              repeat={Infinity}
+            />
+          </div>
 
-        {/* Step 3: Supporting Description */}
-        <motion.p
-          variants={heroItemVariants}
-          className="max-w-3xl mx-auto text-gray-700 text-lg sm:text-xl font-normal leading-relaxed mb-10"
-        >
-          I build modern, scalable, and user-focused web applications that turn
-          ideas into reliable digital products.
-        </motion.p>
+          <p className="text-gray-700 text-xs sm:text-sm md:text-base font-normal leading-relaxed mt-2 max-w-md hidden sm:block">
+            I build modern, scalable, and user-focused web applications.
+          </p>
+        </div>
 
-        {/* Step 4: Hero CTAs with Motion Micro-interactions */}
-        <motion.div
-          variants={heroItemVariants}
-          className="flex flex-wrap items-center justify-center gap-3 sm:gap-4"
-        >
-          <motion.button
-            whileHover={shouldReduceMotion ? {} : { y: -2 }}
-            whileTap={shouldReduceMotion ? {} : { scale: 0.97 }}
+        {/* Bottom Area: Classic View Link (pinned to bottom-right to avoid center toolbar collision) */}
+        <div className="absolute bottom-6 right-6 sm:bottom-8 sm:right-10 pointer-events-auto z-30">
+          <button
             onClick={() => {
-              const el = document.getElementById("projects");
+              toggleMode();
+              const el = document.getElementById("about");
               el?.scrollIntoView({ behavior: "smooth" });
             }}
-            className="bg-orange-600 hover:bg-primary text-white font-extrabold py-3.5 px-7 sm:px-9 rounded-full shadow-lg transition duration-200 tracking-wider text-xs sm:text-sm uppercase ring-2 ring-orange-500/20 cursor-pointer"
+            className="group text-xs font-mono uppercase tracking-widest text-gray-700 hover:text-orange-600 transition flex items-center gap-2 py-2 px-4 rounded-full bg-white/70 hover:bg-white/95 border border-gray-300/80 backdrop-blur-md shadow-md cursor-pointer"
+            title="Switch to traditional scrollable portfolio"
           >
-            VIEW MY WORK
-          </motion.button>
-          <motion.button
-            whileHover={shouldReduceMotion ? {} : { y: -2 }}
-            whileTap={shouldReduceMotion ? {} : { scale: 0.97 }}
-            onClick={() => {
-              const el = document.getElementById("contact");
-              el?.scrollIntoView({ behavior: "smooth" });
-            }}
-            className="bg-transparent hover:bg-gray-200/60 text-gray-700 font-medium py-3.5 px-6 rounded-full border border-gray-400/80 transition duration-200 tracking-wider text-xs sm:text-sm uppercase cursor-pointer"
-          >
-            LET'S CONNECT
-          </motion.button>
-        </motion.div>
-      </motion.div>
+            <span>Classic View</span>
+            <span className="group-hover:translate-y-0.5 transition-transform duration-200">↓</span>
+          </button>
+        </div>
+      </div>
     </section>
   );
 }

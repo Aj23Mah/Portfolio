@@ -15,8 +15,13 @@ import {
   staggerItemVariants,
 } from "@/utils/motion";
 
-export default function Tools() {
+export interface ToolsProps {
+  idPrefix?: string;
+}
+
+export default function Tools({ idPrefix }: ToolsProps = {}) {
   const shouldReduceMotion = useReducedMotion();
+  const sectionId = idPrefix ? `${idPrefix}-skills` : "tools";
 
   const items = [
     { name: "HTML5", img: htmlLogo },
@@ -29,12 +34,15 @@ export default function Tools() {
     { name: "PostgreSQL", img: postgreLogo },
   ];
 
+  const isOverlay = Boolean(idPrefix);
+
   return (
-    <section id="tools" className="container mx-auto py-16 sm:px-0 px-5">
+    <section id={sectionId} className="container mx-auto py-16 sm:px-0 px-5">
       <motion.div
         className="md:text-[2.5rem] text-3xl font-extrabold uppercase tracking-wider text-center mb-8 text-gray-900"
-        initial={shouldReduceMotion ? "visible" : "hidden"}
-        whileInView="visible"
+        initial={isOverlay || shouldReduceMotion ? "visible" : "hidden"}
+        animate={isOverlay ? "visible" : undefined}
+        whileInView={isOverlay ? undefined : "visible"}
         viewport={{ once: true, amount: 0.2 }}
         variants={staggerItemVariants}
       >
@@ -43,8 +51,9 @@ export default function Tools() {
 
       <motion.div
         className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-8 justify-center gap-5"
-        initial={shouldReduceMotion ? "visible" : "hidden"}
-        whileInView="visible"
+        initial={isOverlay || shouldReduceMotion ? "visible" : "hidden"}
+        animate={isOverlay ? "visible" : undefined}
+        whileInView={isOverlay ? undefined : "visible"}
         viewport={{ once: true, amount: 0.15 }}
         variants={staggerContainerVariants}
       >

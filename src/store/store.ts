@@ -1,25 +1,30 @@
-import {create} from 'zustand'
-// import {APIGetMenu} from "@/api/APIMenu";
+// Zero-dependency store replacement (removes external zustand dependency)
+type Listener = () => void;
 
-const useStore = create((set)=>({
-    menuData: [],
-    productData: [],
-    serviceData: [],
-    footerData: [],
-    loading: false,
-    error: null,
-    setMenuData: (menuData:any)=>set((state:any)=>({menuData:menuData})),
-    setProductData: (productData:any)=>set((state:any)=>({productData:productData})),
-    setServiceData: (serviceData:any)=>set((state:any)=>({serviceData:serviceData})),
-    setFooterData: (footerData:any)=>set((state:any)=>({footerData:footerData})),
+let state: Record<string, any> = {
+  menuData: [],
+  productData: [],
+  serviceData: [],
+  footerData: [],
+  loading: false,
+  error: null,
+};
 
-    // fetch data function
+const listeners = new Set<Listener>();
 
-    // setMenuData: async () => {
-    //     const menuData = await APIGetMenu();
-    //     return set((state: any) => ({...state, menuData}))
-    // },
+function setState(partial: Record<string, any> | ((prev: Record<string, any>) => Record<string, any>)) {
+  const next = typeof partial === "function" ? partial(state) : partial;
+  state = { ...state, ...next };
+  listeners.forEach((l) => l());
+}
 
-}))
+state.setMenuData = (data: any) => setState({ menuData: data });
+state.setProductData = (data: any) => setState({ productData: data });
+state.setServiceData = (data: any) => setState({ serviceData: data });
+state.setFooterData = (data: any) => setState({ footerData: data });
+
+const useStore = (selector?: (s: any) => any) => {
+  return selector ? selector(state) : state;
+};
 
 export default useStore;

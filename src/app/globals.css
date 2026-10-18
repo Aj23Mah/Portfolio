@@ -23,6 +23,25 @@ body {
   font-family: "Roboto Slab", serif;
 }
 
+/* Non-JavaScript progressive enhancement fallback */
+html:not(.js) [style*="opacity"],
+html:not(.js) [style*="transform"] {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+/* Global reduced-motion overrides */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
 .smooch {
   font-family: "Smooch", serif;
   font-weight: 400;
@@ -90,3 +109,8 @@ body {
     rotate: 360deg;
   }
 }
+
+/* Progressive enhancement: classic sections are ALWAYS visible without JS */
+html:not(.js) .classic-sections-container {
+  display: block !important;
+}

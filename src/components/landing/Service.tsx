@@ -10,15 +10,23 @@ import {
   staggerItemVariants,
 } from "@/utils/motion";
 
-export default function Service() {
+export interface ServiceProps {
+  idPrefix?: string;
+}
+
+export default function Service({ idPrefix }: ServiceProps = {}) {
   const shouldReduceMotion = useReducedMotion();
+  const sectionId = idPrefix ? `${idPrefix}-services` : "services";
+
+  const isOverlay = Boolean(idPrefix);
 
   return (
-    <section id="services" className="container mx-auto py-16 px-5">
+    <section id={sectionId} className="container mx-auto py-16 px-5">
       <motion.div
         className="max-w-3xl mx-auto text-center mb-12"
-        initial={shouldReduceMotion ? "visible" : "hidden"}
-        whileInView="visible"
+        initial={isOverlay || shouldReduceMotion ? "visible" : "hidden"}
+        animate={isOverlay ? "visible" : undefined}
+        whileInView={isOverlay ? undefined : "visible"}
         viewport={{ once: true, amount: 0.2 }}
         variants={staggerItemVariants}
       >
@@ -33,8 +41,9 @@ export default function Service() {
 
       <motion.div
         className="parallex_setupItems"
-        initial={shouldReduceMotion ? "visible" : "hidden"}
-        whileInView="visible"
+        initial={isOverlay || shouldReduceMotion ? "visible" : "hidden"}
+        animate={isOverlay ? "visible" : undefined}
+        whileInView={isOverlay ? undefined : "visible"}
         viewport={{ once: true, amount: 0.15 }}
         variants={staggerContainerVariants}
       >
