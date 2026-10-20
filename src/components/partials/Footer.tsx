@@ -15,6 +15,7 @@ export default function Footer() {
               href={item.route}
               target="_blank"
               rel="noopener noreferrer"
+              aria-label={item.name}
               onMouseEnter={() => setHoveredIndex(key)}
               onMouseLeave={() => setHoveredIndex(null)}
               style={{

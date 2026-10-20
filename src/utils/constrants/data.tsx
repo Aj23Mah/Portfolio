@@ -189,3 +189,51 @@ export const projectData = [
     github: "https://github.com/Aj23Mah",
   },
 ];
+
+export const whatIDo = [
+  "Full-Stack Web Development",
+  "REST API Development",
+  "Database Design & Management",
+  "Frontend Development",
+  "Backend Development",
+  "Testing & Debugging",
+  "API Integration",
+  "Responsive Web Design",
+];
+
+export const experiencesList = [
+  {
+    label: "Junior JS Developer",
+    company: "Next In Tech Pvt Ltd",
+    duration: "Sep 2024 – Present",
+    location: "Tahachal, Kathmandu",
+    description: "Developing scalable web applications, REST APIs, and interactive UI components with modern JavaScript frameworks.",
+  },
+  {
+    label: "Internship (Full Stack JS)",
+    company: "Krafters Technology",
+    duration: "Mar 2024 – Aug 2024 (6 Months)",
+    location: "Kumaripati, Lalitpur",
+    description: "Hands-on experience developing full-stack web solutions, database modeling, and collaborating in agile sprints.",
+  },
+];
+
+export const educationList = [
+  {
+    studyAt: "Krafters Technology",
+    location: "Kumaripati, Lalitpur",
+    course: "Full Stack JS Development Certification",
+    year: "2024",
+  },
+];
+
+export const toolsList = [
+  { name: "HTML5", img: "/image/html-logo.png" },
+  { name: "CSS3", img: "/image/css-logo.png" },
+  { name: "JavaScript", img: "/image/JS-logo.png" },
+  { name: "React", img: "/image/React_logo.webp" },
+  { name: "Next.js", img: "/image/Next-logo.webp" },
+  { name: "Node.js", img: "/image/node-logo.png" },
+  { name: "NestJS", img: "/image/Nest-logo.webp" },
+  { name: "PostgreSQL", img: "/image/postgresql-logo.png" },
+];

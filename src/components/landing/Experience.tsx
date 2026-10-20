@@ -3,36 +3,14 @@ import React from "react";
 import { IconBriefcase2, IconSchool } from "@tabler/icons-react";
 import { motion, useReducedMotion } from "motion/react";
 import { staggerContainerVariants, staggerItemVariants } from "@/utils/motion";
+import { experiencesList, educationList } from "@/utils/constrants/data";
 
 export interface ExperienceProps {
   idPrefix?: string;
 }
 
-export const experiences = [
-  {
-    label: "Junior JS Developer",
-    company: "Next In Tech Pvt Ltd",
-    duration: "Sep 2024 – Present",
-    location: "Tahachal, Kathmandu",
-    description: "Developing scalable web applications, REST APIs, and interactive UI components with modern JavaScript frameworks.",
-  },
-  {
-    label: "Internship (Full Stack JS)",
-    company: "Krafters Technology",
-    duration: "Mar 2024 – Aug 2024 (6 Months)",
-    location: "Kumaripati, Lalitpur",
-    description: "Hands-on experience developing full-stack web solutions, database modeling, and collaborating in agile sprints.",
-  },
-];
-
-export const education = [
-  {
-    studyAt: "Krafters Technology",
-    location: "Kumaripati, Lalitpur",
-    course: "Full Stack JS Development Certification",
-    year: "2024",
-  },
-];
+export const experiences = experiencesList;
+export const education = educationList;
 
 export default function Experience({ idPrefix }: ExperienceProps) {
   const shouldReduceMotion = useReducedMotion();

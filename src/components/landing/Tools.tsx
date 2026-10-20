@@ -1,19 +1,12 @@
 "use client";
 import React from "react";
-import htmlLogo from "../../../public/image/html-logo.png";
-import cssLogo from "../../../public/image/css-logo.png";
-import reactLogo from "../../../public/image/React_logo.webp";
-import jsLogo from "../../../public/image/JS-logo.png";
-import nodeLogo from "../../../public/image/node-logo.png";
-import nestLogo from "../../../public/image/Nest-logo.webp";
-import nextLogo from "../../../public/image/Next-logo.webp";
-import postgreLogo from "../../../public/image/postgresql-logo.png";
 import Image from "next/image";
 import { motion, useReducedMotion } from "motion/react";
 import {
   staggerContainerVariants,
   staggerItemVariants,
 } from "@/utils/motion";
+import { toolsList } from "@/utils/constrants/data";
 
 export interface ToolsProps {
   idPrefix?: string;
@@ -22,17 +15,6 @@ export interface ToolsProps {
 export default function Tools({ idPrefix }: ToolsProps = {}) {
   const shouldReduceMotion = useReducedMotion();
   const sectionId = idPrefix ? `${idPrefix}-skills` : "tools";
-
-  const items = [
-    { name: "HTML5", img: htmlLogo },
-    { name: "CSS3", img: cssLogo },
-    { name: "JavaScript", img: jsLogo },
-    { name: "React", img: reactLogo },
-    { name: "Next.js", img: nextLogo },
-    { name: "Node.js", img: nodeLogo },
-    { name: "NestJS", img: nestLogo },
-    { name: "PostgreSQL", img: postgreLogo },
-  ];
 
   const isOverlay = Boolean(idPrefix);
 
@@ -57,7 +39,7 @@ export default function Tools({ idPrefix }: ToolsProps = {}) {
         viewport={{ once: true, amount: 0.15 }}
         variants={staggerContainerVariants}
       >
-        {items.map((v, key) => (
+        {toolsList.map((v, key) => (
           <motion.div
             key={key}
             variants={staggerItemVariants}
@@ -69,6 +51,8 @@ export default function Tools({ idPrefix }: ToolsProps = {}) {
               <Image
                 src={v.img}
                 alt={v.name}
+                width={64}
+                height={64}
                 className="max-h-full max-w-full object-contain"
               />
             </div>

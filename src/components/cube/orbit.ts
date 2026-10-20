@@ -151,6 +151,18 @@ export class SphericalOrbit {
     this.camera.up.set(0, 1, 0);
   }
 
+  public idleTimeElapsed: number = 0;
+  public maxIdleSeconds: number = 12.0;
+
+  public isMoving(): boolean {
+    if (this.autoRotate && !this.hasUserInteracted) return true;
+    return (
+      Math.abs(this.targetTheta - this.currentTheta) > 0.0001 ||
+      Math.abs(this.targetPhi - this.currentPhi) > 0.0001 ||
+      Math.abs(this.targetRadius - this.currentRadius) > 0.001
+    );
+  }
+
   /**
    * Per-frame update step applying idle rotation, damping interpolation, and camera lookAt.
    */
@@ -158,7 +170,12 @@ export class SphericalOrbit {
     if (!this.enabled) return;
 
     if (this.autoRotate && !this.hasUserInteracted) {
-      this.targetTheta += this.autoRotateSpeed * dtSeconds;
+      this.idleTimeElapsed += dtSeconds;
+      if (this.idleTimeElapsed >= this.maxIdleSeconds) {
+        this.autoRotate = false;
+      } else {
+        this.targetTheta += this.autoRotateSpeed * dtSeconds;
+      }
     }
 
     // Smooth spherical interpolation (damping)

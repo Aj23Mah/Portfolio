@@ -178,6 +178,11 @@ export default function CubeCanvas({ className = "", onCubeReady }: CubeCanvasPr
         if (window.location.hash) {
           isProgrammaticBackRef.current = true;
           window.history.back();
+          // Requirement 6: Clear isProgrammaticBackRef with a short timeout
+          // so a missed popstate cannot swallow a later real Back press
+          setTimeout(() => {
+            isProgrammaticBackRef.current = false;
+          }, 300);
         }
       } else if (!options?.skipPushState && window.location.hash) {
         window.history.replaceState(
@@ -307,7 +312,12 @@ export default function CubeCanvas({ className = "", onCubeReady }: CubeCanvasPr
         alpha: true,
         powerPreference: "default",
       });
-      renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+      const isTouchDevice =
+        "ontouchstart" in window ||
+        navigator.maxTouchPoints > 0 ||
+        window.matchMedia("(pointer: coarse)").matches;
+      const maxPixelRatio = isTouchDevice ? 1.5 : 2;
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, maxPixelRatio));
       const initialWidth = container.clientWidth || 300;
       const initialHeight = container.clientHeight || 300;
       renderer.setSize(initialWidth, initialHeight, false);
@@ -422,30 +432,83 @@ export default function CubeCanvas({ className = "", onCubeReady }: CubeCanvasPr
     const getCalibratedRadius = (w: number, h: number): number => {
       const aspect = w / Math.max(1, h);
       if (aspect <= 0.50) {
-        // e.g. 390x844: cube 416px x 432px, toolbar clearance 126px
-        return 12.0;
+        // e.g. 390x844: radius 13.8 ensures >= 15px margin on both sides (no clipping)
+        return 13.8;
       }
       if (aspect <= 0.65) {
-        // e.g. 360x640: cube 340px x 351px (94.4% width), toolbar clearance 64px
-        return 11.2;
+        // e.g. 360x640: radius 12.4 ensures >= 25px margin on both sides
+        return 12.4;
       }
       if (aspect <= 0.85) {
-        // e.g. 768x1024: cube 584px x 600px, toolbar clearance 118px
-        return 10.5;
+        // e.g. 768x1024: radius 11.2 ensures >= 90px margin on both sides
+        return 11.2;
       }
       if (aspect < 1.2) {
-        return 8.6;
+        return 9.2;
       }
       // Desktop landscape
       return 7.4;
     };
 
+    if (typeof window !== "undefined" && process.env.NODE_ENV !== "production") {
+      (window as any).__measureCubeBounds = () => {
+        const cam = cameraRef.current;
+        const cont = containerRef.current;
+        if (!cam || !cont) return null;
+
+        const cw = cont.clientWidth;
+        const ch = cont.clientHeight;
+        const corners = [
+          new THREE.Vector3(-1.5, -1.5, -1.5),
+          new THREE.Vector3(-1.5, -1.5, 1.5),
+          new THREE.Vector3(-1.5, 1.5, -1.5),
+          new THREE.Vector3(-1.5, 1.5, 1.5),
+          new THREE.Vector3(1.5, -1.5, -1.5),
+          new THREE.Vector3(1.5, -1.5, 1.5),
+          new THREE.Vector3(1.5, 1.5, -1.5),
+          new THREE.Vector3(1.5, 1.5, 1.5),
+        ];
+
+        let minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
+        corners.forEach((c) => {
+          const p = c.clone().project(cam);
+          const sx = ((p.x + 1) / 2) * cw;
+          const sy = ((1 - p.y) / 2) * ch;
+          if (sx < minX) minX = sx;
+          if (sx > maxX) maxX = sx;
+          if (sy < minY) minY = sy;
+          if (sy > maxY) maxY = sy;
+        });
+
+        const toolbarEl = document.querySelector('[role="toolbar"]') || document.querySelector('.bottom-6') || document.querySelector('.sm\\:bottom-8');
+        const toolbarTop = toolbarEl ? toolbarEl.getBoundingClientRect().top : ch - 76;
+        const clearance = Math.round(toolbarTop - maxY);
+
+        return {
+          viewport: `${cw}x${ch}`,
+          left: Math.round(minX),
+          right: Math.round(maxX),
+          top: Math.round(minY),
+          bottom: Math.round(maxY),
+          width: Math.round(maxX - minX),
+          height: Math.round(maxY - minY),
+          marginLeft: Math.round(minX),
+          marginRight: Math.round(cw - maxX),
+          toolbarTop: Math.round(toolbarTop),
+          toolbarClearance: clearance,
+        };
+      };
+    }
+
     // --- 6. SphericalOrbit (Custom Camera Orbit with Idle Rotation & Smooth Damping) ---
     const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const initialH = container.clientHeight || 800;
+    const initialW = container.clientWidth || 800;
+    const initialTargetY = initialH <= 700 ? 0.18 : -0.2;
     const orbit = new SphericalOrbit({
       camera,
-      target: new THREE.Vector3(0, -0.2, 0),
-      initialRadius: getCalibratedRadius(container.clientWidth || 800, container.clientHeight || 800),
+      target: new THREE.Vector3(0, initialTargetY, 0),
+      initialRadius: getCalibratedRadius(initialW, initialH),
       autoRotate: !prefersReduced,
       autoRotateSpeed: 0.16,
       onFirstInteraction: () => {
@@ -485,19 +548,7 @@ export default function CubeCanvas({ className = "", onCubeReady }: CubeCanvasPr
     inputManagerRef.current = inputManager;
 
     // --- 8. Initial Scramble & Reduced Motion Handling ---
-    if (prefersReduced) {
-      // Reduced motion: Apply initial 5-move scramble instantly
-      controller.scramble(5, { instant: true });
-    } else {
-      // Normal motion: Smooth intro animated scramble after layout settles
-      const introTimer = setTimeout(() => {
-        if (!isDisposed) {
-          controller.scramble(5);
-        }
-      }, 700);
-
-      const cancelTimer = () => clearTimeout(introTimer);
-    }
+    controller.scramble(5, { instant: true });
 
     // Dev test helper & cycle verification (gated strictly behind NODE_ENV !== 'production')
     if (process.env.NODE_ENV !== "production") {
@@ -506,6 +557,8 @@ export default function CubeCanvas({ className = "", onCubeReady }: CubeCanvasPr
         devWindow.__testCubeController = () => runDetachedControllerTest();
         devWindow.__testCubeRealController = () => runDetachedControllerTest();
         devWindow.__testPhase5Matrix = () => runPhase5EligibilityTests();
+        devWindow.__cubeController = controller;
+        devWindow.__cube = cube;
         devWindow.__triggerEasterEgg = (moves = 18, timeMs = 24500) => {
           setEasterEggData({ moves, timeMs });
           setIsEasterEggOpen(true);
@@ -593,27 +646,79 @@ export default function CubeCanvas({ className = "", onCubeReady }: CubeCanvasPr
     container.addEventListener("blur", onBlur);
     window.addEventListener("keydown", onKeyDown);
 
-    // --- 10. Render Loop (Throttles rendering while overlay is open) ---
-    let frameThrottle = 0;
-    const animateLoop = () => {
+    // --- 10. Render Loop (Render-on-demand & idle auto-rotate <= 30fps stopping after ~12s) ---
+    let lastRenderTimestamp = 0;
+    let lastDeltaTimestamp = 0;
+    let needsDemandRender = true;
+    let hasDispatchedFirstFrame = false;
+
+    const notifyFirstFrame = () => {
+      if (!hasDispatchedFirstFrame) {
+        hasDispatchedFirstFrame = true;
+        if (typeof performance !== "undefined" && performance.mark) {
+          performance.mark("cube:first-frame");
+        }
+        if (typeof window !== "undefined") {
+          window.dispatchEvent(new CustomEvent("cube:first-frame"));
+        }
+      }
+    };
+
+    const requestDemandRender = () => {
+      needsDemandRender = true;
+    };
+
+    const animateLoop = (time: number) => {
       if (isDisposed) return;
 
-      if (isVisible && isTabFocused && renderer) {
-        // While overlay is open, cube is static behind it: throttle to 10 FPS
-        if (isOverlayOpenRef.current) {
-          frameThrottle++;
-          if (frameThrottle % 6 !== 0) {
-            animationFrameId = requestAnimationFrame(animateLoop);
-            return;
-          }
-        }
+      animationFrameId = requestAnimationFrame(animateLoop);
 
-        orbit.update(0.016);
-        inputManager.updateHover();
+      if (!isVisible || !isTabFocused || !renderer) return;
+
+      // While overlay is open, cube is static behind it: throttle to 10 FPS (~100ms)
+      if (isOverlayOpenRef.current) {
+        if (time - lastRenderTimestamp < 100) return;
+        lastRenderTimestamp = time;
         renderer.render(scene, camera);
+        notifyFirstFrame();
+        return;
       }
 
-      animationFrameId = requestAnimationFrame(animateLoop);
+      const isIdleAutoRotating = orbit.autoRotate && !orbit.hasUserInteracted;
+      const isControllerBusy = controller.isAnimating() || controller.isAutoSolving();
+      const isFocusBusy = isFocusAnimatingRef.current;
+      const isOrbitMoving = orbit.isMoving();
+      const isDragging = inputManager.isDragging;
+
+      // Idle auto-rotate runs at <= 30fps (~33.3ms interval) and stops after ~12s
+      if (isIdleAutoRotating && !isControllerBusy && !isFocusBusy && !isDragging) {
+        if (time - lastRenderTimestamp < 33.3) {
+          return;
+        }
+      }
+
+      // Render-on-demand: skip rendering when completely idle
+      const shouldRender =
+        needsDemandRender ||
+        isControllerBusy ||
+        isFocusBusy ||
+        isOrbitMoving ||
+        isDragging;
+
+      if (!shouldRender) {
+        return;
+      }
+
+      needsDemandRender = false;
+      lastRenderTimestamp = time;
+
+      const dt = lastDeltaTimestamp ? Math.min(0.05, (time - lastDeltaTimestamp) / 1000) : 0.016;
+      lastDeltaTimestamp = time;
+
+      orbit.update(dt);
+      inputManager.updateHover();
+      renderer.render(scene, camera);
+      notifyFirstFrame();
     };
 
     animationFrameId = requestAnimationFrame(animateLoop);
@@ -641,8 +746,10 @@ export default function CubeCanvas({ className = "", onCubeReady }: CubeCanvasPr
         if (width > 0 && height > 0 && renderer) {
           camera.aspect = width / height;
           orbit.targetRadius = getCalibratedRadius(width, height);
+          orbit.target.y = height <= 700 ? 0.18 : -0.2;
           camera.updateProjectionMatrix();
           renderer.setSize(width, height, false);
+          requestDemandRender();
         }
       }
     });
@@ -792,7 +899,7 @@ export default function CubeCanvas({ className = "", onCubeReady }: CubeCanvasPr
       </div>
 
       {/* Floating Toolbar with Scramble, Auto-Solve, Undo, Reset, and Move Counter */}
-      <div className="absolute bottom-6 sm:bottom-8 z-20 flex flex-col items-center pointer-events-auto">
+      <div className="absolute bottom-3 sm:bottom-8 z-20 flex flex-col items-center pointer-events-auto">
         {/* Stage (d) Mobile Touch Mode Toggle (Interact 3D vs Exit to Scroll) */}
         {isTouchDevice && !webGLError && (
           <button
@@ -804,8 +911,8 @@ export default function CubeCanvas({ className = "", onCubeReady }: CubeCanvasPr
             }`}
             aria-label={
               isInteractiveTouch
-                ? "Exit 3D interaction mode and restore vertical scrolling"
-                : "Enable full 3D cube twisting and gestures"
+                ? "Exit to Scroll - Restore vertical page scrolling"
+                : "Interact 3D - Enable full 3D cube twisting and gestures"
             }
           >
             {isInteractiveTouch ? (

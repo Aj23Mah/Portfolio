@@ -4,9 +4,43 @@ import "@/assets/css/TypingAnimation.css";
 import { TypeAnimation } from "react-type-animation";
 import CubeWrapper from "@/components/cube/CubeWrapper";
 import { useViewMode } from "@/context/ViewModeContext";
+import { isLowPowerGated } from "@/utils/lowPowerGate";
 
 export default function HeroSection() {
   const { mode, toggleMode } = useViewMode();
+  const [showPaperTexture, setShowPaperTexture] = React.useState(false);
+  const [isGated, setIsGated] = React.useState(false);
+  const [cubeLoaded, setCubeLoaded] = React.useState(false);
+  const [firstFrameRendered, setFirstFrameRendered] = React.useState(false);
+
+  React.useEffect(() => {
+    setIsGated(isLowPowerGated());
+
+    const onFirstFrame = () => {
+      setFirstFrameRendered(true);
+    };
+    window.addEventListener("cube:first-frame", onFirstFrame, { once: true });
+
+    // Restore paper texture after first paint without impacting initial FCP
+    if (typeof window !== "undefined") {
+      const schedule =
+        "requestIdleCallback" in window
+          ? (window as any).requestIdleCallback(() => setShowPaperTexture(true))
+          : setTimeout(() => setShowPaperTexture(true), 200);
+      return () => {
+        window.removeEventListener("cube:first-frame", onFirstFrame);
+        if ("cancelIdleCallback" in window && typeof schedule === "number") {
+          (window as any).cancelIdleCallback(schedule);
+        } else {
+          clearTimeout(schedule);
+        }
+      };
+    }
+
+    return () => {
+      window.removeEventListener("cube:first-frame", onFirstFrame);
+    };
+  }, []);
 
   if (mode === "classic") {
     // --- Classic View: Clean, compact hero layout ---
@@ -90,18 +124,66 @@ export default function HeroSection() {
       className="relative w-full h-[100dvh] min-h-[100svh] overflow-hidden flex flex-col justify-between select-none bg-transparent"
     >
       {/* 
-        Static Poster & Ambient Backdrop (Server-rendered behind canvas).
-        Ensures first paint is never blank before WebGL/Three.js hydrates.
+        Hero Poster (~36KB WebP) & Ambient Backdrop (Server-rendered behind canvas).
+        Ensures first paint renders the actual cube with decals on and no layout shift (CLS stays near 0).
+        Cross-fades to the canvas when the first frame renders.
       */}
       <div className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none select-none">
         <div className="absolute w-[340px] h-[340px] sm:w-[520px] sm:h-[520px] rounded-full bg-gradient-to-tr from-orange-500/15 via-amber-500/10 to-transparent blur-3xl opacity-75" />
-        <div className="w-[260px] h-[260px] sm:w-[340px] sm:h-[340px] rounded-3xl border border-orange-500/20 bg-orange-950/5 shadow-2xl flex flex-col items-center justify-center p-6 text-center opacity-30">
-          <div className="text-4xl mb-2">🎲</div>
-          <span className="text-[11px] uppercase tracking-widest font-mono text-orange-900/60 font-semibold">
-            Interactive 3D Stage
-          </span>
-        </div>
       </div>
+
+      {/* Real Cube Poster with zero layout shift (sits exactly where canvas appears) */}
+      <div
+        id="hero-cube-poster-container"
+        className={`absolute inset-0 z-10 w-full h-full flex items-center justify-center pointer-events-none select-none transition-opacity duration-700 ease-out ${
+          firstFrameRendered ? "opacity-0" : "opacity-100"
+        }`}
+        aria-hidden="true"
+        suppressHydrationWarning
+      >
+        <img
+          id="hero-cube-poster-img"
+          src="/image/cube-poster.webp"
+          alt=""
+          aria-hidden="true"
+          className="w-full h-full object-cover pointer-events-none select-none"
+          width={1184}
+          height={649}
+          decoding="async"
+          fetchPriority="high"
+        />
+        {isGated && !cubeLoaded && (
+          <div className="absolute w-[260px] h-[260px] sm:w-[340px] sm:h-[340px] rounded-3xl border border-orange-500/20 bg-orange-950/70 backdrop-blur-md shadow-2xl flex flex-col items-center justify-center p-6 text-center opacity-95 pointer-events-auto">
+            <div className="text-4xl mb-2">🎲</div>
+            <span className="text-[11px] uppercase tracking-widest font-mono text-orange-200 font-semibold mb-3">
+              Interactive 3D Stage
+            </span>
+            <button
+              onClick={() => {
+                setCubeLoaded(true);
+                if (typeof window !== "undefined") {
+                  window.dispatchEvent(new CustomEvent("cube:load-requested"));
+                }
+              }}
+              aria-label="Load 3D cube"
+              className="py-2.5 px-5 rounded-xl bg-orange-600 hover:bg-orange-500 active:scale-95 text-white font-mono font-bold text-xs uppercase tracking-wider shadow-md transition duration-200 cursor-pointer pointer-events-auto"
+            >
+              Load 3D Cube
+            </button>
+          </div>
+        )}
+      </div>
+
+      {/* Restored paper texture: loaded after first paint as lightweight WebP (25.6 KB) */}
+      {showPaperTexture && (
+        <div
+          className="absolute inset-0 z-0 pointer-events-none opacity-60 bg-cover bg-center transition-opacity duration-700"
+          style={{
+            backgroundImage: "url(/image/paper-texture.webp)",
+            backgroundAttachment: "fixed",
+          }}
+        />
+      )}
 
       {/* Full-Viewport 3D Stage Canvas */}
       <div className="absolute inset-0 z-10 w-full h-full">

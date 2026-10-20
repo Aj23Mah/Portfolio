@@ -3,6 +3,7 @@ import React from "react";
 import { IconCheck } from "@tabler/icons-react";
 import { motion, useReducedMotion } from "motion/react";
 import { staggerContainerVariants, staggerItemVariants } from "@/utils/motion";
+import { whatIDo } from "@/utils/constrants/data";
 
 export interface AboutProps {
   idPrefix?: string;
@@ -11,17 +12,6 @@ export interface AboutProps {
 export default function About({ idPrefix }: AboutProps) {
   const shouldReduceMotion = useReducedMotion();
   const sectionId = idPrefix ? `${idPrefix}-about` : "about";
-
-  const whatIDo = [
-    "Full-Stack Web Development",
-    "REST API Development",
-    "Database Design & Management",
-    "Frontend Development",
-    "Backend Development",
-    "Testing & Debugging",
-    "API Integration",
-    "Responsive Web Design",
-  ];
 
   const isOverlay = Boolean(idPrefix);
 
@@ -46,9 +36,9 @@ export default function About({ idPrefix }: AboutProps) {
         </motion.div>
 
         <motion.div variants={staggerItemVariants}>
-          <div className="md:text-[2.5rem] text-3xl font-bold mb-4 text-gray-900">
+          <h2 className="md:text-[2.5rem] text-3xl font-bold mb-4 text-gray-900">
             About Me
-          </div>
+          </h2>
           <div className="md:text-2xl text-xl text-gray-800 leading-relaxed">
             <p className="mb-4">
               Bringing life to code and building bridges between technology and user comfort! Hi,

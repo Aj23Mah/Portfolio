@@ -464,6 +464,10 @@ export class MoveController {
       });
     });
 
+    if (options.instant) {
+      this.autoSolving = false;
+    }
+
     this.notifyStateChange();
   }
 

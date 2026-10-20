@@ -55,6 +55,10 @@ export class CubeInputManager {
 
   private DRAG_THRESHOLD = 9; // ~8-10px drag commit threshold
 
+  public get isDragging(): boolean {
+    return this.dragState !== null;
+  }
+
   constructor(options: CubeInputManagerOptions) {
     this.canvas = options.canvas;
     this.container = options.container;

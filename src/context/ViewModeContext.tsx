@@ -40,6 +40,13 @@ export function ViewModeProvider({ children }: { children: React.ReactNode }) {
     }
   }, []);
 
+  // Sync html.classic-mode class whenever mode changes
+  useEffect(() => {
+    if (typeof document !== "undefined") {
+      document.documentElement.classList.toggle("classic-mode", mode === "classic");
+    }
+  }, [mode]);
+
   const setMode = useCallback((newMode: ViewMode) => {
     setModeState(newMode);
     try {
