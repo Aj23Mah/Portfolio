@@ -8,6 +8,7 @@ import {
   MoveController,
   MoveStats,
   createMoveFromFace,
+  createMoveFromSlice,
   runDetachedControllerTest,
   runPhase5EligibilityTests,
 } from "./moves";
@@ -594,12 +595,13 @@ export default function CubeCanvas({ className = "", onCubeReady }: CubeCanvasPr
         return;
       }
 
-      // Ignore if focus is in an input, textarea, or contenteditable
+      // Ignore if focus is in an input, textarea, select, or contenteditable
       const activeEl = document.activeElement;
       if (
         activeEl &&
         (activeEl.tagName === "INPUT" ||
           activeEl.tagName === "TEXTAREA" ||
+          activeEl.tagName === "SELECT" ||
           (activeEl as HTMLElement).isContentEditable)
       ) {
         return;
@@ -612,10 +614,18 @@ export default function CubeCanvas({ className = "", onCubeReady }: CubeCanvasPr
 
       const key = e.key.toUpperCase();
       const validFaces: CubeFace[] = ["U", "D", "L", "R", "F", "B"];
+      const validSlices: Array<"M" | "E" | "S"> = ["M", "E", "S"];
+      const prime = e.shiftKey;
+
       if (validFaces.includes(key as CubeFace)) {
         e.preventDefault();
-        const prime = e.shiftKey;
         controller.enqueueMove(createMoveFromFace(key as CubeFace, prime), {
+          isUserMove: true,
+        });
+        setShowHint(false);
+      } else if (validSlices.includes(key as "M" | "E" | "S")) {
+        e.preventDefault();
+        controller.enqueueMove(createMoveFromSlice(key as "M" | "E" | "S", prime), {
           isUserMove: true,
         });
         setShowHint(false);

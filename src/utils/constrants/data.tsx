@@ -161,7 +161,7 @@ export const projectData = [
     title: "Yuma",
     category: "FULL-STACK WEB APP",
     role: "Full-Stack Development",
-    description: `A modern e-commerce web application designed for streamlined product discovery and daily deals. Features curated product categories, interactive cart management, dynamic search, and a responsive shopping layout.`,
+    description: `A modern full-stack web application engineered for interactive user experiences and streamlined online ordering. Features curated product cataloging, state management workflows, and a responsive shopping layout.`,
     contribution: `Architected the full-stack ordering flow, state management workflows, and responsive interface layout.`,
     technologies: [
       "React",

@@ -195,10 +195,10 @@ export default function ClassicSections() {
               <div className="lg:col-span-6 flex flex-col justify-between order-2 lg:order-1">
                 <div>
                   <h3 className="text-2xl sm:text-3xl font-extrabold text-white mb-2">{v.title}</h3>
-                  {v.badge && (
+                  {(v.category || v.badge) && (
                     <div className="flex items-center gap-2 mb-3">
                       <span className="text-xs font-bold text-orange-400 uppercase tracking-widest bg-orange-950/80 border border-orange-800/60 px-3 py-1 rounded-full">
-                        {v.badge}
+                        {v.category || v.badge}
                       </span>
                     </div>
                   )}

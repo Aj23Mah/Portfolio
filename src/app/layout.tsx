@@ -100,11 +100,11 @@ export default function RootLayout({
         </noscript>
       </head>
       <body className={`${robotoSlab.variable} ${smooch.variable} ${loversQuarrel.variable} antialiased`} suppressHydrationWarning>
-        <main>
+        <div>
           <ViewModeProvider>
             {children}
           </ViewModeProvider>
-        </main>
+        </div>
       </body>
     </html>
   );

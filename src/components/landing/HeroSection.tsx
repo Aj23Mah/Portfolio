@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import Image from "next/image";
 import "@/assets/css/TypingAnimation.css";
 import { TypeAnimation } from "react-type-animation";
 import CubeWrapper from "@/components/cube/CubeWrapper";
@@ -141,7 +142,7 @@ export default function HeroSection() {
         aria-hidden="true"
         suppressHydrationWarning
       >
-        <img
+        <Image
           id="hero-cube-poster-img"
           src="/image/cube-poster.webp"
           alt=""
@@ -149,8 +150,7 @@ export default function HeroSection() {
           className="w-full h-full object-cover pointer-events-none select-none"
           width={1184}
           height={649}
-          decoding="async"
-          fetchPriority="high"
+          priority
         />
         {isGated && !cubeLoaded && (
           <div className="absolute w-[260px] h-[260px] sm:w-[340px] sm:h-[340px] rounded-3xl border border-orange-500/20 bg-orange-950/70 backdrop-blur-md shadow-2xl flex flex-col items-center justify-center p-6 text-center opacity-95 pointer-events-auto">
