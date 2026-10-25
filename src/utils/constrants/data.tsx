@@ -3,6 +3,15 @@ import {
   IconBrandGithubFilled,
   IconBrandInstagram,
   IconBrandLinkedin,
+  IconBrandTypescript,
+  IconBrandTailwind,
+  IconBrandMantine,
+  IconBrandGit,
+  IconBrandGithub,
+  IconBrandVscode,
+  IconApi,
+  IconBrandMongodb,
+  IconBrandFirebase,
 } from "@tabler/icons-react";
 
 export const menuData = [
@@ -115,10 +124,17 @@ export const serviceData = [
   },
 ];
 
+export const aboutStats = [
+  { value: "2+ yr", label: "Experience" },
+  { value: "6+", label: "Projects" },
+  { value: "MERN", label: "Stack" },
+];
+
 export const projectData = [
   {
     number: "01",
     title: "Daily Dazzle",
+    featured: true,
     category: "E-COMMERCE WEB APP",
     role: "Full-Stack Development",
     description: `A modern e-commerce web application designed for streamlined product discovery and daily deals. Features curated product categories, interactive cart management, dynamic search, and a responsive shopping layout.`,
@@ -158,6 +174,26 @@ export const projectData = [
   },
   {
     number: "03",
+    title: "Mero kishan",
+    category: "E-COMMERCE PLATFORM",
+    role: "Full-Stack Development",
+    description: `An online agricultural marketplace designed to connect farmers directly with buyers. The platform features a comprehensive catalog of fresh produce, transparent pricing, streamlined ordering, and vendor management tools.`,
+    contribution: `Architected the full-stack ordering flow, state management workflows, and responsive interface layout.`,
+    technologies: [
+      "React",
+      "Next.js",
+      "Mantine",
+      "Tailwind CSS",
+      "Typescript",
+      "Nest.js",
+      "PostgreSQL",
+    ],
+    image: "/image/merokishan.png",
+    link: "https://shop.merokishan.com/",
+    github: "https://github.com/Aj23Mah",
+  },
+  {
+    number: "04",
     title: "Yuma",
     category: "FULL-STACK WEB APP",
     role: "Full-Stack Development",
@@ -177,7 +213,7 @@ export const projectData = [
     github: "https://github.com/Aj23Mah",
   },
   {
-    number: "04",
+    number: "05",
     title: "Food Chow",
     category: "WEB PLATFORM",
     role: "Frontend Development",
@@ -207,14 +243,16 @@ export const experiencesList = [
     company: "Next In Tech Pvt Ltd",
     duration: "Sep 2024 – Present",
     location: "Tahachal, Kathmandu",
-    description: "Developing scalable web applications, REST APIs, and interactive UI components with modern JavaScript frameworks.",
+    description:
+      "Developing scalable web applications, REST APIs, and interactive UI components with modern JavaScript frameworks.",
   },
   {
     label: "Internship (Full Stack JS)",
     company: "Krafters Technology",
     duration: "Mar 2024 – Aug 2024 (6 Months)",
     location: "Kumaripati, Lalitpur",
-    description: "Hands-on experience developing full-stack web solutions, database modeling, and collaborating in agile sprints.",
+    description:
+      "Hands-on experience developing full-stack web solutions, database modeling, and collaborating in agile sprints.",
   },
 ];
 
@@ -237,3 +275,156 @@ export const toolsList = [
   { name: "NestJS", img: "/image/Nest-logo.webp" },
   { name: "PostgreSQL", img: "/image/postgresql-logo.png" },
 ];
+
+export type SkillLevel = "learning" | "comfortable" | "strong";
+
+export interface SkillItem {
+  name: string;
+  img?: string;
+  icon?: React.ReactNode;
+  level: SkillLevel;
+  tagline?: string;
+}
+
+export interface SkillCategory {
+  category: string;
+  skills: SkillItem[];
+}
+
+export const skillCategories: SkillCategory[] = [
+  {
+    category: "Frontend",
+    skills: [
+      {
+        name: "HTML5",
+        img: "/image/html-logo.png",
+        level: "strong",
+        tagline: "Semantic Markup",
+      },
+      {
+        name: "CSS3",
+        img: "/image/css-logo.png",
+        level: "strong",
+        tagline: "Responsive Layouts",
+      },
+      {
+        name: "JavaScript",
+        img: "/image/JS-logo.png",
+        level: "strong",
+        tagline: "ES6+ & Core",
+      },
+      {
+        name: "TypeScript",
+        icon: <IconBrandTypescript size={32} className="text-[#3178C6]" />,
+        level: "comfortable",
+        tagline: "Type Safety",
+      },
+      {
+        name: "React",
+        img: "/image/React_logo.webp",
+        level: "strong",
+        tagline: "Component Architecture",
+      },
+      {
+        name: "Next.js",
+        img: "/image/Next-logo.webp",
+        level: "strong",
+        tagline: "SSR & App Router",
+      },
+      {
+        name: "Tailwind CSS",
+        icon: <IconBrandTailwind size={32} className="text-[#06B6D4]" />,
+        level: "strong",
+        tagline: "Modern Styling",
+      },
+      {
+        name: "Mantine",
+        icon: <IconBrandMantine size={32} className="text-[#339AF0]" />,
+        level: "comfortable",
+        tagline: "UI Framework",
+      },
+    ],
+  },
+  {
+    category: "Backend",
+    skills: [
+      {
+        name: "Node.js",
+        img: "/image/node-logo.png",
+        level: "strong",
+        tagline: "Runtime & Server",
+      },
+      {
+        name: "NestJS",
+        img: "/image/Nest-logo.webp",
+        level: "comfortable",
+        tagline: "Modular Backend",
+      },
+      {
+        name: "REST APIs",
+        icon: <IconApi size={32} className="text-orange-600" />,
+        level: "strong",
+        tagline: "API Engineering",
+      },
+    ],
+  },
+  {
+    category: "Database",
+    skills: [
+      {
+        name: "PostgreSQL",
+        img: "/image/postgresql-logo.png",
+        level: "comfortable",
+        tagline: "Relational DB",
+      },
+      {
+        name: "MongoDB",
+        icon: <IconBrandMongodb size={32} className="text-[#47A248]" />,
+        level: "comfortable",
+        tagline: "NoSQL DB",
+      },
+      {
+        name: "Firebase",
+        icon: <IconBrandFirebase size={32} className="text-[#FFA611]" />,
+        level: "comfortable",
+        tagline: "BaaS & Cloud DB",
+      },
+    ],
+  },
+  {
+    category: "Tools & Workflow",
+    skills: [
+      {
+        name: "Git",
+        icon: <IconBrandGit size={32} className="text-[#F05032]" />,
+        level: "comfortable",
+        tagline: "Version Control",
+      },
+      {
+        name: "GitHub",
+        icon: <IconBrandGithub size={32} className="text-gray-900" />,
+        level: "comfortable",
+        tagline: "Collab & Repos",
+      },
+      {
+        name: "Postman",
+        // TODO: Drop custom Postman SVG or PNG asset when available; falls back to text-initial badge
+        level: "comfortable",
+        tagline: "API Testing",
+      },
+      {
+        name: "VS Code",
+        icon: <IconBrandVscode size={32} className="text-[#007ACC]" />,
+        level: "strong",
+        tagline: "Development IDE",
+      },
+    ],
+  },
+];
+
+export const currentlyLearningList = [
+  "Docker",
+  "Testing (Jest)",
+  "Redis",
+];
+
