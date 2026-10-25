@@ -45,7 +45,7 @@ export default function Tools({ idPrefix }: ToolsProps = {}) {
             variants={staggerItemVariants}
             whileHover={shouldReduceMotion ? {} : { y: -2 }}
             transition={{ duration: 0.2 }}
-            className="bg-white/80 backdrop-blur-md p-5 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col items-center justify-center gap-3 group cursor-pointer"
+            className="bg-white/85 backdrop-blur-sm p-5 rounded-2xl border border-gray-200/80 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col items-center justify-center gap-3 group cursor-pointer"
           >
             <div className="w-12 h-12 flex items-center justify-center transition group-hover:scale-105">
               <Image
@@ -56,7 +56,7 @@ export default function Tools({ idPrefix }: ToolsProps = {}) {
                 className="max-h-full max-w-full object-contain"
               />
             </div>
-            <span className="text-xs font-semibold text-gray-700 group-hover:text-orange-600 transition">
+            <span className="text-xs font-bold text-gray-800 group-hover:text-orange-600 transition">
               {v.name}
             </span>
           </motion.div>

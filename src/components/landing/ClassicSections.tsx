@@ -163,12 +163,12 @@ export default function ClassicSections() {
       </section>
 
       {/* 4. PROJECTS / SELECTED WORK */}
-      <section id="projects" className="py-20 px-5 md:px-[8vw] lg:px-[10vw] xl:px-[12vw] bg-gray-950 text-white dark project-bg">
+      <section id="projects" className="py-20 px-5 md:px-[8vw] lg:px-[10vw] xl:px-[12vw] bg-transparent text-gray-900">
         <div className="max-w-3xl mx-auto text-center mb-12">
           <h2 className="md:text-[2.5rem] text-3xl font-extrabold uppercase tracking-widest text-primary mb-3">
             SELECTED WORK
           </h2>
-          <p className="text-gray-300 text-base sm:text-lg leading-relaxed">
+          <p className="text-gray-700 text-base sm:text-lg leading-relaxed">
             A selection of projects where I&apos;ve combined development, problem-solving, and thoughtful user experience to build useful digital products.
           </p>
         </div>
@@ -177,9 +177,9 @@ export default function ClassicSections() {
           {projectData?.map((v: any, key: number) => (
             <div
               key={key}
-              className="sticky top-28 grid grid-cols-1 lg:grid-cols-12 gap-8 rounded-3xl p-6 sm:p-8 lg:p-10 project-card bg-gray-900 border border-gray-800 shadow-2xl transition duration-300 group"
+              className="sticky top-28 grid grid-cols-1 lg:grid-cols-12 gap-8 rounded-3xl p-6 sm:p-8 lg:p-10 bg-white/90 backdrop-blur-md border border-gray-200/90 shadow-md hover:shadow-xl transition duration-300 group"
             >
-              <div className="lg:col-span-6 rounded-2xl overflow-hidden shadow-xl border border-gray-800 flex items-center justify-center bg-gray-950 order-1 lg:order-2">
+              <div className="lg:col-span-6 rounded-2xl overflow-hidden shadow-sm border border-gray-200 flex items-center justify-center bg-gray-50 order-1 lg:order-2">
                 <div className="w-full h-full">
                   <Image
                     src={v.image}
@@ -194,29 +194,29 @@ export default function ClassicSections() {
 
               <div className="lg:col-span-6 flex flex-col justify-between order-2 lg:order-1">
                 <div>
-                  <h3 className="text-2xl sm:text-3xl font-extrabold text-white mb-2">{v.title}</h3>
+                  <h3 className="text-2xl sm:text-3xl font-extrabold text-gray-900 mb-2">{v.title}</h3>
                   {(v.category || v.badge) && (
                     <div className="flex items-center gap-2 mb-3">
-                      <span className="text-xs font-bold text-orange-400 uppercase tracking-widest bg-orange-950/80 border border-orange-800/60 px-3 py-1 rounded-full">
+                      <span className="text-xs font-bold text-orange-700 uppercase tracking-widest bg-orange-100 border border-orange-200/80 px-3 py-1 rounded-full">
                         {v.category || v.badge}
                       </span>
                     </div>
                   )}
-                  <p className="text-gray-300 text-sm sm:text-base leading-relaxed mb-4">{v.description}</p>
+                  <p className="text-gray-700 text-sm sm:text-base leading-relaxed mb-4">{v.description}</p>
 
                   {v.role && (
-                    <div className="mb-4 bg-gray-950/70 p-3.5 rounded-xl border border-gray-800/80 flex items-center justify-between">
-                      <span className="text-xs font-bold text-gray-400 uppercase tracking-wider">ROLE</span>
-                      <span className="text-xs sm:text-sm font-bold text-orange-300">{v.role}</span>
+                    <div className="mb-4 bg-orange-50/70 p-3.5 rounded-xl border border-orange-200/60 flex items-center justify-between">
+                      <span className="text-xs font-bold text-gray-600 uppercase tracking-wider">ROLE</span>
+                      <span className="text-xs sm:text-sm font-bold text-orange-700">{v.role}</span>
                     </div>
                   )}
 
                   {v.technologies && (
                     <div className="mb-6">
-                      <span className="text-xs font-bold text-gray-400 uppercase tracking-wider block mb-2">TECHNOLOGIES</span>
+                      <span className="text-xs font-bold text-gray-600 uppercase tracking-wider block mb-2">TECHNOLOGIES</span>
                       <div className="flex flex-wrap gap-2">
                         {v.technologies.map((t: string, i: number) => (
-                          <span key={i} className="text-xs font-semibold px-3 py-1 bg-gray-800 border border-gray-700 text-orange-300 rounded-full">
+                          <span key={i} className="text-xs font-semibold px-3 py-1 bg-gray-100 border border-gray-200 text-gray-800 rounded-full">
                             {t}
                           </span>
                         ))}
@@ -229,7 +229,7 @@ export default function ClassicSections() {
                   {v.link && (
                     <a
                       href={v.link}
-                      className="inline-flex items-center gap-2 bg-orange-600 hover:bg-primary text-white py-2.5 px-5 rounded-xl font-bold transition shadow-md text-xs sm:text-sm uppercase tracking-wider group/btn"
+                      className="inline-flex items-center gap-2 bg-orange-600 hover:bg-orange-500 text-white py-2.5 px-5 rounded-xl font-bold transition shadow-sm text-xs sm:text-sm uppercase tracking-wider group/btn"
                       target="_blank"
                       rel="noopener noreferrer"
                     >
@@ -240,7 +240,7 @@ export default function ClassicSections() {
                   {v.github && (
                     <a
                       href={v.github}
-                      className="inline-flex items-center gap-2 bg-gray-800 hover:bg-gray-700 text-white py-2.5 px-5 rounded-xl font-bold transition border border-gray-700 text-xs sm:text-sm uppercase tracking-wider group/btn"
+                      className="inline-flex items-center gap-2 bg-gray-900 hover:bg-gray-800 text-white py-2.5 px-5 rounded-xl font-bold transition border border-gray-800 text-xs sm:text-sm uppercase tracking-wider group/btn shadow-sm"
                       target="_blank"
                       rel="noopener noreferrer"
                     >
@@ -254,16 +254,16 @@ export default function ClassicSections() {
           ))}
         </div>
 
-        <div className="mt-16 max-w-4xl mx-auto bg-gradient-to-br from-gray-900 via-gray-900 to-black text-white rounded-3xl p-8 sm:p-10 text-center shadow-2xl border border-gray-800">
+        <div className="mt-16 max-w-4xl mx-auto bg-gradient-to-br from-orange-50 via-white to-amber-50/60 text-gray-900 rounded-3xl p-8 sm:p-10 text-center shadow-md border border-orange-200/80">
           <h3 className="text-2xl sm:text-3xl font-extrabold uppercase tracking-wider mb-3 text-primary">
             HAVE A PROJECT IN MIND?
           </h3>
-          <p className="text-gray-300 text-base sm:text-lg mb-6 max-w-xl mx-auto">
+          <p className="text-gray-700 text-base sm:text-lg mb-6 max-w-xl mx-auto">
             Let&apos;s create something useful, reliable, and worth using.
           </p>
           <a
             href="#contact"
-            className="inline-flex items-center gap-2 bg-orange-600 hover:bg-primary text-white font-bold py-3.5 px-8 rounded-full shadow-lg transition duration-200 uppercase text-xs sm:text-sm tracking-wider cursor-pointer"
+            className="inline-flex items-center gap-2 bg-orange-600 hover:bg-orange-500 text-white font-bold py-3.5 px-8 rounded-full shadow-md transition duration-200 uppercase text-xs sm:text-sm tracking-wider cursor-pointer"
           >
             GET IN TOUCH →
           </a>

@@ -81,10 +81,10 @@ export default function Contact({ idPrefix }: ContactProps = {}) {
         {/* Contact Info Card */}
         <motion.div
           variants={staggerItemVariants}
-          className="bg-white/80 backdrop-blur-md rounded-3xl p-8 shadow-sm border border-gray-200 flex flex-col justify-between"
+          className="bg-white/90 backdrop-blur-md rounded-3xl p-8 shadow-sm border border-gray-200/90 flex flex-col justify-between"
         >
           <div>
-            <h3 className="text-xl font-bold uppercase tracking-wider text-gray-900 mb-6 border-b pb-3">
+            <h3 className="text-xl font-bold uppercase tracking-wider text-gray-900 mb-6 border-b border-gray-200 pb-3">
               CONTACT DETAILS
             </h3>
             
@@ -93,7 +93,7 @@ export default function Contact({ idPrefix }: ContactProps = {}) {
                 <IconMail size={26} />
               </div>
               <div>
-                <h4 className="text-xs font-bold text-gray-500 uppercase tracking-widest mb-1">EMAIL</h4>
+                <h4 className="text-xs font-bold text-gray-600 uppercase tracking-widest mb-1">EMAIL</h4>
                 <a
                   href="mailto:ajaymaharjan758@gmail.com"
                   className="text-base sm:text-lg font-bold text-gray-900 hover:text-orange-600 transition"
@@ -108,14 +108,14 @@ export default function Contact({ idPrefix }: ContactProps = {}) {
                 <IconMapPin size={26} />
               </div>
               <div>
-                <h4 className="text-xs font-bold text-gray-500 uppercase tracking-widest mb-1">LOCATION</h4>
+                <h4 className="text-xs font-bold text-gray-600 uppercase tracking-widest mb-1">LOCATION</h4>
                 <p className="text-base sm:text-lg font-bold text-gray-900">Kathmandu, Nepal</p>
               </div>
             </div>
           </div>
 
           <div>
-            <h4 className="text-xs font-bold text-gray-500 uppercase tracking-widest mb-4">CONNECT SOCIALLY</h4>
+            <h4 className="text-xs font-bold text-gray-600 uppercase tracking-widest mb-4">CONNECT SOCIALLY</h4>
             <div className="flex gap-3">
               {socialLinks.map((item: any, key: number) => (
                 <motion.a
@@ -130,7 +130,7 @@ export default function Contact({ idPrefix }: ContactProps = {}) {
                   style={{
                     backgroundColor: hoveredSocial === key ? item.color : "#f3f4f6",
                   }}
-                  className={`p-3 rounded-2xl transition duration-200 w-12 h-12 flex items-center justify-center ${
+                  className={`p-3 rounded-2xl transition duration-200 w-12 h-12 flex items-center justify-center border border-gray-200/60 ${
                     hoveredSocial === key ? "text-white" : "text-gray-700"
                   }`}
                   title={item.name}
@@ -145,11 +145,11 @@ export default function Contact({ idPrefix }: ContactProps = {}) {
         {/* Contact Form */}
         <motion.div
           variants={staggerItemVariants}
-          className="bg-white/80 backdrop-blur-md rounded-3xl p-8 shadow-sm border border-gray-200"
+          className="bg-white/90 backdrop-blur-md rounded-3xl p-8 shadow-sm border border-gray-200/90"
         >
           <form onSubmit={handleSubmit} className="flex flex-col gap-5">
             <div>
-              <label htmlFor={nameId} className="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">
+              <label htmlFor={nameId} className="block text-xs font-bold text-gray-800 uppercase tracking-wider mb-2">
                 NAME *
               </label>
               <input
@@ -160,12 +160,12 @@ export default function Contact({ idPrefix }: ContactProps = {}) {
                 value={formData.name}
                 onChange={handleChange}
                 placeholder="Your Name"
-                className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-orange-500 transition text-sm text-gray-900 bg-white"
+                className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-orange-500 transition text-sm text-gray-900 bg-white placeholder:text-gray-400"
               />
             </div>
 
             <div>
-              <label htmlFor={emailId} className="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">
+              <label htmlFor={emailId} className="block text-xs font-bold text-gray-800 uppercase tracking-wider mb-2">
                 EMAIL *
               </label>
               <input
@@ -176,12 +176,12 @@ export default function Contact({ idPrefix }: ContactProps = {}) {
                 value={formData.email}
                 onChange={handleChange}
                 placeholder="your.email@example.com"
-                className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-orange-500 transition text-sm text-gray-900 bg-white"
+                className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-orange-500 transition text-sm text-gray-900 bg-white placeholder:text-gray-400"
               />
             </div>
 
             <div>
-              <label htmlFor={messageId} className="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">
+              <label htmlFor={messageId} className="block text-xs font-bold text-gray-800 uppercase tracking-wider mb-2">
                 MESSAGE *
               </label>
               <textarea
@@ -192,7 +192,7 @@ export default function Contact({ idPrefix }: ContactProps = {}) {
                 value={formData.message}
                 onChange={handleChange}
                 placeholder="Tell me about your project or idea..."
-                className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-orange-500 transition text-sm text-gray-900 bg-white resize-none"
+                className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-orange-500 transition text-sm text-gray-900 bg-white resize-none placeholder:text-gray-400"
               />
             </div>
 

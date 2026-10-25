@@ -35,7 +35,7 @@ export default function Experience({ idPrefix }: ExperienceProps) {
           <h2 className="md:text-[2.5rem] text-3xl font-extrabold uppercase tracking-wider text-gray-900">
             Work Experience & Certifications
           </h2>
-          <p className="text-gray-600 text-base sm:text-lg mt-3 max-w-2xl mx-auto">
+          <p className="text-gray-700 text-base sm:text-lg mt-3 max-w-2xl mx-auto">
             Practical development background, professional roles, and verified technical credentials.
           </p>
         </motion.div>
@@ -54,13 +54,13 @@ export default function Experience({ idPrefix }: ExperienceProps) {
               {experiences.map((exp, index) => (
                 <div
                   key={index}
-                  className="bg-white border border-gray-200/80 rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow"
+                  className="bg-white/90 backdrop-blur-sm border border-gray-200/90 rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow"
                 >
                   <div className="text-xs font-bold text-primary uppercase tracking-wider mb-2">
                     {exp.duration}
                   </div>
                   <h3 className="text-xl font-bold text-gray-900 mb-1">{exp.label}</h3>
-                  <div className="text-sm text-gray-600 font-medium mb-2">
+                  <div className="text-sm text-gray-700 font-medium mb-2">
                     {exp.company} • {exp.location}
                   </div>
                   <p className="text-sm text-gray-700 leading-relaxed">{exp.description}</p>
@@ -82,13 +82,13 @@ export default function Experience({ idPrefix }: ExperienceProps) {
               {education.map((edu, index) => (
                 <div
                   key={index}
-                  className="bg-white border border-gray-200/80 rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow"
+                  className="bg-white/90 backdrop-blur-sm border border-gray-200/90 rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow"
                 >
                   <div className="text-xs font-bold text-primary uppercase tracking-wider mb-2">
                     {edu.year}
                   </div>
                   <h3 className="text-xl font-bold text-gray-900 mb-1">{edu.course}</h3>
-                  <div className="text-sm text-gray-600 font-medium">
+                  <div className="text-sm text-gray-700 font-medium">
                     {edu.studyAt} • {edu.location}
                   </div>
                 </div>

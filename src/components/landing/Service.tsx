@@ -5,10 +5,7 @@ import { getImageUrl } from "@/utils/helpers/imageUrlHandler";
 import Image from "next/image";
 import { serviceData } from "@/utils/constrants/data";
 import { motion, useReducedMotion } from "motion/react";
-import {
-  staggerContainerVariants,
-  staggerItemVariants,
-} from "@/utils/motion";
+import { staggerContainerVariants, staggerItemVariants } from "@/utils/motion";
 
 export interface ServiceProps {
   idPrefix?: string;
@@ -33,7 +30,7 @@ export default function Service({ idPrefix }: ServiceProps = {}) {
         <h2 className="md:text-[2.5rem] text-3xl font-extrabold uppercase tracking-wider text-gray-900 mb-3">
           WHAT I CAN DO
         </h2>
-        <p className="text-gray-600 text-base sm:text-lg leading-relaxed">
+        <p className="text-gray-700 text-base sm:text-lg leading-relaxed">
           From frontend interfaces to backend systems, I build the pieces that
           turn an idea into a working digital product.
         </p>
@@ -53,10 +50,10 @@ export default function Service({ idPrefix }: ServiceProps = {}) {
             variants={staggerItemVariants}
             whileHover={shouldReduceMotion ? {} : { y: -3 }}
             transition={{ duration: 0.2 }}
-            className="setUp_items relative group cursor-pointer"
+            className="setUp_items relative group cursor-pointer bg-white/85 backdrop-blur-sm rounded-2xl p-6 border border-gray-200/80 shadow-sm hover:shadow-md transition-all duration-200 mb-4"
           >
             {v.number && (
-              <span className="absolute top-4 right-4 text-sm font-extrabold text-orange-600/70 tracking-widest">
+              <span className="absolute top-4 right-4 text-sm font-extrabold text-orange-600 tracking-widest">
                 {v.number}
               </span>
             )}
@@ -68,7 +65,7 @@ export default function Service({ idPrefix }: ServiceProps = {}) {
               className="object-contain"
             />
             <h3 className="mt-4 font-bold text-xl text-gray-900">{v.title}</h3>
-            <p className="mt-2 text-sm sm:text-base text-gray-600 leading-relaxed">
+            <p className="mt-2 text-sm sm:text-base text-gray-700 leading-relaxed">
               {v.description}
             </p>
           </motion.div>

@@ -13,13 +13,12 @@ export interface WorkProps {
 export default function Work({ idPrefix }: WorkProps = {}) {
   const shouldReduceMotion = useReducedMotion();
   const sectionId = idPrefix ? `${idPrefix}-projects` : "projects";
-
   const isOverlay = Boolean(idPrefix);
 
   return (
     <section
       id={sectionId}
-      className="py-20 px-5 md:px-[8vw] lg:px-[10vw] xl:px-[12vw] bg-gray-950 text-white dark project-bg"
+      className="py-12 sm:py-16 px-4 sm:px-6 md:px-8 bg-transparent text-gray-900"
     >
       <motion.div
         className="max-w-3xl mx-auto text-center mb-12"
@@ -32,7 +31,7 @@ export default function Work({ idPrefix }: WorkProps = {}) {
         <h2 className="md:text-[2.5rem] text-3xl font-extrabold uppercase tracking-widest text-primary mb-3">
           SELECTED WORK
         </h2>
-        <p className="text-gray-300 text-base sm:text-lg leading-relaxed">
+        <p className="text-gray-700 text-base sm:text-lg leading-relaxed">
           A selection of projects where I’ve combined development,
           problem-solving, and thoughtful user experience to build useful
           digital products.
@@ -53,10 +52,10 @@ export default function Work({ idPrefix }: WorkProps = {}) {
             variants={staggerItemVariants}
             whileHover={shouldReduceMotion ? {} : { y: -3 }}
             transition={{ duration: 0.3 }}
-            className="sticky top-28 grid grid-cols-1 lg:grid-cols-12 gap-8 rounded-3xl p-6 sm:p-8 lg:p-10 project-card bg-gray-900 border border-gray-800 shadow-2xl transition duration-300 group"
+            className="grid grid-cols-1 lg:grid-cols-12 gap-8 rounded-3xl p-6 sm:p-8 lg:p-10 bg-white/90 backdrop-blur-md border border-gray-200/90 shadow-md hover:shadow-xl transition duration-300 group"
           >
             {/* Project Image Column */}
-            <div className="lg:col-span-6 rounded-2xl overflow-hidden shadow-xl border border-gray-800 flex items-center justify-center bg-gray-950 order-1 lg:order-2">
+            <div className="lg:col-span-6 rounded-2xl overflow-hidden shadow-sm border border-gray-200 flex items-center justify-center bg-gray-50 order-1 lg:order-2">
               <motion.div
                 whileHover={shouldReduceMotion ? {} : { scale: 1.03 }}
                 transition={{ duration: 0.4, ease: "easeOut" }}
@@ -76,29 +75,29 @@ export default function Work({ idPrefix }: WorkProps = {}) {
             <div className="lg:col-span-6 flex flex-col justify-between order-2 lg:order-1">
               <div>
                 {/* 1. PROJECT NAME */}
-                <h3 className="text-2xl sm:text-3xl font-extrabold text-white mb-2">
+                <h3 className="text-2xl sm:text-3xl font-extrabold text-gray-900 mb-2">
                   {v.title}
                 </h3>
 
                 {/* 2. CATEGORY */}
                 <div className="flex items-center gap-2 mb-3">
-                  <span className="text-xs font-bold text-orange-400 uppercase tracking-widest bg-orange-950/80 border border-orange-800/60 px-3 py-1 rounded-full">
+                  <span className="text-xs font-bold text-orange-700 uppercase tracking-widest bg-orange-100 border border-orange-200/80 px-3 py-1 rounded-full">
                     {v.category || "WEB APPLICATION"}
                   </span>
                 </div>
 
                 {/* 3. DESCRIPTION */}
-                <p className="text-gray-300 text-sm sm:text-base leading-relaxed mb-4">
+                <p className="text-gray-700 text-sm sm:text-base leading-relaxed mb-4">
                   {v.description}
                 </p>
 
                 {/* 4. ROLE */}
                 {v.role && (
-                  <div className="mb-4 bg-gray-950/70 p-3.5 rounded-xl border border-gray-800/80 flex items-center justify-between">
-                    <span className="text-xs font-bold text-gray-400 uppercase tracking-wider">
+                  <div className="mb-4 bg-orange-50/70 p-3.5 rounded-xl border border-orange-200/60 flex items-center justify-between">
+                    <span className="text-xs font-bold text-gray-600 uppercase tracking-wider">
                       ROLE
                     </span>
-                    <span className="text-xs sm:text-sm font-bold text-orange-300">
+                    <span className="text-xs sm:text-sm font-bold text-orange-700">
                       {v.role}
                     </span>
                   </div>
@@ -107,14 +106,14 @@ export default function Work({ idPrefix }: WorkProps = {}) {
                 {/* 5. TECHNOLOGIES */}
                 {v.technologies && v.technologies.length > 0 && (
                   <div className="mb-6">
-                    <span className="text-xs font-bold text-gray-400 uppercase tracking-wider block mb-2">
+                    <span className="text-xs font-bold text-gray-600 uppercase tracking-wider block mb-2">
                       TECHNOLOGIES
                     </span>
                     <div className="flex flex-wrap gap-2">
                       {v.technologies.map((tech: string, i: number) => (
                         <span
                           key={i}
-                          className="text-xs font-semibold px-3 py-1 bg-gray-800 border border-gray-700 text-orange-300 rounded-full"
+                          className="text-xs font-semibold px-3 py-1 bg-gray-100 border border-gray-200 text-gray-800 rounded-full"
                         >
                           {tech}
                         </span>
@@ -131,7 +130,7 @@ export default function Work({ idPrefix }: WorkProps = {}) {
                     whileHover={shouldReduceMotion ? {} : { scale: 1.02 }}
                     whileTap={shouldReduceMotion ? {} : { scale: 0.98 }}
                     href={v.link}
-                    className="inline-flex items-center gap-2 bg-orange-600 hover:bg-primary text-white py-2.5 px-5 rounded-xl font-bold transition shadow-md text-xs sm:text-sm uppercase tracking-wider group/btn"
+                    className="inline-flex items-center gap-2 bg-orange-600 hover:bg-orange-500 text-white py-2.5 px-5 rounded-xl font-bold transition shadow-sm text-xs sm:text-sm uppercase tracking-wider group/btn"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -150,7 +149,7 @@ export default function Work({ idPrefix }: WorkProps = {}) {
                     whileHover={shouldReduceMotion ? {} : { scale: 1.02 }}
                     whileTap={shouldReduceMotion ? {} : { scale: 0.98 }}
                     href={v.github}
-                    className="inline-flex items-center gap-2 bg-gray-800 hover:bg-gray-700 text-white py-2.5 px-5 rounded-xl font-bold transition border border-gray-700 text-xs sm:text-sm uppercase tracking-wider group/btn"
+                    className="inline-flex items-center gap-2 bg-gray-900 hover:bg-gray-800 text-white py-2.5 px-5 rounded-xl font-bold transition border border-gray-800 text-xs sm:text-sm uppercase tracking-wider group/btn shadow-sm"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -171,18 +170,18 @@ export default function Work({ idPrefix }: WorkProps = {}) {
       </motion.div>
 
       {/* 🔹 Transition CTA Banner */}
-      <motion.div
+      {/* <motion.div
         initial={shouldReduceMotion ? "visible" : "hidden"}
         whileInView="visible"
         viewport={{ once: true, amount: 0.2 }}
         variants={staggerItemVariants}
-        className="mt-16 max-w-4xl mx-auto bg-gradient-to-br from-gray-900 via-gray-900 to-black text-white rounded-3xl p-8 sm:p-10 text-center shadow-2xl border border-gray-800"
+        className="mt-16 max-w-4xl mx-auto bg-gradient-to-br from-orange-50 via-white to-amber-50/60 text-gray-900 rounded-3xl p-8 sm:p-10 text-center shadow-md border border-orange-200/80"
       >
         <h3 className="text-2xl sm:text-3xl font-extrabold uppercase tracking-wider mb-3 text-primary">
           HAVE A PROJECT IN MIND?
         </h3>
-        <p className="text-gray-300 text-base sm:text-lg mb-6 max-w-xl mx-auto">
-          Let's create something useful, reliable, and worth using.
+        <p className="text-gray-700 text-base sm:text-lg mb-6 max-w-xl mx-auto">
+          Let&apos;s create something useful, reliable, and worth using.
         </p>
         <motion.button
           whileHover={shouldReduceMotion ? {} : { y: -2 }}
@@ -191,11 +190,11 @@ export default function Work({ idPrefix }: WorkProps = {}) {
             const el = document.getElementById("contact");
             el?.scrollIntoView({ behavior: "smooth" });
           }}
-          className="inline-flex items-center gap-2 bg-orange-600 hover:bg-primary text-white font-bold py-3.5 px-8 rounded-full shadow-lg transition duration-200 uppercase text-xs sm:text-sm tracking-wider cursor-pointer"
+          className="inline-flex items-center gap-2 bg-orange-600 hover:bg-orange-500 text-white font-bold py-3.5 px-8 rounded-full shadow-md transition duration-200 uppercase text-xs sm:text-sm tracking-wider cursor-pointer"
         >
           GET IN TOUCH →
         </motion.button>
-      </motion.div>
+      </motion.div> */}
     </section>
   );
 }

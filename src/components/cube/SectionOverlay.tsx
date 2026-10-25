@@ -8,6 +8,7 @@ import Tools from "@/components/landing/Tools";
 import Experience from "@/components/landing/Experience";
 import Service from "@/components/landing/Service";
 import Contact from "@/components/landing/Contact";
+import CanvasTexture from "@/components/common/CanvasTexture";
 
 export interface SectionOverlayProps {
   isOpen: boolean;
@@ -160,26 +161,29 @@ export default function SectionOverlay({
         Full-screen sheet on mobile devices (<768px) with safe-area padding;
         Slide-in drawer on tablet/desktop (w-[70vw] lg:w-[60vw] xl:w-[52vw]).
       */}
-      <div className="relative z-10 w-full md:w-[70vw] lg:w-[60vw] xl:w-[52vw] h-full bg-white dark:bg-gray-950 shadow-2xl flex flex-col overflow-hidden animate-in slide-in-from-right duration-300">
+      <div className="relative z-10 w-full md:w-[70vw] lg:w-[60vw] xl:w-[52vw] h-full bg-[#f8f7f4] shadow-2xl flex flex-col overflow-hidden animate-in slide-in-from-right duration-300">
+        {/* Canvas / Paper Texture Background fixed behind scrolling content */}
+        <CanvasTexture opacity={0.65} />
+
         {/* Sticky Header with Safe-Area Top Padding */}
-        <header className="sticky top-0 z-20 flex items-center justify-between px-6 py-4 pt-[max(1rem,env(safe-area-inset-top,0px))] bg-white/95 dark:bg-gray-950/95 backdrop-blur-md border-b border-gray-200/80 dark:border-gray-800 shadow-sm shrink-0">
+        <header className="sticky top-0 z-20 flex items-center justify-between px-6 py-4 pt-[max(1rem,env(safe-area-inset-top,0px))] bg-[#f8f7f4]/85 backdrop-blur-md border-b border-black/10 shadow-sm shrink-0">
           <button
             ref={backButtonRef}
             onClick={onClose}
-            className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-gray-700 dark:text-gray-300 hover:text-orange-600 transition px-3 py-1.5 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 cursor-pointer"
+            className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-gray-800 hover:text-orange-600 transition px-3 py-1.5 rounded-full hover:bg-black/5 cursor-pointer"
             aria-label="Back to 3D cube exploration"
           >
             <IconArrowLeft size={16} />
             <span>Back to Cube</span>
           </button>
 
-          <span className="text-xs font-mono uppercase tracking-widest text-orange-600 font-semibold hidden sm:inline-block">
+          <span className="text-xs font-mono uppercase tracking-widest text-orange-600 font-bold hidden sm:inline-block">
             {sectionId.toUpperCase()}
           </span>
 
           <button
             onClick={onClose}
-            className="p-2 text-gray-500 hover:text-gray-900 dark:hover:text-white rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition cursor-pointer"
+            className="p-2 text-gray-700 hover:text-gray-950 rounded-full hover:bg-black/5 transition cursor-pointer"
             aria-label="Close dialog"
           >
             <IconX size={20} />
@@ -190,7 +194,7 @@ export default function SectionOverlay({
         <div
           tabIndex={0}
           style={{ WebkitOverflowScrolling: "touch" }}
-          className="flex-1 overflow-y-auto px-4 sm:px-8 py-6 pb-[max(2rem,calc(1.5rem+env(safe-area-inset-bottom,0px)))] focus:outline-none"
+          className="relative z-10 flex-1 overflow-y-auto px-4 sm:px-8 py-6 pb-[max(2rem,calc(1.5rem+env(safe-area-inset-bottom,0px)))] focus:outline-none"
         >
           {renderActiveSection()}
         </div>

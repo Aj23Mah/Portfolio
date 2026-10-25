@@ -26,12 +26,12 @@ export default function About({ idPrefix }: AboutProps) {
         variants={staggerContainerVariants}
       >
         <motion.div variants={staggerItemVariants} className="roboto-slab-semibold">
-          <div className="md:text-[2.5rem] sm:text-[2rem] text-[1.5rem] text-gray-700/50 font-bold sticky top-28">
+          <div className="md:text-[2.5rem] sm:text-[2rem] text-[1.5rem] text-gray-800 font-bold sticky top-28 leading-snug">
             Besides, considering your <span className="text-primary">duty</span>, as a warrior you
             should not waver. Indeed, for a <span className="text-primary">warrior</span>, there is
             no better engagement than fighting for{" "}
             <span className="text-primary">upholding of righteousness</span>.
-            <p className="text-2xl font-bold text-gray-700/50 mt-2">— BG 2.31</p>
+            <p className="text-2xl font-bold text-gray-600 mt-2">— BG 2.31</p>
           </div>
         </motion.div>
 
@@ -57,7 +57,7 @@ export default function About({ idPrefix }: AboutProps) {
           </div>
 
           {/* What I Do Summary Card */}
-          <div className="bg-orange-50/70 border border-orange-200/80 rounded-2xl p-6 sm:p-8 mt-6">
+          <div className="bg-white/85 backdrop-blur-sm border border-orange-200/90 rounded-2xl p-6 sm:p-8 mt-6 shadow-sm">
             <h3 className="text-xl font-bold uppercase tracking-wider mb-4 text-gray-900 border-b border-orange-200/60 pb-3">
               Core Capabilities
             </h3>

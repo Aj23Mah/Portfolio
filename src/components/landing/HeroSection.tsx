@@ -7,6 +7,8 @@ import CubeWrapper from "@/components/cube/CubeWrapper";
 import { useViewMode } from "@/context/ViewModeContext";
 import { isLowPowerGated } from "@/utils/lowPowerGate";
 
+import CanvasTexture from "@/components/common/CanvasTexture";
+
 export default function HeroSection() {
   const { mode, toggleMode } = useViewMode();
   const [showPaperTexture, setShowPaperTexture] = React.useState(false);
@@ -176,12 +178,10 @@ export default function HeroSection() {
 
       {/* Restored paper texture: loaded after first paint as lightweight WebP (25.6 KB) */}
       {showPaperTexture && (
-        <div
-          className="absolute inset-0 z-0 pointer-events-none opacity-60 bg-cover bg-center transition-opacity duration-700"
-          style={{
-            backgroundImage: "url(/image/paper-texture.webp)",
-            backgroundAttachment: "fixed",
-          }}
+        <CanvasTexture
+          fixed
+          opacity={0.6}
+          className="transition-opacity duration-700"
         />
       )}
 
