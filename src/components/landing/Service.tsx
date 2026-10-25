@@ -37,7 +37,7 @@ export default function Service({ idPrefix }: ServiceProps = {}) {
       </motion.div>
 
       <motion.div
-        className="parallex_setupItems"
+        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto"
         initial={isOverlay || shouldReduceMotion ? "visible" : "hidden"}
         animate={isOverlay ? "visible" : undefined}
         whileInView={isOverlay ? undefined : "visible"}
@@ -50,24 +50,34 @@ export default function Service({ idPrefix }: ServiceProps = {}) {
             variants={staggerItemVariants}
             whileHover={shouldReduceMotion ? {} : { y: -3 }}
             transition={{ duration: 0.2 }}
-            className="setUp_items relative group cursor-pointer bg-white/85 backdrop-blur-sm rounded-2xl p-6 border border-gray-200/80 shadow-sm hover:shadow-md transition-all duration-200 mb-4"
+            className="relative group cursor-pointer bg-white/85 backdrop-blur-sm rounded-2xl p-6 border border-gray-200/80 shadow-sm hover:shadow-md transition-all duration-200 flex flex-col justify-between"
           >
-            {v.number && (
-              <span className="absolute top-4 right-4 text-sm font-extrabold text-orange-600 tracking-widest">
-                {v.number}
-              </span>
-            )}
-            <Image
-              src={getImageUrl(v.image ?? "")}
-              alt={v.title}
-              width={56}
-              height={56}
-              className="object-contain"
-            />
-            <h3 className="mt-4 font-bold text-xl text-gray-900">{v.title}</h3>
-            <p className="mt-2 text-sm sm:text-base text-gray-700 leading-relaxed">
-              {v.description}
-            </p>
+            <div>
+              <div className="flex items-start justify-between gap-4 mb-4">
+                {v.image && (
+                  <div className="w-14 h-14 rounded-xl bg-orange-50 border border-orange-100 flex items-center justify-center p-2.5 transition-transform duration-200 group-hover:scale-105">
+                    <Image
+                      src={getImageUrl(v.image ?? "")}
+                      alt={v.title}
+                      width={48}
+                      height={48}
+                      className="object-contain max-h-full max-w-full"
+                    />
+                  </div>
+                )}
+                {v.number && (
+                  <span className="text-xs font-mono font-extrabold text-orange-600 tracking-widest bg-orange-50/80 px-2.5 py-1 rounded-full border border-orange-200/60">
+                    {v.number}
+                  </span>
+                )}
+              </div>
+              <h3 className="font-bold text-lg sm:text-xl text-gray-900 group-hover:text-orange-700 transition-colors">
+                {v.title}
+              </h3>
+              <p className="mt-2 text-sm text-gray-700 leading-relaxed">
+                {v.description}
+              </p>
+            </div>
           </motion.div>
         ))}
       </motion.div>

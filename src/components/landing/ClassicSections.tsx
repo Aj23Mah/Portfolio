@@ -144,23 +144,6 @@ export default function ClassicSections() {
         </div>
       </section>
 
-      {/* 3. INFINITE MARQUEE */}
-      <section className="w-full container mx-auto py-10">
-        <div className="scroller" data-direction="left">
-          <ul className="tag-list scroller__inner">
-            {["HTML", "CSS", "JS", "webdev", "React", "Next", "Node", "Express", "Nest", "scss", "animation", "Tailwind", "Bootstrap", "Mantine UI", "Material UI"].map((tag, i) => (
-              <li key={i}>{tag}</li>
-            ))}
-          </ul>
-        </div>
-        <div className="scroller" data-direction="right">
-          <ul className="tag-list scroller__inner">
-            {["HTML", "CSS", "JS", "webdev", "React", "Next", "Node", "Express", "Nest", "scss", "animation", "Tailwind", "Bootstrap", "Mantine UI", "Material UI"].map((tag, i) => (
-              <li key={i}>{tag}</li>
-            ))}
-          </ul>
-        </div>
-      </section>
 
       {/* 4. PROJECTS / SELECTED WORK */}
       <section id="projects" className="py-20 px-5 md:px-[8vw] lg:px-[10vw] xl:px-[12vw] bg-transparent text-gray-900">
@@ -281,25 +264,38 @@ export default function ClassicSections() {
           </p>
         </div>
 
-        <div className="parallex_setupItems">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
           {serviceData?.map((v: any, key: number) => (
-            <div key={key} className="setUp_items relative group cursor-pointer">
-              {v.number && (
-                <span className="absolute top-4 right-4 text-sm font-extrabold text-orange-600/70 tracking-widest">
-                  {v.number}
-                </span>
-              )}
-              {v.img && (
-                <Image
-                  src={v.img}
-                  alt={v.title}
-                  width={56}
-                  height={56}
-                  className="object-contain"
-                />
-              )}
-              <h3 className="mt-4 font-bold text-xl text-gray-900">{v.title}</h3>
-              <p className="mt-2 text-sm sm:text-base text-gray-600 leading-relaxed">{v.description}</p>
+            <div
+              key={key}
+              className="relative group bg-white/85 backdrop-blur-sm rounded-2xl p-6 sm:p-7 border border-gray-200/90 shadow-sm hover:shadow-md transition-all duration-200 flex flex-col justify-between cursor-pointer"
+            >
+              <div>
+                <div className="flex items-start justify-between gap-4 mb-4">
+                  {v.image && (
+                    <div className="w-14 h-14 rounded-xl bg-orange-50 border border-orange-100 flex items-center justify-center p-2.5 transition-transform duration-200 group-hover:scale-105">
+                      <Image
+                        src={v.image}
+                        alt={v.title}
+                        width={48}
+                        height={48}
+                        className="object-contain max-h-full max-w-full"
+                      />
+                    </div>
+                  )}
+                  {v.number && (
+                    <span className="text-xs font-mono font-extrabold text-orange-600 tracking-widest bg-orange-50/80 px-2.5 py-1 rounded-full border border-orange-200/60">
+                      {v.number}
+                    </span>
+                  )}
+                </div>
+                <h3 className="font-bold text-lg sm:text-xl text-gray-900 group-hover:text-orange-700 transition-colors">
+                  {v.title}
+                </h3>
+                <p className="mt-2 text-sm text-gray-600 leading-relaxed">
+                  {v.description}
+                </p>
+              </div>
             </div>
           ))}
         </div>
