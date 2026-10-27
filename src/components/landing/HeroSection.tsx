@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 import "@/assets/css/TypingAnimation.css";
 import { TypeAnimation } from "react-type-animation";
 import CubeWrapper from "@/components/cube/CubeWrapper";
@@ -114,6 +115,14 @@ export default function HeroSection() {
               <span>🌐 3D Cube Explore</span>
               <span>↑</span>
             </button>
+            <Link
+              href="/classic-cube"
+              className="py-3 px-5 rounded-xl border border-gray-300 hover:border-orange-500 bg-white hover:bg-orange-50/50 text-gray-800 hover:text-orange-700 font-mono font-bold transition text-xs uppercase tracking-wider flex items-center gap-1.5 shadow-sm cursor-pointer"
+              title="Switch to experimental Classic Cube view"
+            >
+              <span>🎲 Classic Cube</span>
+              <span>→</span>
+            </Link>
           </div>
         </div>
       </section>
@@ -226,8 +235,8 @@ export default function HeroSection() {
           </p>
         </div>
 
-        {/* Bottom Area: Classic View Link (pinned to bottom-right to avoid center toolbar collision) */}
-        <div className="absolute bottom-6 right-6 sm:bottom-8 sm:right-10 pointer-events-auto z-30">
+        {/* Bottom Area: Classic View Link & Classic Cube Link (pinned to bottom-right) */}
+        <div className="absolute bottom-6 right-6 sm:bottom-8 sm:right-10 pointer-events-auto z-30 flex items-center gap-2">
           <button
             onClick={() => {
               toggleMode();
@@ -240,6 +249,14 @@ export default function HeroSection() {
             <span>Classic View</span>
             <span className="group-hover:translate-y-0.5 transition-transform duration-200">↓</span>
           </button>
+          <Link
+            href="/classic-cube"
+            className="group text-xs font-mono uppercase tracking-widest text-gray-700 hover:text-orange-600 transition flex items-center gap-1.5 py-2 px-3.5 rounded-full bg-white/70 hover:bg-white/95 border border-gray-300/80 backdrop-blur-md shadow-md cursor-pointer"
+            title="Switch to experimental Classic Cube view"
+          >
+            <span>🎲 Classic Cube</span>
+            <span className="group-hover:translate-x-0.5 transition-transform duration-200">→</span>
+          </Link>
         </div>
       </div>
     </section>

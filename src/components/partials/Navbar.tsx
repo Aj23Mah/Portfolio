@@ -1,5 +1,6 @@
 "use client";
 import Logo from "@/components/partials/logo";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import { IconMenu2, IconX } from "@tabler/icons-react";
 import { menuData } from "@/utils/constrants/data";
@@ -129,7 +130,7 @@ export default function Navbar() {
               })}
 
               {/* View Mode Switcher in Menu Drawer */}
-              <div className="pt-6 border-t border-gray-800 flex flex-col items-center">
+              <div className="pt-6 border-t border-gray-800 flex flex-col sm:flex-row items-center gap-3">
                 <button
                   onClick={() => {
                     toggleMode();
@@ -154,6 +155,24 @@ export default function Navbar() {
                     </>
                   )}
                 </button>
+                <Link
+                  href="/classic-cube"
+                  onClick={() => setToggle(false)}
+                  className="px-5 py-2.5 rounded-full border border-gray-700 bg-gray-900/60 text-gray-300 hover:text-white hover:bg-orange-600 hover:border-orange-500 transition text-sm font-mono font-bold flex items-center gap-2 cursor-pointer shadow-lg"
+                  title="Switch to experimental Classic Cube view"
+                >
+                  <span>🎲</span>
+                  <span>Classic Cube (Experimental)</span>
+                </Link>
+                <Link
+                  href="/assemble"
+                  onClick={() => setToggle(false)}
+                  className="px-5 py-2.5 rounded-full border border-gray-700 bg-gray-900/60 text-gray-300 hover:text-white hover:bg-orange-600 hover:border-orange-500 transition text-sm font-mono font-bold flex items-center gap-2 cursor-pointer shadow-lg"
+                  title="Switch to experimental Assemble view"
+                >
+                  <span>🧩</span>
+                  <span>Assemble (Experimental)</span>
+                </Link>
               </div>
             </div>
           </div>
